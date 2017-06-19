@@ -9,15 +9,15 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
-import static cn.nju.ws.eval.Metrics.calMetrics;
-import static cn.nju.ws.nlp.FormatData.getStopWords;
-import static cn.nju.ws.unit.alignSet.AlignFileParser.parseAlignFile;
-import static cn.nju.ws.utility.AlignmentFinder.findResultAlignWithoutThread;
-import static cn.nju.ws.utility.FileWriter.printToFile;
-import static cn.nju.ws.utility.InfoGainCalculator.calInfoGainWithoutThread;
-import static cn.nju.ws.utility.InstFileParser.parseInstFile;
+import static cn.nju.ws.utility.eval.Metrics.calMetrics;
+import static cn.nju.ws.utility.nlp.FormatData.getStopWords;
+import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
+import static cn.nju.ws.utility.finder.AlignmentFinder.findResultAlignWithoutThread;
+import static cn.nju.ws.utility.fileWriter.FileWriter.printToFile;
+import static cn.nju.ws.utility.finder.InfoGainCalculator.calInfoGainWithoutThread;
+import static cn.nju.ws.utility.fileParser.InstFileParser.parseInstFile;
 import static cn.nju.ws.utility.ParamDef.*;
-import static cn.nju.ws.utility.PredPairFinder.findPredPairWithoutThread;
+import static cn.nju.ws.utility.finder.PredPairFinder.findPredPairWithoutThread;
 
 /**
  * Created by ciferlv on 17-6-6.
@@ -41,12 +41,12 @@ public class MatchingEntry {
         doc1.setTarType(tarType);
         doc2.setTarType(tarType);
 
-        parseAlignFile("src/main/resources/DOREMUS/HT/refalign.rdf", refAlign);
+        parseAlignFile("src/main/resources/DOREMUS/FPT/refalign.rdf", refAlign);
 
         Model model1 = ModelFactory.createDefaultModel();
         Model model2 = ModelFactory.createDefaultModel();
-        parseInstFile("src/main/resources/DOREMUS/HT/source.ttl", doc1, model1);
-        parseInstFile("src/main/resources/DOREMUS/HT/target.ttl", doc2, model2);
+        parseInstFile("src/main/resources/DOREMUS/FPT/source.ttl", doc1, model1);
+        parseInstFile("src/main/resources/DOREMUS/FPT/target.ttl", doc2, model2);
         doc1.processGraph();
         doc2.processGraph();
 

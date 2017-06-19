@@ -1,9 +1,9 @@
 package cn.nju.ws.utility;
 
-import cn.nju.ws.unit.alignSet.AlignmentSet;
-import cn.nju.ws.unit.alignSet.AlignmentMap;
-import cn.nju.ws.unit.instSet.Doc;
-import cn.nju.ws.unit.predPairList.PredPairList;
+import cn.nju.ws.unit.alignment.AlignmentSet;
+import cn.nju.ws.unit.alignment.AlignmentMap;
+import cn.nju.ws.unit.instance.Doc;
+import cn.nju.ws.unit.predicatePair.PredPairList;
 
 import java.util.HashSet;
 import java.util.Set;
