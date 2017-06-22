@@ -20,8 +20,8 @@ public class PredPairTest {
 
         List<PredPair> predPairList = ppl.getPredPairList();
 
-        Map<String, Inst> graph1 = doc1.getGraph();
-        Map<String, Inst> graph2 = doc2.getGraph();
+        Map<String, Inst> graph1 = souDoc.getGraph();
+        Map<String, Inst> graph2 = tarDoc.getGraph();
 
 
         for (CounterPart cp : refAlign.getCounterPartList()) {

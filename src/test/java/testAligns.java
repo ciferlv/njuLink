@@ -33,18 +33,18 @@ public class testAligns {
         Set<String> tarType = new HashSet<>();
         tarType.add("http://erlangen-crm.org/efrbroo/f22_self-contained_expression");
 
-        doc1.setTarType(tarType);
-        doc2.setTarType(tarType);
+        souDoc.setTarType(tarType);
+        tarDoc.setTarType(tarType);
 
         Model model1 = ModelFactory.createDefaultModel();
         Model model2 = ModelFactory.createDefaultModel();
-        parseInstFile("src/main/resources/DOREMUS/HT/source.ttl", doc1, model1);
-        parseInstFile("src/main/resources/DOREMUS/HT/target.ttl", doc2, model2);
-        doc1.processGraph();
-        doc2.processGraph();
+        parseInstFile("src/main/resources/DOREMUS/HT/source.ttl", souDoc, model1);
+        parseInstFile("src/main/resources/DOREMUS/HT/target.ttl", tarDoc, model2);
+        souDoc.processGraph();
+        tarDoc.processGraph();
 
-        printToFile("./Inst1", doc1.graphToString());
-        printToFile("./Inst2", doc2.graphToString());
+        printToFile("./Inst1", souDoc.graphToString());
+        printToFile("./Inst2", tarDoc.graphToString());
         parseAlignFile("src/main/resources/DOREMUS/HT/refalign.rdf", refAlign);
         refAlign.generatePositives();
         refAlign.generateNegetives();
@@ -56,9 +56,9 @@ public class testAligns {
 
         printToFile("./PredPair2", ppl.toString());
 
-//        Inst inst = doc1.getInst("http://data.doremus.org/expression/63550bbe-0aab-3231-baab-9c3b8f11ca5f");
-        Inst inst1 = doc1.getInst("http://data.doremus.org/expression/6abaa561-fdab-3e17-a96f-ed7a10259138");
-        Inst inst2 = doc2.getInst("http://data.doremus.org/expression/9339ce35-2286-3860-8b2b-0c1aba6ea29c");
+//        Inst inst = souDoc.getInst("http://data.doremus.org/expression/63550bbe-0aab-3231-baab-9c3b8f11ca5f");
+        Inst inst1 = souDoc.getInst("http://data.doremus.org/expression/6abaa561-fdab-3e17-a96f-ed7a10259138");
+        Inst inst2 = tarDoc.getInst("http://data.doremus.org/expression/9339ce35-2286-3860-8b2b-0c1aba6ea29c");
 
 //        inst.matchInst(inst2);
         logger.info(tempAlign.toString());
@@ -66,18 +66,16 @@ public class testAligns {
 
     public static void calAlignInfo() throws FileNotFoundException {
 
-        pushAlins = true;
         for (CounterPart cp : refAlign.getCounterPartList()) {
 
-            Map<String, Inst> graph1 = doc1.getGraph();
-            Map<String, Inst> graph2 = doc2.getGraph();
+            Map<String, Inst> graph1 = souDoc.getGraph();
+            Map<String, Inst> graph2 = tarDoc.getGraph();
 
             Inst inst1 = graph1.get(cp.getSub1());
             Inst inst2 = graph2.get(cp.getSub2());
 
 //            inst1.matchInst(inst2);
         }
-        pushAlins = false;
 
         printToFile("./alignsStr.txt", alignsStr);
     }

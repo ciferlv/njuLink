@@ -28,8 +28,8 @@ public class PredPairFinder {
 
     public static void findPredPairWithThread() {
 
-        Map<String, Inst> graph1 = doc1.getGraph();
-        Map<String, Inst> graph2 = doc2.getGraph();
+        Map<String, Inst> graph1 = souDoc.getGraph();
+        Map<String, Inst> graph2 = tarDoc.getGraph();
 
         List<CounterPart> counterPartList = positives.getCounterPartList();
         ExecutorService cachedThreadPool = Executors.newFixedThreadPool(2);
@@ -52,8 +52,8 @@ public class PredPairFinder {
 
     public static void findPredPairWithoutThread() {
 
-        Map<String, Inst> graph1 = doc1.getGraph();
-        Map<String, Inst> graph2 = doc2.getGraph();
+        Map<String, Inst> graph1 = souDoc.getGraph();
+        Map<String, Inst> graph2 = tarDoc.getGraph();
 
         List<CounterPart> counterPartList = positives.getCounterPartList();
 
@@ -118,7 +118,7 @@ public class PredPairFinder {
 
                 double value = calObjSetSim(objSet1, objSet2).getMaxSimi();
 
-                if (value > PROP_PAIR_THRESHOLD) {
+                if (value > predPairSimiThreshold) {
 
                     ppl.add(new PredPair(pred1, pred2));
                 }

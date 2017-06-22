@@ -51,7 +51,7 @@ public class Inst {
 
             Map<String, Set<Obj>> ptr;
 
-            if (use_reinforce) {
+            if (useReinforce) {
                 if (objType == URI_TYPE_INDEX) {
                     ptr = predUri;
                 } else {

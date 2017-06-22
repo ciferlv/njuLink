@@ -72,7 +72,7 @@ public class AlignmentSet {
     public void generateNegetives() {
 
         List<CounterPart> counterPartList = positives.getCounterPartList();
-        List<String> subList = doc2.getTarSubList();
+        List<String> subList = tarDoc.getTarSubList();
 
         Random r = new Random(105);
 
@@ -122,7 +122,17 @@ public class AlignmentSet {
                 resultAlign.addCounterPart(cp);
             }
         }
-//        logger.info(resultAlign.toString());
+
+        for (CounterPart cp : resultAlign.getCounterPartList()) {
+
+           alignBuffer.append("\n\t<map>");
+           alignBuffer.append("\n\t\t<Cell>");
+           alignBuffer.append("\n\t\t\t<entity1 rdf:resource=\">"+cp.getSub1()+"\"/>");
+           alignBuffer.append("\n\t\t\t<entity2 rdf:resource=\">"+cp.getSub2()+"\"/>");
+           alignBuffer.append("\n\t\t\t<measure rdf:datatype=\"xsd:float\">1.0</measure>");
+           alignBuffer.append("\n\t\t</Cell>");
+           alignBuffer.append("\n\t</map>");
+        }
     }
 
     public String toString() {

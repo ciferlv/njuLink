@@ -88,8 +88,8 @@ public class InfoGainCalculator {
         String pred1 = pp.getProp1();
         String pred2 = pp.getProp2();
 
-        Map<String, Inst> graph1 = doc1.getGraph();
-        Map<String, Inst> graph2 = doc2.getGraph();
+        Map<String, Inst> graph1 = souDoc.getGraph();
+        Map<String, Inst> graph2 = tarDoc.getGraph();
 
         for (CounterPart cp : positives.getCounterPartList()) {
 
@@ -109,7 +109,7 @@ public class InfoGainCalculator {
             } else {
 
                 double value = calObjSetSim(objSet1, objSet2).getMaxSimi();
-                if (value > PROP_PAIR_THRESHOLD) {
+                if (value > predPairSimiThreshold) {
                     truePos++;
                 } else falsePos++;
             }
@@ -131,7 +131,7 @@ public class InfoGainCalculator {
             } else {
 
                 double value = calObjSetSim(objSet1, objSet2).getMaxSimi();
-                if (value > PROP_PAIR_THRESHOLD) {
+                if (value > predPairSimiThreshold) {
                     falseNeg++;
                 } else trueNeg++;
             }

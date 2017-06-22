@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import static cn.nju.ws.utility.ParamDef.INFO_GAIN_THRESHOLD;
+import static cn.nju.ws.utility.ParamDef.infoGainThreshold;
 
 /**
  * Created by ciferlv on 17-6-8.
@@ -119,7 +119,7 @@ public class PredPairList {
 
         for (PredPair pp : predPairList) {
 
-            if (pp.getInfoGain() > INFO_GAIN_THRESHOLD) {
+            if (pp.getInfoGain() > infoGainThreshold) {
 
                 myPropPairList.add(pp);
             }

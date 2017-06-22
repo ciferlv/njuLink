@@ -136,13 +136,13 @@ public class CalSimilarity {
                 maxSimi = Math.max(maxSimi, myRes);
                 maxRes = Math.max(maxRes, myRes);
 
-                if (myRes < PROP_PAIR_THRESHOLD) {
+                if (myRes < predPairSimiThreshold) {
 
                     unMatchedInObj2Set.add(obj2.getValue());
                 }
             }
 
-            if (maxRes > PROP_PAIR_THRESHOLD) {
+            if (maxRes > predPairSimiThreshold) {
                 matchedNumObj1Set++;
                 simiSum += maxRes;
             } else unmatchedNumObj1Set++;

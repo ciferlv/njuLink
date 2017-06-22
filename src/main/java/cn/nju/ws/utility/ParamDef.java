@@ -1,7 +1,6 @@
 package cn.nju.ws.utility;
 
 import cn.nju.ws.unit.alignment.AlignmentSet;
-import cn.nju.ws.unit.alignment.AlignmentMap;
 import cn.nju.ws.unit.instance.Doc;
 import cn.nju.ws.unit.predicatePair.PredPairList;
 
@@ -46,27 +45,23 @@ public class ParamDef {
     public static final String GYEARMONTH_TYPE = "http://www.w3.org/2001/XMLSchema#gYearMonth";
 
     //    use reinforce or not
-    public static boolean use_reinforce = false;
-    public static boolean use_average_simi = false;
+    public static boolean useReinforce;
+    public static boolean useAverageSimi;
 
     //    The size of align sample
     public static final double INITIAL_SAMPLE_PERSENT = 1;
 
-    public static final double INFO_GAIN_THRESHOLD = 0.2;
+    public static double infoGainThreshold = 0.2;
 
-    public static final double PROP_PAIR_THRESHOLD = 0.65;
+    public static double predPairSimiThreshold = 0.65;
 
-    public static final double ALIGN_THRESHOLD = 0.6;
+    public static int predPairNumNeededThreshold = 3;
 
-    public static int pred_pair_num_need_threshold = 3;
-
-    public static double pred_pair_matched_rate = 0.9;
-
-    public static String inst1_path;
-    public static String inst2_path;
+    public static String souPath;
+    public static String tarPath;
+    public static String refPath;
     public static String supp1_path;
     public static String supp2_path;
-    public static String standard_path;
     public static String result_file_path;
     public static String metrics_file_path;
     public static String correct_result_file_path;
@@ -77,8 +72,8 @@ public class ParamDef {
     public static String prop_pair_list_file_path;
     public static String stopwords_file_path = "./stopwords_more.txt";
 
-    public static Set<String> tarTypeSet1 = new HashSet<String>();
-    public static Set<String> tarTypeSet2 = new HashSet<String>();
+    public static Set<String> souClassFilterSet = new HashSet<String>();
+    public static Set<String> tarClassFilterSet = new HashSet<String>();
 
     public static Set<String> stopWordSet = new HashSet<String>();
 
@@ -95,12 +90,13 @@ public class ParamDef {
 
     public static Set<String> refSet = new HashSet<>();
 
-    public static AlignmentMap alignMap = new AlignmentMap();
-    public static Doc doc1 = new Doc();
-    public static Doc doc2 = new Doc();
+    public static Doc souDoc = new Doc();
+    public static Doc tarDoc = new Doc();
     public static PredPairList ppl = new PredPairList();
 
-    public static String alignsStr ="";
-    public static boolean pushAlins  = true;
+    public static String alignsStr = "";
+
+    public static String alignHead,alignTail;
+    public static StringBuffer alignBuffer = new StringBuffer();
 
 }

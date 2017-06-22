@@ -29,11 +29,11 @@ public class AlignmentFinder {
 
     public static void findResultAlignWithoutThread() {
 
-        Map<String, Inst> graph1 = doc1.getGraph();
-        Map<String, Inst> graph2 = doc2.getGraph();
+        Map<String, Inst> graph1 = souDoc.getGraph();
+        Map<String, Inst> graph2 = tarDoc.getGraph();
 
-        List<String> tarSubList1 = doc1.getTarSubList();
-        List<String> tarSubList2 = doc2.getTarSubList();
+        List<String> tarSubList1 = souDoc.getTarSubList();
+        List<String> tarSubList2 = tarDoc.getTarSubList();
 
         for (String sub1 : tarSubList1) {
 
@@ -46,21 +46,16 @@ public class AlignmentFinder {
             }
         }
 
-//        for (String key : alignMap.getAlignMapSub1().keySet()) {
-//
-//            resultAlign.addCounterPart(alignMap.getAlignMapSub1().get(key));
-//        }
-//        alignMap.generateAlign();
         tempAlign.generateResultAlign();
     }
 
     public static void findResultAlignWithThread() {
 
-        Map<String, Inst> graph1 = doc1.getGraph();
-        Map<String, Inst> graph2 = doc2.getGraph();
+        Map<String, Inst> graph1 = souDoc.getGraph();
+        Map<String, Inst> graph2 = tarDoc.getGraph();
 
-        List<String> tarSubList1 = doc1.getTarSubList();
-        List<String> tarSubList2 = doc2.getTarSubList();
+        List<String> tarSubList1 = souDoc.getTarSubList();
+        List<String> tarSubList2 = tarDoc.getTarSubList();
 
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 
@@ -88,7 +83,7 @@ public class AlignmentFinder {
 
         if (isDisPredPair) {
 
-            if (matchRes.getMaxSimi() > PROP_PAIR_THRESHOLD) {
+            if (matchRes.getMaxSimi() > predPairSimiThreshold) {
 
                 cp.addMatchedNumDis(1);
                 cp.addInfoGainSumDis(pp.getInfoGain());
@@ -104,7 +99,7 @@ public class AlignmentFinder {
             }
         } else {
 
-            if (matchRes.getMaxSimi() > PROP_PAIR_THRESHOLD) {
+            if (matchRes.getMaxSimi() > predPairSimiThreshold) {
 
                 cp.addMatchedNumUndis(1);
                 cp.addMaxSimiSumUndis(matchRes.getSimiSum());
@@ -152,7 +147,7 @@ public class AlignmentFinder {
             }
         }
 //        logger.info(cp.toString());
-        if (cp.getMatchedNumDisOfSmall() > pred_pair_num_need_threshold) {
+        if (cp.getMatchedNumDisOfSmall() > predPairNumNeededThreshold) {
 
 
             tempAlign.addCounterPart(cp);
@@ -178,7 +173,7 @@ public class AlignmentFinder {
 
         }
 
-        if (cp.getMatchedNumDisOfSmall() > pred_pair_num_need_threshold) {
+        if (cp.getMatchedNumDisOfSmall() > predPairNumNeededThreshold) {
 
             tempAlign.addCounterPart(cp);
         }
@@ -187,7 +182,7 @@ public class AlignmentFinder {
 
     public static void judgeInstsMatch(Inst inst1, Inst inst2) {
 
-        if (!use_average_simi) {
+        if (!useAverageSimi) {
 
 //            judgeByDiscriminativePredPair(inst1, inst2);
             judgeByAllPredPair(inst1, inst2);

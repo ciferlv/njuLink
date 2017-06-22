@@ -8,7 +8,7 @@ import java.util.Set;
 
 import static cn.nju.ws.utility.nlp.FormatData.getStopWords;
 import static cn.nju.ws.utility.fileParser.InstFileParser.parseInstFile;
-import static cn.nju.ws.utility.ParamDef.doc1;
+import static cn.nju.ws.utility.ParamDef.souDoc;
 
 /**
  * Created by ciferlv on 17-6-11.
@@ -27,15 +27,15 @@ public class testMatchingEntry {
         init();
         logger.info("finish");
         Set<String> tarType = new HashSet<>();
-        doc1.setTarType(tarType);
+        souDoc.setTarType(tarType);
 
         tarType.add("http://erlangen-crm.org/efrbroo/f22_self-contained_expression");
         Model model1 = ModelFactory.createDefaultModel();
-        parseInstFile("src/main/resources/DOREMUS/HT/test.ttl", doc1, model1);
+        parseInstFile("src/main/resources/DOREMUS/HT/test.ttl", souDoc, model1);
 
-        doc1.processGraph();
+        souDoc.processGraph();
 
-        logger.info(doc1.graphToString());
+        logger.info(souDoc.graphToString());
 
     }
 }
