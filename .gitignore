@@ -36,3 +36,7 @@ metrics.txt
 PredPair2.txt
 unfound.txt
 wrong.txt
+
+#Release
+out/
+META-INF/

@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class ParamDef {
 
-    public static final boolean isForFormalContest = true;
+    public static final boolean isForFormalContest = false;
     //    The type of Obj
     public static final int URI_TYPE_INDEX = 0;
     public static final int STRING_TYPE_INDEX = 1;
@@ -96,7 +96,7 @@ public class ParamDef {
 
     public static String alignsStr = "";
 
-    public static String alignHead,alignTail;
+    public static String alignHead, alignTail;
     public static StringBuffer alignBuffer = new StringBuffer();
 
 }

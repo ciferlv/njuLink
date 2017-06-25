@@ -1,4 +1,3 @@
-import cn.nju.ws.MatchingEntry;
 import cn.nju.ws.unit.alignment.CounterPart;
 import cn.nju.ws.unit.instance.Inst;
 import org.apache.jena.rdf.model.Model;
@@ -11,20 +10,20 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static cn.nju.ws.utility.nlp.FormatData.getStopWords;
+import static cn.nju.ws.utility.ParamDef.*;
 import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
+import static cn.nju.ws.utility.fileParser.InstFileParser.parseInstFile;
 import static cn.nju.ws.utility.fileWriter.FileWriter.printToFile;
 import static cn.nju.ws.utility.finder.InfoGainCalculator.calInfoGainWithoutThread;
-import static cn.nju.ws.utility.fileParser.InstFileParser.parseInstFile;
-import static cn.nju.ws.utility.ParamDef.*;
 import static cn.nju.ws.utility.finder.PredPairFinder.findPredPairWithoutThread;
+import static cn.nju.ws.utility.nlp.FormatData.getStopWords;
 
 /**
  * Created by ciferlv on 17-6-13.
  */
 public class testAligns {
 
-    private static Logger logger = LoggerFactory.getLogger(MatchingEntry.class);
+    private static Logger logger = LoggerFactory.getLogger(testAligns.class);
 
     public static void main(String[] args) throws FileNotFoundException {
 

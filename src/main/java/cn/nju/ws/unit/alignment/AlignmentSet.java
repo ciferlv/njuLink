@@ -100,7 +100,9 @@ public class AlignmentSet {
 
         for (CounterPart cp : counterPartList) {
 
-            alignsStr += cp.toString();
+            if (!isForFormalContest) {
+                alignsStr += cp.toString();
+            }
 
             if (!(sub.contains(cp.getSub1()) || sub.contains(cp.getSub2()))) {
 
@@ -125,13 +127,13 @@ public class AlignmentSet {
 
         for (CounterPart cp : resultAlign.getCounterPartList()) {
 
-           alignBuffer.append("\n\t<map>");
-           alignBuffer.append("\n\t\t<Cell>");
-           alignBuffer.append("\n\t\t\t<entity1 rdf:resource=\">"+cp.getSub1()+"\"/>");
-           alignBuffer.append("\n\t\t\t<entity2 rdf:resource=\">"+cp.getSub2()+"\"/>");
-           alignBuffer.append("\n\t\t\t<measure rdf:datatype=\"xsd:float\">1.0</measure>");
-           alignBuffer.append("\n\t\t</Cell>");
-           alignBuffer.append("\n\t</map>");
+            alignBuffer.append("\n\t<map>");
+            alignBuffer.append("\n\t\t<Cell>");
+            alignBuffer.append("\n\t\t\t<entity1 rdf:resource=\">" + cp.getSub1() + "\"/>");
+            alignBuffer.append("\n\t\t\t<entity2 rdf:resource=\">" + cp.getSub2() + "\"/>");
+            alignBuffer.append("\n\t\t\t<measure rdf:datatype=\"xsd:float\">1.0</measure>");
+            alignBuffer.append("\n\t\t</Cell>");
+            alignBuffer.append("\n\t</map>");
         }
     }
 
