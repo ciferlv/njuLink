@@ -5,6 +5,7 @@ import cn.nju.ws.unit.alignment.CounterPart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
@@ -54,9 +55,9 @@ public class Metrics {
             }
         }
 
-        logger.info("CorrectNum: "+correctNum);
-        logger.info("refSize: "+refSize);
-        logger.info("resultSize: "+resultSize);
+        logger.info("CorrectNum: " + correctNum);
+        logger.info("refSize: " + refSize);
+        logger.info("resultSize: " + resultSize);
         precision = 1.0 * correctNum / resultSize;
         recall = 1.0 * correctNum / refSize;
         f1_score = (2.0 * precision * recall) / (precision + recall);
@@ -66,10 +67,13 @@ public class Metrics {
 
         try {
 
-            printToFile("./correct.txt", correctAlign.toString());
-            printToFile("./wrong.txt", wrongAlign.toString());
-            printToFile("./unfound.txt", unfoundAlign.toString());
-            printToFile("./metrics.txt", metrics);
+            File dir = new File("./result");
+            if (!dir.exists()) dir.mkdir();
+
+            printToFile("./result/correct.txt", correctAlign.toString());
+            printToFile("./result/wrong.txt", wrongAlign.toString());
+            printToFile("./result/unfound.txt", unfoundAlign.toString());
+            printToFile("./result/metrics.txt", metrics);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

@@ -5,6 +5,7 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -114,8 +115,12 @@ public class njuLinkMatcher {
 //        logger.info(res);
         calMetrics();
         try {
-            printToFile("./PredPair.txt", ppl.toString());
-            printToFile("./InstComp.txt", alignsStr);
+
+            File dir = new File("./result");
+            if(!dir.exists())dir.mkdir();
+
+            printToFile("./result/PredPair.txt", ppl.toString());
+            printToFile("./result/InstComp.txt", alignsStr);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
