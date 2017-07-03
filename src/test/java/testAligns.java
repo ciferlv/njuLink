@@ -13,7 +13,7 @@ import java.util.Set;
 import static cn.nju.ws.utility.ParamDef.*;
 import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
 import static cn.nju.ws.utility.fileParser.InstFileParser.parseInstFile;
-import static cn.nju.ws.utility.fileWriter.FileWriter.printToFile;
+import static cn.nju.ws.utility.assistanceTool.FileWriter.printToFile;
 import static cn.nju.ws.utility.finder.InfoGainCalculator.calInfoGainWithoutThread;
 import static cn.nju.ws.utility.finder.PredPairFinder.findPredPairWithoutThread;
 import static cn.nju.ws.utility.nlp.FormatData.getStopWords;

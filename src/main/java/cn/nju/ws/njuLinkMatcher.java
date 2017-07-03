@@ -16,7 +16,7 @@ import static cn.nju.ws.utility.ParamDef.*;
 import static cn.nju.ws.utility.eval.Metrics.calMetrics;
 import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
 import static cn.nju.ws.utility.fileParser.InstFileParser.parseInstFile;
-import static cn.nju.ws.utility.fileWriter.FileWriter.printToFile;
+import static cn.nju.ws.utility.assistanceTool.FileWriter.printToFile;
 import static cn.nju.ws.utility.finder.AlignmentFinder.findResultAlignWithoutThread;
 import static cn.nju.ws.utility.finder.InfoGainCalculator.calInfoGainWithoutThread;
 import static cn.nju.ws.utility.finder.PredPairFinder.findPredPairWithoutThread;
@@ -64,6 +64,7 @@ public class njuLinkMatcher {
 
     public String align(URI sourceURI, URI targetURI) throws IOException {
 
+        logger.info("njuLink version 3");
         init();
 
         alignBuffer.append(alignHead);
@@ -71,13 +72,23 @@ public class njuLinkMatcher {
         tarPath = targetURI.getPath();
         souPath = sourceURI.getPath();
 
-        parseAlignFile(refPath, refAlign);
-
         souDoc.setTarType(souClassFilterSet);
         tarDoc.setTarType(tarClassFilterSet);
 
-        Model souModel = ModelFactory.createDefaultModel();
-        Model tarModel = ModelFactory.createDefaultModel();
+        Model souModel = null, tarModel = null;
+        try {
+            souModel = ModelFactory.createDefaultModel();
+            tarModel = ModelFactory.createDefaultModel();
+        } catch (Exception e) {
+
+            logger.info("get Exception**********");
+            logger.info(e.getMessage());
+        }
+
+        if (souModel == null) {
+
+            logger.info("souModel is null");
+        }
 
         parseInstFile(souPath, souDoc, souModel);
         parseInstFile(tarPath, tarDoc, tarModel);
@@ -85,6 +96,7 @@ public class njuLinkMatcher {
         souDoc.processGraph();
         tarDoc.processGraph();
 
+        parseAlignFile(refPath, refAlign);
         refAlign.generatePositives();
         refAlign.generateNegetives();
 
@@ -112,15 +124,20 @@ public class njuLinkMatcher {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        logger.info(res);
+
         calMetrics();
+
+
         try {
 
             File dir = new File("./result");
-            if(!dir.exists())dir.mkdir();
+            if (!dir.exists()) dir.mkdir();
 
             printToFile("./result/PredPair.txt", ppl.toString());
             printToFile("./result/InstComp.txt", alignsStr);
+            printToFile("./result/Source.txt", souDoc.graphToString());
+            printToFile("./result/Target.txt", tarDoc.graphToString());
+            printToFile("./result/RefAlign.txt", refAlign.toString());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

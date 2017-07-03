@@ -24,6 +24,8 @@ public class Doc {
 
     private Set<String> tarType;
 
+    private long tripleNum;
+
     public Doc(Set<String> tarType) {
 
         this.tarType = tarType;
@@ -221,6 +223,10 @@ public class Doc {
 
         StringBuffer buffer = new StringBuffer();
 
+        buffer.append("Instance number: " + graph.size() + "\n");
+        buffer.append("Triple number: " + tripleNum + "\n");
+        buffer.append("tarSubList number: " + tarSubList.size() + "\n");
+
         Iterator graphIter = graph.entrySet().iterator();
 
         while (graphIter.hasNext()) {
@@ -306,9 +312,16 @@ public class Doc {
         this.tarType = tarType;
     }
 
-    public Inst getInst(String key){
+    public Inst getInst(String key) {
 
         return graph.get(key);
     }
 
+    public long getTripleNum() {
+        return tripleNum;
+    }
+
+    public void setTripleNum(long tripleNum) {
+        this.tripleNum = tripleNum;
+    }
 }

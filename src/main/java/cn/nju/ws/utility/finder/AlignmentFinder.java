@@ -147,7 +147,7 @@ public class AlignmentFinder {
             }
         }
 //        logger.info(cp.toString());
-        if (cp.getMatchedNumDisOfSmall() > predPairNumNeededThreshold) {
+        if (cp.getMatchedNumDisOfSmall() >= predPairNumNeededThreshold) {
 
 
             tempAlign.addCounterPart(cp);
@@ -173,7 +173,7 @@ public class AlignmentFinder {
 
         }
 
-        if (cp.getMatchedNumDisOfSmall() > predPairNumNeededThreshold) {
+        if (cp.getMatchedNumDisOfSmall() >= predPairNumNeededThreshold) {
 
             tempAlign.addCounterPart(cp);
         }

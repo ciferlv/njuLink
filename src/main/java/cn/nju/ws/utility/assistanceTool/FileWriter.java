@@ -1,4 +1,4 @@
-package cn.nju.ws.utility.fileWriter;
+package cn.nju.ws.utility.assistanceTool;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

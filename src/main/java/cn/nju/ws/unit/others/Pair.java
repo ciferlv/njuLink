@@ -5,20 +5,18 @@ package cn.nju.ws.unit.others;
  */
 public class Pair {
 
-    int matchedNumOfSmall, unmatchedNumSmall, matchedNumOfBig, unmatchedNumOfBig;
+    int matchedNumOfSmall, unmatchedNumSmall;
     double maxSimi, simiSum;
 
 
     public Pair(int matchedNumOfSmall, int unmatchedNumSmall,
-                double maxSimi, double simiSum,
-                int matchedNumOfBig, int unmatchedNumOfBig) {
+                double maxSimi, double simiSum) {
 
         this.matchedNumOfSmall = matchedNumOfSmall;
         this.unmatchedNumSmall = unmatchedNumSmall;
         this.maxSimi = maxSimi;
         this.simiSum = simiSum;
-        this.matchedNumOfBig = matchedNumOfBig;
-        this.unmatchedNumOfBig = unmatchedNumOfBig;
+
     }
 
     @Override
@@ -29,8 +27,7 @@ public class Pair {
         buffer.append("unmatchedNumSmall: " + unmatchedNumSmall + "\n");
         buffer.append("maxSimi: " + maxSimi + "\n");
         buffer.append("simiSum: " + simiSum + "\n");
-        buffer.append("matchedNumOfBig: " + matchedNumOfBig + "\n");
-        buffer.append("unmatchedNumOfBig: " + unmatchedNumOfBig + "\n");
+
 
         return String.valueOf(buffer);
     }
@@ -49,13 +46,5 @@ public class Pair {
 
     public double getSimiSum() {
         return simiSum;
-    }
-
-    public int getMatchedNumOfBig() {
-        return matchedNumOfBig;
-    }
-
-    public int getUnmatchedNumOfBig() {
-        return unmatchedNumOfBig;
     }
 }

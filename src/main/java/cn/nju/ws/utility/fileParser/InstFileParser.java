@@ -27,9 +27,9 @@ public class InstFileParser {
         model = mod;
         accessFile(filePath);
 
-        long time1 = System.currentTimeMillis();
+//        long time1 = System.currentTimeMillis();
         generateDoc(doc);
-        long time2 = System.currentTimeMillis();
+//        long time2 = System.currentTimeMillis();
 //        logger.info(String.valueOf(time2-time1));
     }
 
@@ -60,7 +60,7 @@ public class InstFileParser {
             Statement stmt = iter.nextStatement();
 
             Runnable run = new Thread(
-                    new ParseInstFileThread(doc,stmt));
+                    new ParseInstFileThread(doc, stmt));
             cachedThreadPool.execute(run);
         }
         terminateThread(cachedThreadPool, logger);
@@ -70,7 +70,10 @@ public class InstFileParser {
 
         StmtIterator iter = model.listStatements();
 
+        long tripleNum = 0;
         while (iter.hasNext()) {
+
+            tripleNum++;
 
             Statement stmt = iter.nextStatement();
             Resource sub = stmt.getSubject();
@@ -86,6 +89,8 @@ public class InstFileParser {
             }
             doc.addStmtToGraph(sub, prop, val);
         }
+
+        doc.setTripleNum(tripleNum);
     }
 
 }

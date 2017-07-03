@@ -74,6 +74,7 @@ public class AlignmentSet {
         List<CounterPart> counterPartList = positives.getCounterPartList();
         List<String> subList = tarDoc.getTarSubList();
 
+        if(subList.size()==0)return;
         Random r = new Random(105);
 
         for (CounterPart cp : counterPartList) {

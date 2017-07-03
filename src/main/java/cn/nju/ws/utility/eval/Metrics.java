@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import static cn.nju.ws.utility.fileWriter.FileWriter.printToFile;
+import static cn.nju.ws.utility.assistanceTool.FileWriter.printToFile;
 import static cn.nju.ws.utility.ParamDef.refAlign;
 import static cn.nju.ws.utility.ParamDef.resultAlign;
 

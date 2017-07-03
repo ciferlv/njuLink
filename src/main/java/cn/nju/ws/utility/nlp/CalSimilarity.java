@@ -82,15 +82,15 @@ public class CalSimilarity {
 
     public static Pair calObjSetSim(Set<Obj> obj1Set, Set<Obj> obj2Set) {
 
-        int matchedNumObj1Set = 0, unmatchedNumObj1Set = 0, matchedNumObj2Set, unmatchedNumObj2Set;
+        int matchedNumObj1Set = 0, unmatchedNumObj1Set = 0;
         double maxSimi = -1.0, simiSum = 0;//相似度之合
 
         Set<String> unMatchedInObj2Set = new HashSet<String>();
 
         for (Obj obj1 : obj1Set) {
 
-            double myRes = 0;
-            double maxRes = 0;
+            double eachObj1TempSimi = 0;
+            double eachObj1MaxSimi = 0;
             for (Obj obj2 : obj2Set) {
 
                 int obj1Type = obj1.getType();
@@ -111,46 +111,39 @@ public class CalSimilarity {
 
                 if (!lang1.equals("") && !lang2.equals("") && !lang1.equals(lang2)) {
 
-                    myRes = 0;
+                    eachObj1TempSimi = 0;
                 } else {
 
                     int ct = compType(obj1Type, obj2Type);
 
                     if (ct == 0) {
-                        myRes = indiFunc(obj1.getValue(), obj2.getValue());
+                        eachObj1TempSimi = indiFunc(obj1.getValue(), obj2.getValue());
 
                     } else if (ct == 1) {
 
                         if (obj1Type == URI_TYPE_INDEX && obj2Type == URI_TYPE_INDEX) {
-                            myRes = strFunc(obj1.getLocalName(), obj2.getLocalName());
+                            eachObj1TempSimi = strFunc(obj1.getLocalName(), obj2.getLocalName());
                         } else if (obj1Type == URI_TYPE_INDEX && obj2Type == THING_TYPE_INDEX) {
-                            myRes = strFunc(obj1.getLocalName(), obj2.getValue());
+                            eachObj1TempSimi = strFunc(obj1.getLocalName(), obj2.getValue());
                         } else if (obj1Type == THING_TYPE_INDEX && obj2Type == URI_TYPE_INDEX) {
-                            myRes = strFunc(obj1.getValue(), obj2.getLocalName());
+                            eachObj1TempSimi = strFunc(obj1.getValue(), obj2.getLocalName());
                         } else {
-                            myRes = strFunc(obj1.getValue(), obj2.getValue());
+                            eachObj1TempSimi = strFunc(obj1.getValue(), obj2.getValue());
                         }
                     }
                 }
 
-                maxSimi = Math.max(maxSimi, myRes);
-                maxRes = Math.max(maxRes, myRes);
+                maxSimi = Math.max(maxSimi, eachObj1TempSimi);
+                eachObj1MaxSimi = Math.max(eachObj1MaxSimi, eachObj1TempSimi);
 
-                if (myRes < predPairSimiThreshold) {
-
-                    unMatchedInObj2Set.add(obj2.getValue());
-                }
             }
 
-            if (maxRes > predPairSimiThreshold) {
+            if (eachObj1MaxSimi > predPairSimiThreshold) {
                 matchedNumObj1Set++;
-                simiSum += maxRes;
+                simiSum += eachObj1MaxSimi;
             } else unmatchedNumObj1Set++;
         }
 
-        unmatchedNumObj2Set = unMatchedInObj2Set.size();
-        matchedNumObj2Set = obj2Set.size() - unmatchedNumObj2Set;
-
-        return new Pair(matchedNumObj1Set, unmatchedNumObj1Set, maxSimi, simiSum, matchedNumObj2Set, unmatchedNumObj2Set);
+        return new Pair(matchedNumObj1Set, unmatchedNumObj1Set, maxSimi, simiSum);
     }
 }
