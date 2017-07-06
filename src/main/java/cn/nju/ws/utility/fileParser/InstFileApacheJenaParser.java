@@ -16,13 +16,13 @@ import static cn.nju.ws.utility.threads.ThreadEndJudge.terminateThread;
 /**
  * Created by ciferlv on 17-6-5.
  */
-public class InstFileParser {
+public class InstFileApacheJenaParser {
 
-    private static Logger logger = LoggerFactory.getLogger(InstFileParser.class);
+    private static Logger logger = LoggerFactory.getLogger(InstFileApacheJenaParser.class);
     private static InputStream in = null;
     private static Model model = null;
 
-    public static void parseInstFile(String filePath, Doc doc, Model mod) {
+    public static void parseInstFileByApacheJena(String filePath, Doc doc, Model mod) {
 
         model = mod;
         accessFile(filePath);

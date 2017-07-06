@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static cn.nju.ws.utility.nlp.FormatData.getStopWords;
-import static cn.nju.ws.utility.fileParser.InstFileParser.parseInstFile;
+import static cn.nju.ws.utility.fileParser.InstFileApacheJenaParser.parseInstFileByApacheJena;
 import static cn.nju.ws.utility.ParamDef.souDoc;
 
 /**
@@ -31,7 +31,7 @@ public class testMatchingEntry {
 
         tarType.add("http://erlangen-crm.org/efrbroo/f22_self-contained_expression");
         Model model1 = ModelFactory.createDefaultModel();
-        parseInstFile("src/main/resources/DOREMUS/HT/test.ttl", souDoc, model1);
+        parseInstFileByApacheJena("src/main/resources/DOREMUS/HT/test.ttl", souDoc, model1);
 
         souDoc.processGraph();
 

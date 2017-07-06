@@ -11,8 +11,8 @@ import java.util.Map;
 import java.util.Set;
 
 import static cn.nju.ws.utility.ParamDef.*;
-import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
-import static cn.nju.ws.utility.fileParser.InstFileParser.parseInstFile;
+//import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
+import static cn.nju.ws.utility.fileParser.InstFileApacheJenaParser.parseInstFileByApacheJena;
 import static cn.nju.ws.utility.assistanceTool.FileWriter.printToFile;
 import static cn.nju.ws.utility.finder.InfoGainCalculator.calInfoGainWithoutThread;
 import static cn.nju.ws.utility.finder.PredPairFinder.findPredPairWithoutThread;
@@ -37,14 +37,14 @@ public class testAligns {
 
         Model model1 = ModelFactory.createDefaultModel();
         Model model2 = ModelFactory.createDefaultModel();
-        parseInstFile("src/main/resources/DOREMUS/HT/source.ttl", souDoc, model1);
-        parseInstFile("src/main/resources/DOREMUS/HT/target.ttl", tarDoc, model2);
+        parseInstFileByApacheJena("src/main/resources/DOREMUS/HT/source.ttl", souDoc, model1);
+        parseInstFileByApacheJena("src/main/resources/DOREMUS/HT/target.ttl", tarDoc, model2);
         souDoc.processGraph();
         tarDoc.processGraph();
 
         printToFile("./Inst1", souDoc.graphToString());
         printToFile("./Inst2", tarDoc.graphToString());
-        parseAlignFile("src/main/resources/DOREMUS/HT/refalign.rdf", refAlign);
+//        parseAlignFile("src/main/resources/DOREMUS/HT/refalign.rdf", refAlign);
         refAlign.generatePositives();
         refAlign.generateNegetives();
 

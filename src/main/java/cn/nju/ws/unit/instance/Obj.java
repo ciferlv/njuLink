@@ -15,6 +15,8 @@ public class Obj {
 
     private int type = -1;
 
+    public Obj() {}
+
     public Obj(String value, String localName, int type, String language) {
 
         this.value = value;

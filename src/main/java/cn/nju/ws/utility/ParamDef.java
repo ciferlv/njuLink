@@ -25,6 +25,7 @@ public class ParamDef {
     public static final int GYEAR_TYPE_INDEX = 8;
     public static final int LANGSTRING_TYPE_INDEX = 9;
     public static final int GYEARMONTH_TYPE_INDEX = 10;
+    public static final int AnonymousIndividual_TYPE_INDEX = 11;
 
     //    The name of predicate
     public static final String TYPE_FULL_NAME = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";

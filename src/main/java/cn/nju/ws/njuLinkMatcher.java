@@ -14,8 +14,8 @@ import java.util.Properties;
 
 import static cn.nju.ws.utility.ParamDef.*;
 import static cn.nju.ws.utility.eval.Metrics.calMetrics;
-import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
-import static cn.nju.ws.utility.fileParser.InstFileParser.parseInstFile;
+//import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
+import static cn.nju.ws.utility.fileParser.InstFileApacheJenaParser.parseInstFileByApacheJena;
 import static cn.nju.ws.utility.assistanceTool.FileWriter.printToFile;
 import static cn.nju.ws.utility.finder.AlignmentFinder.findResultAlignWithoutThread;
 import static cn.nju.ws.utility.finder.InfoGainCalculator.calInfoGainWithoutThread;
@@ -25,6 +25,12 @@ import static cn.nju.ws.utility.nlp.FormatData.getStopWords;
 /**
  * Created by ciferlv on 17-6-21.
  */
+class Object{
+
+    String value;
+    String type;
+    String languate = null;
+}
 public class njuLinkMatcher {
 
     private static Logger logger = LoggerFactory.getLogger(njuLinkMatcher.class);
@@ -81,7 +87,6 @@ public class njuLinkMatcher {
             tarModel = ModelFactory.createDefaultModel();
         } catch (Exception e) {
 
-            logger.info("get Exception**********");
             logger.info(e.getMessage());
         }
 
@@ -90,13 +95,13 @@ public class njuLinkMatcher {
             logger.info("souModel is null");
         }
 
-        parseInstFile(souPath, souDoc, souModel);
-        parseInstFile(tarPath, tarDoc, tarModel);
+        parseInstFileByApacheJena(souPath, souDoc, souModel);
+        parseInstFileByApacheJena(tarPath, tarDoc, tarModel);
 
         souDoc.processGraph();
         tarDoc.processGraph();
 
-        parseAlignFile(refPath, refAlign);
+//        parseAlignFile(refPath, refAlign);
         refAlign.generatePositives();
         refAlign.generateNegetives();
 

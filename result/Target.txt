@@ -1,6 +1,19 @@
 Instance number: 1153
 Triple number: 6347
 tarSubList number: 75
+sub: b93151b251e2a0eedbc9c181bc2a8df8
+pred: p14_carried_out_by
+obj: arnoldi
+obj type: STRING
+
+pred: ontology#u35_foresees_function_of_type
+obj: conducteur
+obj type: LANGSTRING
+obj language: fr
+
+pred: type
+value: http://data.doremus.org/ontology#m28_individual_performance
+
 sub: http://data.doremus.org/activity/f139f10a-8d95-3427-a550-7bea1dc6dbb0
 pred: prov#used
 obj: http://catalogue.bnf.fr/ark:/12148/cb139110028.intermarc
@@ -431,14 +444,14 @@ obj: cordes
 obj type: STRING
 
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/f9655560-b40a-3842-9032-0c46b35238aa/casting/1/detail/2
-obj localname: 2
-obj type: URI
 obj: http://data.doremus.org/expression/f9655560-b40a-3842-9032-0c46b35238aa/casting/1/detail/3
 obj localname: 3
 obj type: URI
 obj: http://data.doremus.org/expression/f9655560-b40a-3842-9032-0c46b35238aa/casting/1/detail/1
 obj localname: 1
+obj type: URI
+obj: http://data.doremus.org/expression/f9655560-b40a-3842-9032-0c46b35238aa/casting/1/detail/2
+obj localname: 2
 obj type: URI
 
 pred: type
@@ -1081,19 +1094,6 @@ obj type: URI
 pred: type
 value: http://data.doremus.org/ontology#m42_performed_expression_creation
 
-sub: f4f8365e2139522878e764d98d2e0a51
-pred: p14_carried_out_by
-obj: arnoldi
-obj type: STRING
-
-pred: ontology#u35_foresees_function_of_type
-obj: conducteur
-obj type: LANGSTRING
-obj language: fr
-
-pred: type
-value: http://data.doremus.org/ontology#m28_individual_performance
-
 sub: http://data.doremus.org/work/6b08037e-f204-3864-aabf-0f7fcdc35000
 pred: owl#sameas
 obj: http://data.bnf.fr/ark:/12148/cb13920016x
@@ -1534,12 +1534,12 @@ obj localname: cb13920016xintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t142448286z
@@ -1689,18 +1689,6 @@ obj type: URI
 
 pred: type
 value: http://data.doremus.org/ontology#m23_casting_detail
-
-sub: 5c696c59c95684d5a79bc0dfa6b0c24f
-pred: rdf-schema#label
-obj: gardano
-obj type: STRING
-
-pred: p131_is_identified_by
-obj: gardano
-obj type: STRING
-
-pred: type
-value: http://erlangen-crm.org/efrbroo/f11_corporate_body
 
 sub: http://data.doremus.org/expression/93fa7c7d-fc8e-36cf-873c-e93825041d22
 pred: owl#sameas
@@ -2522,12 +2510,12 @@ obj localname: cb13913414vintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t211021240z
@@ -2725,12 +2713,12 @@ obj localname: cb140208350intermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t142448520z
@@ -3140,12 +3128,12 @@ obj localname: cb14009709x
 obj type: URI
 
 pred: ontology#u70_has_title
-obj: romeozuletta
-obj type: LANGSTRING
-obj language: ru
 obj: roméojuliette
 obj type: LANGSTRING
 obj language: fr
+obj: romeozuletta
+obj type: LANGSTRING
+obj language: ru
 obj: romeodzhuletta
 obj type: LANGSTRING
 obj language: ru
@@ -3178,9 +3166,6 @@ obj localname: su
 obj type: URI
 
 pred: rdf-schema#label
-obj: romeodzhuletta
-obj type: LANGSTRING
-obj language: ru
 obj: romeojuliet
 obj type: LANGSTRING
 obj language: en
@@ -3190,6 +3175,9 @@ obj language: ru
 obj: roméojuliette
 obj type: LANGSTRING
 obj language: fr
+obj: romeodzhuletta
+obj type: LANGSTRING
+obj language: ru
 
 pred: prov#wasattributedto
 obj: http://data.doremus.org/organization/doremus
@@ -3401,11 +3389,11 @@ obj: violonpiano
 obj type: STRING
 
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/f5806739-406a-315b-a1d7-f65ab554a62d/casting/1/detail/2
-obj localname: 2
-obj type: URI
 obj: http://data.doremus.org/expression/f5806739-406a-315b-a1d7-f65ab554a62d/casting/1/detail/1
 obj localname: 1
+obj type: URI
+obj: http://data.doremus.org/expression/f5806739-406a-315b-a1d7-f65ab554a62d/casting/1/detail/2
+obj localname: 2
 obj type: URI
 
 pred: type
@@ -3482,11 +3470,11 @@ obj localname: 6b46d82bc18b3fa8a98943b234bb117b
 obj type: URI
 
 pred: r10_has_member
-obj: http://data.doremus.org/work/9625d40a-1851-3f9e-85b7-41231ea1af39
-obj localname: 9625d40a18513f9e85b741231ea1af39
-obj type: URI
 obj: http://data.doremus.org/work/49b546c9-4382-376a-a1f0-7d565d0e111a
 obj localname: 49b546c94382376aa1f07d565d0e111a
+obj type: URI
+obj: http://data.doremus.org/work/9625d40a-1851-3f9e-85b7-41231ea1af39
+obj localname: 9625d40a18513f9e85b741231ea1af39
 obj type: URI
 
 pred: prov#wasattributedto
@@ -3592,18 +3580,18 @@ obj localname: cb13917225x
 obj type: URI
 
 pred: ontology#u70_has_title
-obj: roméojuliette
-obj type: LANGSTRING
-obj language: fr
-obj: romeojuliet
-obj type: LANGSTRING
-obj language: en
-obj: romeodzhuletta
-obj type: LANGSTRING
-obj language: ru
 obj: romeozuletta
 obj type: LANGSTRING
 obj language: ru
+obj: romeodzhuletta
+obj type: LANGSTRING
+obj language: ru
+obj: romeojuliet
+obj type: LANGSTRING
+obj language: en
+obj: roméojuliette
+obj type: LANGSTRING
+obj language: fr
 
 pred: ontology#u17_has_opus_statement
 obj: http://data.doremus.org/expression/5a5acda4-11cb-31d8-b1d5-0aa6f03f6d10/opus/64ter
@@ -3625,18 +3613,18 @@ obj localname: 1
 obj type: URI
 
 pred: rdf-schema#label
-obj: romeozuletta
-obj type: LANGSTRING
-obj language: ru
-obj: romeodzhuletta
-obj type: LANGSTRING
-obj language: ru
-obj: roméojuliette
-obj type: LANGSTRING
-obj language: fr
 obj: romeojuliet
 obj type: LANGSTRING
 obj language: en
+obj: roméojuliette
+obj type: LANGSTRING
+obj language: fr
+obj: romeodzhuletta
+obj type: LANGSTRING
+obj language: ru
+obj: romeozuletta
+obj type: LANGSTRING
+obj language: ru
 
 pred: ontology#u12_has_genre
 obj: http://data.doremus.org/vocabulary/iaml/genre/su
@@ -3806,12 +3794,12 @@ obj localname: cb139111585intermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211021135z
@@ -3828,12 +3816,12 @@ obj localname: cb140194722intermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t142448462z
@@ -4043,6 +4031,14 @@ pred: type
 value: http://data.doremus.org/ontology#m45_descriptive_expression_assignment
 value: http://www.w3.org/ns/prov#entity
 
+sub: ddaeb06f8c00f88811f640a24a8524f2
+pred: p14_carried_out_by
+obj: pierreboulez
+obj type: STRING
+
+pred: type
+value: http://data.doremus.org/ontology#m28_individual_performance
+
 sub: http://data.doremus.org/activity/5015b203-1c79-35fd-9328-eee6d2393470
 pred: prov#used
 obj: http://catalogue.bnf.fr/ark:/12148/cb13955987r.intermarc
@@ -4050,12 +4046,12 @@ obj localname: cb13955987rintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t142448352z
@@ -4865,12 +4861,12 @@ obj localname: cb13969656tintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t142448389z
@@ -5009,22 +5005,22 @@ obj localname: 1bfb2bc5a16d339ba1b523bd675aa894
 obj type: URI
 
 pred: r13_is_realised_in
-obj: http://data.doremus.org/expression/67c8ff21-7d7c-33e2-9389-58971b04d670
-obj localname: 67c8ff217d7c33e2938958971b04d670
-obj type: URI
 obj: http://data.doremus.org/expression/d97795f3-886e-311b-b4d7-77f82b4201eb
 obj localname: d97795f3886e311bb4d777f82b4201eb
+obj type: URI
+obj: http://data.doremus.org/expression/67c8ff21-7d7c-33e2-9389-58971b04d670
+obj localname: 67c8ff217d7c33e2938958971b04d670
 obj type: URI
 
 pred: r10_has_member
 obj: http://data.doremus.org/work/057ee8cc-ee01-3a6f-a67a-c26ebad564a8
 obj localname: 057ee8ccee013a6fa67ac26ebad564a8
 obj type: URI
-obj: http://data.doremus.org/work/5ecabf56-fb11-3ffa-95c1-088d17ffdc05
-obj localname: 5ecabf56fb113ffa95c1088d17ffdc05
-obj type: URI
 obj: http://data.doremus.org/work/061ae4d3-1537-36bb-8fc1-d58be357ad58
 obj localname: 061ae4d3153736bb8fc1d58be357ad58
+obj type: URI
+obj: http://data.doremus.org/work/5ecabf56-fb11-3ffa-95c1-088d17ffdc05
+obj localname: 5ecabf56fb113ffa95c1088d17ffdc05
 obj type: URI
 
 pred: prov#wasattributedto
@@ -5040,6 +5036,18 @@ obj type: URI
 pred: type
 value: http://erlangen-crm.org/efrbroo/f15_complex_work
 value: http://www.w3.org/ns/prov#entity
+
+sub: 6124cc692372a09bd66756cfc34c161d
+pred: rdf-schema#label
+obj: durand
+obj type: STRING
+
+pred: p131_is_identified_by
+obj: durand
+obj type: STRING
+
+pred: type
+value: http://erlangen-crm.org/efrbroo/f11_corporate_body
 
 sub: http://data.doremus.org/expression/87bbd75d-94f3-323d-8b45-584e761aae9f
 pred: owl#sameas
@@ -5120,26 +5128,20 @@ value: http://data.doremus.org/ontology#m1_catalogue_statement
 
 sub: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/6
-obj localname: 6
-obj type: URI
-obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/5
-obj localname: 5
-obj type: URI
-obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/8
-obj localname: 8
+obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/3
+obj localname: 3
 obj type: URI
 obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/7
 obj localname: 7
 obj type: URI
-obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/2
-obj localname: 2
-obj type: URI
-obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/10
-obj localname: 10
+obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/5
+obj localname: 5
 obj type: URI
 obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/9
 obj localname: 9
+obj type: URI
+obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/8
+obj localname: 8
 obj type: URI
 obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/1
 obj localname: 1
@@ -5147,11 +5149,17 @@ obj type: URI
 obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/11
 obj localname: 11
 obj type: URI
-obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/3
-obj localname: 3
+obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/6
+obj localname: 6
 obj type: URI
 obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/4
 obj localname: 4
+obj type: URI
+obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/10
+obj localname: 10
+obj type: URI
+obj: http://data.doremus.org/expression/6e4fb4ec-f7ca-30a9-b323-db65c9bb4db9/casting/1/detail/2
+obj localname: 2
 obj type: URI
 
 pred: type
@@ -5454,6 +5462,18 @@ obj type: URI
 pred: type
 value: http://erlangen-crm.org/current/e7_activity
 
+sub: 11af2ee5f37164ac6c07c68a4cd90cda
+pred: rdf-schema#label
+obj: gardano
+obj type: STRING
+
+pred: p131_is_identified_by
+obj: gardano
+obj type: STRING
+
+pred: type
+value: http://erlangen-crm.org/efrbroo/f11_corporate_body
+
 sub: http://data.doremus.org/work/ab277981-79e8-38c3-8de8-512de446db35
 pred: owl#sameas
 obj: http://data.bnf.fr/ark:/12148/cb13911139w
@@ -5532,6 +5552,14 @@ obj type: URI
 pred: type
 value: http://erlangen-crm.org/efrbroo/f28_expression_creation
 value: http://www.w3.org/ns/prov#entity
+
+sub: 98ff18ba474605dbe1184f7dbb097b19
+pred: p14_carried_out_by
+obj: yvettegrimaud
+obj type: STRING
+
+pred: type
+value: http://data.doremus.org/ontology#m28_individual_performance
 
 sub: http://data.doremus.org/work/079855d6-0b77-3306-b626-3a188678d318
 pred: owl#sameas
@@ -5940,14 +5968,14 @@ obj: cordes
 obj type: STRING
 
 pred: ontology#u23_has_casting_detail
+obj: http://data.doremus.org/expression/9be3da0e-a65e-3f8e-8f76-5ec63e9d7cf0/casting/1/detail/2
+obj localname: 2
+obj type: URI
 obj: http://data.doremus.org/expression/9be3da0e-a65e-3f8e-8f76-5ec63e9d7cf0/casting/1/detail/1
 obj localname: 1
 obj type: URI
 obj: http://data.doremus.org/expression/9be3da0e-a65e-3f8e-8f76-5ec63e9d7cf0/casting/1/detail/3
 obj localname: 3
-obj type: URI
-obj: http://data.doremus.org/expression/9be3da0e-a65e-3f8e-8f76-5ec63e9d7cf0/casting/1/detail/2
-obj localname: 2
 obj type: URI
 
 pred: type
@@ -6010,14 +6038,14 @@ obj: cordes
 obj type: STRING
 
 pred: ontology#u23_has_casting_detail
+obj: http://data.doremus.org/expression/7728eae4-85f0-37b4-9b5d-ced437542de6/casting/1/detail/1
+obj localname: 1
+obj type: URI
 obj: http://data.doremus.org/expression/7728eae4-85f0-37b4-9b5d-ced437542de6/casting/1/detail/2
 obj localname: 2
 obj type: URI
 obj: http://data.doremus.org/expression/7728eae4-85f0-37b4-9b5d-ced437542de6/casting/1/detail/3
 obj localname: 3
-obj type: URI
-obj: http://data.doremus.org/expression/7728eae4-85f0-37b4-9b5d-ced437542de6/casting/1/detail/1
-obj localname: 1
 obj type: URI
 
 pred: type
@@ -6025,11 +6053,11 @@ value: http://data.doremus.org/ontology#m6_casting
 
 sub: http://data.doremus.org/expression/0c274188-05f0-3c39-af4a-394075b39a90/casting/1
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/0c274188-05f0-3c39-af4a-394075b39a90/casting/1/detail/1
-obj localname: 1
-obj type: URI
 obj: http://data.doremus.org/expression/0c274188-05f0-3c39-af4a-394075b39a90/casting/1/detail/2
 obj localname: 2
+obj type: URI
+obj: http://data.doremus.org/expression/0c274188-05f0-3c39-af4a-394075b39a90/casting/1/detail/1
+obj localname: 1
 obj type: URI
 
 pred: type
@@ -6118,11 +6146,11 @@ obj localname: 3f2ebcf31d083abd920bcdf4804c337a
 obj type: URI
 
 pred: r10_has_member
-obj: http://data.doremus.org/work/cf12f2a5-507e-3bcc-af35-cecf7dedc51d
-obj localname: cf12f2a5507e3bccaf35cecf7dedc51d
-obj type: URI
 obj: http://data.doremus.org/work/c5de7149-be2a-3879-87f9-b824ca55c479
 obj localname: c5de7149be2a387987f9b824ca55c479
+obj type: URI
+obj: http://data.doremus.org/work/cf12f2a5-507e-3bcc-af35-cecf7dedc51d
+obj localname: cf12f2a5507e3bccaf35cecf7dedc51d
 obj type: URI
 
 pred: prov#wasattributedto
@@ -6369,14 +6397,14 @@ obj localname: cb148060743intermarc
 obj type: URI
 
 pred: p148_has_component
-obj: http://data.doremus.org/work/1653c628-3c27-3fb0-91af-09ab9a3ddea3
-obj localname: 1653c6283c273fb091af09ab9a3ddea3
-obj type: URI
 obj: http://data.doremus.org/work/cb401f17-eb30-3812-8839-8fc7f02eb90d
 obj localname: cb401f17eb30381288398fc7f02eb90d
 obj type: URI
 obj: http://data.doremus.org/work/58bd9a5d-3d40-3d7d-87cc-32667d0be0d7
 obj localname: 58bd9a5d3d403d7d87cc32667d0be0d7
+obj type: URI
+obj: http://data.doremus.org/work/1653c628-3c27-3fb0-91af-09ab9a3ddea3
+obj localname: 1653c6283c273fb091af09ab9a3ddea3
 obj type: URI
 
 pred: type
@@ -6688,9 +6716,9 @@ obj localname: 464995e2858833a593b5c842a30ba49f
 obj type: URI
 
 pred: rdf-schema#label
-obj: abschiedslieder
-obj type: STRING
 obj: liederdesabschieds
+obj type: STRING
+obj: abschiedslieder
 obj type: STRING
 
 pred: ontology#u12_has_genre
@@ -6709,11 +6737,11 @@ obj localname: doremus
 obj type: URI
 
 pred: p3_has_note
-obj: dédiéàfranzschalk
-obj type: STRING
 obj: comprendsterbeliedpoèmechristinarossettitradparalfredkerrdieseinekannmeinsehnennimmerfassenpoèmeedithronspergermondgehstduwiederaufpoèmeernstlothargefassterabschiedpoèmeernstlothar
 obj type: STRING
 obj: existeuneversionorchestrée
+obj type: STRING
+obj: dédiéàfranzschalk
 obj type: STRING
 
 pred: prov#wasderivedfrom
@@ -6899,11 +6927,11 @@ obj localname: 5247476cf7dc3d40abb966e107d7ff35
 obj type: URI
 
 pred: r10_has_member
-obj: http://data.doremus.org/work/9db62181-702a-356f-8f20-94b04617daa9
-obj localname: 9db62181702a356f8f2094b04617daa9
-obj type: URI
 obj: http://data.doremus.org/work/231ac41b-aa4b-32cb-ab08-9beab98289fb
 obj localname: 231ac41baa4b32cbab089beab98289fb
+obj type: URI
+obj: http://data.doremus.org/work/9db62181-702a-356f-8f20-94b04617daa9
+obj localname: 9db62181702a356f8f2094b04617daa9
 obj type: URI
 
 pred: prov#wasattributedto
@@ -7060,9 +7088,9 @@ obj localname: doremus
 obj type: URI
 
 pred: p3_has_note
-obj: existeendeuxversions1reversionjuillet188410août18872eversionoctobre188710mars1890
-obj type: STRING
 obj: éd2eversionberlin1892schalkvonoberleithner
+obj type: STRING
+obj: existeendeuxversions1reversionjuillet188410août18872eversionoctobre188710mars1890
 obj type: STRING
 
 pred: prov#wasderivedfrom
@@ -7526,9 +7554,9 @@ obj localname: doremus
 obj type: URI
 
 pred: p3_has_note
-obj: éd1861
-obj type: STRING
 obj: lesdeuxderniersmouvementssontincomplets
+obj type: STRING
+obj: éd1861
 obj type: STRING
 
 pred: prov#wasderivedfrom
@@ -7549,11 +7577,11 @@ pred: ontology#u23_has_casting_detail
 obj: http://data.doremus.org/expression/1b94a4db-fe42-36b2-bf67-c99cf446aa78/casting/1/detail/2
 obj localname: 2
 obj type: URI
-obj: http://data.doremus.org/expression/1b94a4db-fe42-36b2-bf67-c99cf446aa78/casting/1/detail/3
-obj localname: 3
-obj type: URI
 obj: http://data.doremus.org/expression/1b94a4db-fe42-36b2-bf67-c99cf446aa78/casting/1/detail/1
 obj localname: 1
+obj type: URI
+obj: http://data.doremus.org/expression/1b94a4db-fe42-36b2-bf67-c99cf446aa78/casting/1/detail/3
+obj localname: 3
 obj type: URI
 
 pred: type
@@ -7596,6 +7624,14 @@ obj type: URI
 
 pred: type
 value: http://www.w3.org/ns/prov#entity
+
+sub: 738e822af3db0b5df775761bfb2827f4
+pred: p14_carried_out_by
+obj: cathyberberian
+obj type: STRING
+
+pred: type
+value: http://data.doremus.org/ontology#m28_individual_performance
 
 sub: http://data.doremus.org/work/061ae4d3-1537-36bb-8fc1-d58be357ad58
 pred: r9_is_realised_in
@@ -7644,14 +7680,14 @@ obj localname: 68c277f900903af2939b7aa38c5962d0
 obj type: URI
 
 pred: r10_has_member
+obj: http://data.doremus.org/work/e7d13269-5987-38d2-b686-f7622b621ff5
+obj localname: e7d13269598738d2b686f7622b621ff5
+obj type: URI
 obj: http://data.doremus.org/work/a56d3a33-e737-3f65-9d08-4632abefb532
 obj localname: a56d3a33e7373f659d084632abefb532
 obj type: URI
 obj: http://data.doremus.org/work/3936ef4e-6f1a-3382-87f4-cb3fae1ea110
 obj localname: 3936ef4e6f1a338287f4cb3fae1ea110
-obj type: URI
-obj: http://data.doremus.org/work/e7d13269-5987-38d2-b686-f7622b621ff5
-obj localname: e7d13269598738d2b686f7622b621ff5
 obj type: URI
 
 pred: prov#wasattributedto
@@ -7794,9 +7830,9 @@ obj type: URI
 pred: p3_has_note
 obj: éd1939
 obj type: STRING
-obj: commandeelizabethspraguecoolidge
-obj type: STRING
 obj: dédiéàelizabethspraguecoolidgeauxmembresdukolischstreichquartettquicréèrentoeuvreàlosangelesroycehalluniversitycaliforniale9janvier1937
+obj type: STRING
+obj: commandeelizabethspraguecoolidge
 obj type: STRING
 
 pred: prov#wasderivedfrom
@@ -7980,14 +8016,6 @@ obj type: URI
 pred: type
 value: http://erlangen-crm.org/efrbroo/f28_expression_creation
 
-sub: d16b6e420fefc73d4a5c653b4bf24896
-pred: p14_carried_out_by
-obj: cathyberberian
-obj type: STRING
-
-pred: type
-value: http://data.doremus.org/ontology#m28_individual_performance
-
 sub: http://data.doremus.org/activity/ee880b04-10ce-3a36-81a9-8e7255bdefd6
 pred: prov#used
 obj: http://catalogue.bnf.fr/ark:/12148/cb13915598g.intermarc
@@ -8152,12 +8180,12 @@ obj localname: cb14853778qintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211021580z
@@ -8234,12 +8262,12 @@ obj localname: cb14009709xintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211021502z
@@ -8624,13 +8652,13 @@ obj localname: doremus
 obj type: URI
 
 pred: p3_has_note
-obj: existeuneversionpour5voixcappella107
+obj: texteottaviorinuccini
 obj type: STRING
 obj: comprendlasciatemimorireteseoteseomiodovedovfedeahichenonpurrisponde
 obj type: STRING
-obj: texteottaviorinuccini
-obj type: STRING
 obj: seulepartieconservéetragédieen1actearianna1608
+obj type: STRING
+obj: existeuneversionpour5voixcappella107
 obj type: STRING
 
 pred: prov#wasderivedfrom
@@ -9244,12 +9272,12 @@ obj localname: cb13914497mintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211021300z
@@ -9713,11 +9741,11 @@ obj: pianoviolon
 obj type: STRING
 
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/80fa9157-874e-319f-b557-9535e4d4dedc/casting/1/detail/1
-obj localname: 1
-obj type: URI
 obj: http://data.doremus.org/expression/80fa9157-874e-319f-b557-9535e4d4dedc/casting/1/detail/2
 obj localname: 2
+obj type: URI
+obj: http://data.doremus.org/expression/80fa9157-874e-319f-b557-9535e4d4dedc/casting/1/detail/1
+obj localname: 1
 obj type: URI
 
 pred: type
@@ -9982,12 +10010,12 @@ obj localname: cb13982128xintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t142448405z
@@ -10180,12 +10208,12 @@ obj localname: cb16184785xintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t142448597z
@@ -10266,15 +10294,15 @@ obj localname: cb13917224k
 obj type: URI
 
 pred: ontology#u70_has_title
-obj: romeozuletta
-obj type: LANGSTRING
-obj language: ru
 obj: romeojuliet
 obj type: LANGSTRING
 obj language: en
 obj: roméojuliette
 obj type: LANGSTRING
 obj language: fr
+obj: romeozuletta
+obj type: LANGSTRING
+obj language: ru
 obj: romeodzhuletta
 obj type: LANGSTRING
 obj language: ru
@@ -10309,12 +10337,12 @@ obj localname: 1
 obj type: URI
 
 pred: rdf-schema#label
-obj: romeojuliet
-obj type: LANGSTRING
-obj language: en
 obj: romeodzhuletta
 obj type: LANGSTRING
 obj language: ru
+obj: romeojuliet
+obj type: LANGSTRING
+obj language: en
 obj: romeozuletta
 obj type: LANGSTRING
 obj language: ru
@@ -10328,13 +10356,13 @@ obj localname: doremus
 obj type: URI
 
 pred: p3_has_note
-obj: musiquepourleballeten4actesmêmetitre
+obj: livretducompositeurleonidmihajlovičlavrovskijadrianivanovičpiotrovskijaprèspièceéponymewilliamshakespeare
 obj type: STRING
 obj: 10piècesontététranscritespourpianoparlecompositeurop75
 obj type: STRING
 obj: 3suitessymphoniquesontététiréesmusiqueballetparlecompositeurop64bis64ter101
 obj type: STRING
-obj: livretducompositeurleonidmihajlovičlavrovskijadrianivanovičpiotrovskijaprèspièceéponymewilliamshakespeare
+obj: musiquepourleballeten4actesmêmetitre
 obj type: STRING
 
 pred: prov#wasderivedfrom
@@ -10627,12 +10655,12 @@ obj localname: cb139156037intermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t142448220z
@@ -10648,11 +10676,11 @@ obj: sopranobassecontinue
 obj type: STRING
 
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/9583f934-6aab-3a69-8d65-8052a7e1529d/casting/1/detail/2
-obj localname: 2
-obj type: URI
 obj: http://data.doremus.org/expression/9583f934-6aab-3a69-8d65-8052a7e1529d/casting/1/detail/1
 obj localname: 1
+obj type: URI
+obj: http://data.doremus.org/expression/9583f934-6aab-3a69-8d65-8052a7e1529d/casting/1/detail/2
+obj localname: 2
 obj type: URI
 
 pred: type
@@ -10692,12 +10720,12 @@ obj localname: c
 obj type: URI
 
 pred: ontology#u70_has_title
-obj: wandererfantasie
-obj type: LANGSTRING
-obj language: ge
 obj: fantaisies
 obj type: LANGSTRING
 obj language: fr
+obj: wandererfantasie
+obj type: LANGSTRING
+obj language: ge
 
 pred: identifier
 obj: 13911139
@@ -10966,12 +10994,12 @@ obj localname: cb13908467fintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211020783z
@@ -11167,11 +11195,11 @@ obj localname: 1201
 obj type: URI
 
 pred: ontology#u5_had_premiere
-obj: http://data.doremus.org/performance/6188123e-986d-39b6-8c89-fe80aea42140
-obj localname: 6188123e986d39b68c89fe80aea42140
-obj type: URI
 obj: http://data.doremus.org/performance/3a9a306d-4450-34d7-9a20-0f710f91d293
 obj localname: 3a9a306d445034d79a200f710f91d293
+obj type: URI
+obj: http://data.doremus.org/performance/6188123e-986d-39b6-8c89-fe80aea42140
+obj localname: 6188123e986d39b68c89fe80aea42140
 obj type: URI
 
 pred: identifier
@@ -11256,14 +11284,14 @@ obj: cordes
 obj type: STRING
 
 pred: ontology#u23_has_casting_detail
+obj: http://data.doremus.org/expression/93fa7c7d-fc8e-36cf-873c-e93825041d22/casting/1/detail/2
+obj localname: 2
+obj type: URI
 obj: http://data.doremus.org/expression/93fa7c7d-fc8e-36cf-873c-e93825041d22/casting/1/detail/1
 obj localname: 1
 obj type: URI
 obj: http://data.doremus.org/expression/93fa7c7d-fc8e-36cf-873c-e93825041d22/casting/1/detail/3
 obj localname: 3
-obj type: URI
-obj: http://data.doremus.org/expression/93fa7c7d-fc8e-36cf-873c-e93825041d22/casting/1/detail/2
-obj localname: 2
 obj type: URI
 
 pred: type
@@ -11519,11 +11547,11 @@ obj localname: doremus
 obj type: URI
 
 pred: p3_has_note
+obj: comprendunvergänglichkeitdaseilendebächleindasschlafendekindstärkeralsdertodunvergänglichkeit
+obj type: STRING
 obj: cyclemélodies
 obj type: STRING
 obj: surdespoèmeseleonorevanderstraaten
-obj type: STRING
-obj: comprendunvergänglichkeitdaseilendebächleindasschlafendekindstärkeralsdertodunvergänglichkeit
 obj type: STRING
 
 pred: prov#wasderivedfrom
@@ -11679,20 +11707,20 @@ obj localname: cb13982128xintermarc
 obj type: URI
 
 pred: p148_has_component
+obj: http://data.doremus.org/work/abf81beb-6d62-3b55-9a60-120f2abec2f5
+obj localname: abf81beb6d623b559a60120f2abec2f5
+obj type: URI
 obj: http://data.doremus.org/work/eebb0cb3-00b9-3a59-8868-e5ed1ed7373d
 obj localname: eebb0cb300b93a598868e5ed1ed7373d
-obj type: URI
-obj: http://data.doremus.org/work/fb11481b-3d62-3254-b060-5d026e6c9a17
-obj localname: fb11481b3d623254b0605d026e6c9a17
 obj type: URI
 obj: http://data.doremus.org/work/35ac9980-bedc-3f9a-a58f-84dbac46a7ef
 obj localname: 35ac9980bedc3f9aa58f84dbac46a7ef
 obj type: URI
-obj: http://data.doremus.org/work/abf81beb-6d62-3b55-9a60-120f2abec2f5
-obj localname: abf81beb6d623b559a60120f2abec2f5
-obj type: URI
 obj: http://data.doremus.org/work/e2c59a3e-fe5e-385e-bee1-0e79117099b0
 obj localname: e2c59a3efe5e385ebee10e79117099b0
+obj type: URI
+obj: http://data.doremus.org/work/fb11481b-3d62-3254-b060-5d026e6c9a17
+obj localname: fb11481b3d623254b0605d026e6c9a17
 obj type: URI
 
 pred: type
@@ -12516,11 +12544,11 @@ value: http://www.w3.org/ns/prov#entity
 
 sub: http://data.doremus.org/expression/9b65708b-cf8b-3f41-9169-03857cd71022/casting/1
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/9b65708b-cf8b-3f41-9169-03857cd71022/casting/1/detail/2
-obj localname: 2
-obj type: URI
 obj: http://data.doremus.org/expression/9b65708b-cf8b-3f41-9169-03857cd71022/casting/1/detail/1
 obj localname: 1
+obj type: URI
+obj: http://data.doremus.org/expression/9b65708b-cf8b-3f41-9169-03857cd71022/casting/1/detail/2
+obj localname: 2
 obj type: URI
 
 pred: type
@@ -13293,11 +13321,11 @@ obj: clarinetteflûte
 obj type: STRING
 
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/c5d49df0-4c09-3699-9ad7-fb83e4f9f071/casting/1/detail/2
-obj localname: 2
-obj type: URI
 obj: http://data.doremus.org/expression/c5d49df0-4c09-3699-9ad7-fb83e4f9f071/casting/1/detail/1
 obj localname: 1
+obj type: URI
+obj: http://data.doremus.org/expression/c5d49df0-4c09-3699-9ad7-fb83e4f9f071/casting/1/detail/2
+obj localname: 2
 obj type: URI
 
 pred: type
@@ -13475,14 +13503,6 @@ obj type: STRING
 pred: type
 value: http://erlangen-crm.org/current/e52_time-span
 
-sub: 20809e5df612a6c3901e2732a0d97bf8
-pred: p14_carried_out_by
-obj: yvettegrimaud
-obj type: STRING
-
-pred: type
-value: http://data.doremus.org/ontology#m28_individual_performance
-
 sub: http://data.doremus.org/event/4269e77e-06ea-3afc-af11-c492eaa26c67
 pred: r17_created
 obj: http://data.doremus.org/expression/c5d49df0-4c09-3699-9ad7-fb83e4f9f071
@@ -13600,12 +13620,12 @@ obj localname: cb139109882intermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211020907z
@@ -13692,10 +13712,10 @@ obj localname: 1
 obj type: URI
 
 pred: rdf-schema#label
-obj: lasciatemimorire
+obj: lamentoarianna
 obj type: LANGSTRING
 obj language: it
-obj: lamentoarianna
+obj: lasciatemimorire
 obj type: LANGSTRING
 obj language: it
 
@@ -13715,13 +13735,13 @@ obj localname: doremus
 obj type: URI
 
 pred: p3_has_note
-obj: comprendlasciatemimorire1teseoteseomio2dovedovfede3ahichenonpurrisponde4
-obj type: STRING
-obj: seulepartieconservéetragédieen1actearianna1608transforméeenmadrigalà5voix
+obj: texteottaviorinuccini
 obj type: STRING
 obj: existeaussiuneversionpoursopranobassecontinue22
 obj type: STRING
-obj: texteottaviorinuccini
+obj: seulepartieconservéetragédieen1actearianna1608transforméeenmadrigalà5voix
+obj type: STRING
+obj: comprendlasciatemimorire1teseoteseomio2dovedovfede3ahichenonpurrisponde4
 obj type: STRING
 
 pred: prov#wasderivedfrom
@@ -13796,12 +13816,12 @@ obj localname: cb13914407tintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211021283z
@@ -13884,12 +13904,12 @@ obj localname: cb14031725vintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t211021515z
@@ -13967,12 +13987,12 @@ obj localname: cb13911127wintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211021097z
@@ -14201,12 +14221,12 @@ obj localname: cb13911139wintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t211021116z
@@ -14381,18 +14401,6 @@ obj type: URI
 
 pred: type
 value: http://data.doremus.org/ontology#m42_performed_expression_creation
-
-sub: 214c3c3b80104833a386af69d078e300
-pred: rdf-schema#label
-obj: durand
-obj type: STRING
-
-pred: p131_is_identified_by
-obj: durand
-obj type: STRING
-
-pred: type
-value: http://erlangen-crm.org/efrbroo/f11_corporate_body
 
 sub: http://data.doremus.org/expression/d38cfdc0-0169-39cb-ba3e-dd7a1ab772ca/casting/1
 pred: p3_has_note
@@ -15482,11 +15490,11 @@ obj localname: cb13920724gintermarc
 obj type: URI
 
 pred: p148_has_component
-obj: http://data.doremus.org/work/be0e3677-ed3e-31e5-a2bc-1bbe1afc4d19
-obj localname: be0e3677ed3e31e5a2bc1bbe1afc4d19
-obj type: URI
 obj: http://data.doremus.org/work/5fc59ed3-ac8d-3d73-b578-8854f7b4b0f3
 obj localname: 5fc59ed3ac8d3d73b5788854f7b4b0f3
+obj type: URI
+obj: http://data.doremus.org/work/be0e3677-ed3e-31e5-a2bc-1bbe1afc4d19
+obj localname: be0e3677ed3e31e5a2bc1bbe1afc4d19
 obj type: URI
 
 pred: type
@@ -15794,11 +15802,11 @@ obj localname: e6ebae4a27f7347eaeaf64f44fc0c777
 obj type: URI
 
 pred: r10_has_member
-obj: http://data.doremus.org/work/6122d3fe-b2f2-314a-b809-97f4a7896fb6
-obj localname: 6122d3feb2f2314ab80997f4a7896fb6
-obj type: URI
 obj: http://data.doremus.org/work/47508218-a058-3508-9df5-c393fe8ed705
 obj localname: 47508218a05835089df5c393fe8ed705
+obj type: URI
+obj: http://data.doremus.org/work/6122d3fe-b2f2-314a-b809-97f4a7896fb6
+obj localname: 6122d3feb2f2314ab80997f4a7896fb6
 obj type: URI
 
 pred: prov#wasattributedto
@@ -16011,14 +16019,14 @@ obj: cordes
 obj type: STRING
 
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/8db3607e-b83a-35c4-8d28-258b2766e5d9/casting/1/detail/1
-obj localname: 1
+obj: http://data.doremus.org/expression/8db3607e-b83a-35c4-8d28-258b2766e5d9/casting/1/detail/2
+obj localname: 2
 obj type: URI
 obj: http://data.doremus.org/expression/8db3607e-b83a-35c4-8d28-258b2766e5d9/casting/1/detail/3
 obj localname: 3
 obj type: URI
-obj: http://data.doremus.org/expression/8db3607e-b83a-35c4-8d28-258b2766e5d9/casting/1/detail/2
-obj localname: 2
+obj: http://data.doremus.org/expression/8db3607e-b83a-35c4-8d28-258b2766e5d9/casting/1/detail/1
+obj localname: 1
 obj type: URI
 
 pred: type
@@ -16603,12 +16611,12 @@ obj localname: cb140208428intermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t142448532z
@@ -16732,12 +16740,12 @@ obj localname: cb14019480pintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t142448504z
@@ -17093,11 +17101,11 @@ obj: violonorchestre
 obj type: STRING
 
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/a4351488-44cf-3f32-9ff1-fcd2355d78a1/casting/1/detail/1
-obj localname: 1
-obj type: URI
 obj: http://data.doremus.org/expression/a4351488-44cf-3f32-9ff1-fcd2355d78a1/casting/1/detail/2
 obj localname: 2
+obj type: URI
+obj: http://data.doremus.org/expression/a4351488-44cf-3f32-9ff1-fcd2355d78a1/casting/1/detail/1
+obj localname: 1
 obj type: URI
 
 pred: type
@@ -17335,12 +17343,12 @@ obj localname: cb13920725tintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211021445z
@@ -17352,11 +17360,11 @@ value: http://www.w3.org/ns/prov#activity
 
 sub: http://data.doremus.org/expression/b851a5c7-686a-3fe2-a405-88a3c3bdb969/casting/1
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/b851a5c7-686a-3fe2-a405-88a3c3bdb969/casting/1/detail/1
-obj localname: 1
-obj type: URI
 obj: http://data.doremus.org/expression/b851a5c7-686a-3fe2-a405-88a3c3bdb969/casting/1/detail/2
 obj localname: 2
+obj type: URI
+obj: http://data.doremus.org/expression/b851a5c7-686a-3fe2-a405-88a3c3bdb969/casting/1/detail/1
+obj localname: 1
 obj type: URI
 
 pred: type
@@ -17369,12 +17377,12 @@ obj localname: cb14011305qintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t142448424z
@@ -17708,12 +17716,12 @@ obj localname: cb13923573vintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t142448308z
@@ -17978,12 +17986,12 @@ obj localname: cb13908465rintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t142447901z
@@ -18064,11 +18072,11 @@ value: http://www.w3.org/ns/prov#entity
 
 sub: http://data.doremus.org/expression/5198886f-a8e3-3a9c-b4ef-0fbce43e192d/casting/1
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/5198886f-a8e3-3a9c-b4ef-0fbce43e192d/casting/1/detail/1
-obj localname: 1
-obj type: URI
 obj: http://data.doremus.org/expression/5198886f-a8e3-3a9c-b4ef-0fbce43e192d/casting/1/detail/2
 obj localname: 2
+obj type: URI
+obj: http://data.doremus.org/expression/5198886f-a8e3-3a9c-b4ef-0fbce43e192d/casting/1/detail/1
+obj localname: 1
 obj type: URI
 
 pred: type
@@ -18545,6 +18553,14 @@ obj type: URI
 pred: type
 value: http://data.doremus.org/ontology#m23_casting_detail
 
+sub: 6c602cd97108bfc07cc3ccbb19eb799e
+pred: p14_carried_out_by
+obj: yvettegrimaud
+obj type: STRING
+
+pred: type
+value: http://data.doremus.org/ontology#m28_individual_performance
+
 sub: http://data.doremus.org/event/23985c1f-0201-3ad7-b45a-01f598360bed
 pred: r17_created
 obj: http://data.doremus.org/expression/a68ee0b5-7e33-3981-8443-0c204ce8cceb
@@ -18940,9 +18956,9 @@ obj localname: doremus
 obj type: URI
 
 pred: p3_has_note
-obj: cycle4mélodies
-obj type: STRING
 obj: comprendmerestinfinie1suisembarqué2dianeséléné3vaisseauxnousvousauronsaimés4
+obj type: STRING
+obj: cycle4mélodies
 obj type: STRING
 
 pred: prov#wasderivedfrom
@@ -19503,12 +19519,12 @@ obj localname: cb13963697zintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t142448373z
@@ -19558,11 +19574,11 @@ obj localname: 34787328c1af347a862e9b7e84a022f4
 obj type: URI
 
 pred: r10_has_member
-obj: http://data.doremus.org/work/c4ce2f42-6bc4-3349-bac9-e6f39a27503c
-obj localname: c4ce2f426bc43349bac9e6f39a27503c
-obj type: URI
 obj: http://data.doremus.org/work/fb0b0f64-9bef-354c-a6e4-b40f155a6d3c
 obj localname: fb0b0f649bef354ca6e4b40f155a6d3c
+obj type: URI
+obj: http://data.doremus.org/work/c4ce2f42-6bc4-3349-bac9-e6f39a27503c
+obj localname: c4ce2f426bc43349bac9e6f39a27503c
 obj type: URI
 
 pred: prov#wasattributedto
@@ -19742,12 +19758,12 @@ obj localname: cb13911075gintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t211021032z
@@ -20013,12 +20029,12 @@ obj localname: cb139108952intermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t142448156z
@@ -20242,12 +20258,12 @@ obj localname: cb13908775wintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t142448109z
@@ -21054,9 +21070,9 @@ obj localname: doremus
 obj type: URI
 
 pred: p3_has_note
-obj: crééparsergecollotàyork
-obj type: STRING
 obj: daterévision1981
+obj type: STRING
+obj: crééparsergecollotàyork
 obj type: STRING
 obj: existeuneversionréviséepourvioloncelle
 obj type: STRING
@@ -22177,14 +22193,14 @@ obj: cordes
 obj type: STRING
 
 pred: ontology#u23_has_casting_detail
+obj: http://data.doremus.org/expression/4471776d-3d03-3448-9e24-157a04af25cb/casting/1/detail/2
+obj localname: 2
+obj type: URI
 obj: http://data.doremus.org/expression/4471776d-3d03-3448-9e24-157a04af25cb/casting/1/detail/1
 obj localname: 1
 obj type: URI
 obj: http://data.doremus.org/expression/4471776d-3d03-3448-9e24-157a04af25cb/casting/1/detail/3
 obj localname: 3
-obj type: URI
-obj: http://data.doremus.org/expression/4471776d-3d03-3448-9e24-157a04af25cb/casting/1/detail/2
-obj localname: 2
 obj type: URI
 
 pred: type
@@ -22323,23 +22339,15 @@ value: http://www.w3.org/ns/prov#entity
 
 sub: http://data.doremus.org/expression/e058a88a-d9c2-3505-be23-d214025cbbc1/casting/1
 pred: ontology#u23_has_casting_detail
-obj: http://data.doremus.org/expression/e058a88a-d9c2-3505-be23-d214025cbbc1/casting/1/detail/2
-obj localname: 2
-obj type: URI
 obj: http://data.doremus.org/expression/e058a88a-d9c2-3505-be23-d214025cbbc1/casting/1/detail/1
 obj localname: 1
+obj type: URI
+obj: http://data.doremus.org/expression/e058a88a-d9c2-3505-be23-d214025cbbc1/casting/1/detail/2
+obj localname: 2
 obj type: URI
 
 pred: type
 value: http://data.doremus.org/ontology#m6_casting
-
-sub: b36becb6841cf580626dc934728ee040
-pred: p14_carried_out_by
-obj: yvettegrimaud
-obj type: STRING
-
-pred: type
-value: http://data.doremus.org/ontology#m28_individual_performance
 
 sub: http://data.doremus.org/work/057ee8cc-ee01-3a6f-a67a-c26ebad564a8
 pred: r9_is_realised_in
@@ -22396,14 +22404,6 @@ obj type: URI
 pred: type
 value: http://erlangen-crm.org/efrbroo/f15_complex_work
 value: http://www.w3.org/ns/prov#entity
-
-sub: 7aee6498746b4577ed3a449a6414724a
-pred: p14_carried_out_by
-obj: pierreboulez
-obj type: STRING
-
-pred: type
-value: http://data.doremus.org/ontology#m28_individual_performance
 
 sub: http://data.doremus.org/work/8de3c4ec-8c2a-3ff9-b88e-f60728250fea
 pred: prov#wasgeneratedby
@@ -22605,12 +22605,12 @@ obj localname: cb13911058wintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211020994z
@@ -22928,20 +22928,20 @@ obj localname: doremus
 obj type: URI
 
 pred: p148_has_component
+obj: http://data.doremus.org/work/5f7777c5-2075-3c0b-9938-868c3e90359e
+obj localname: 5f7777c520753c0b9938868c3e90359e
+obj type: URI
+obj: http://data.doremus.org/work/d02657d3-b78b-3d28-8d0b-6c0bcd8def7c
+obj localname: d02657d3b78b3d288d0b6c0bcd8def7c
+obj type: URI
 obj: http://data.doremus.org/work/5714bfd8-defc-30a7-92f6-946842688f24
 obj localname: 5714bfd8defc30a792f6946842688f24
 obj type: URI
 obj: http://data.doremus.org/work/f247a866-06ca-349c-8aee-5bed5806f578
 obj localname: f247a86606ca349c8aee5bed5806f578
 obj type: URI
-obj: http://data.doremus.org/work/5f7777c5-2075-3c0b-9938-868c3e90359e
-obj localname: 5f7777c520753c0b9938868c3e90359e
-obj type: URI
 obj: http://data.doremus.org/work/15d7e630-8b46-34f8-ae42-8cca0fbfe428
 obj localname: 15d7e6308b4634f8ae428cca0fbfe428
-obj type: URI
-obj: http://data.doremus.org/work/d02657d3-b78b-3d28-8d0b-6c0bcd8def7c
-obj localname: d02657d3b78b3d288d0b6c0bcd8def7c
 obj type: URI
 
 pred: prov#wasderivedfrom
@@ -22969,12 +22969,12 @@ obj localname: cb139146108intermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t211021332z
@@ -23238,12 +23238,12 @@ obj localname: cb139110190intermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t211020953z
@@ -24162,11 +24162,11 @@ obj localname: cb139108952intermarc
 obj type: URI
 
 pred: p148_has_component
-obj: http://data.doremus.org/work/b8c876a1-3987-3672-9e91-6145a114a836
-obj localname: b8c876a1398736729e916145a114a836
-obj type: URI
 obj: http://data.doremus.org/work/c568cff7-bb7f-378c-8f54-c1193db45706
 obj localname: c568cff7bb7f378c8f54c1193db45706
+obj type: URI
+obj: http://data.doremus.org/work/b8c876a1-3987-3672-9e91-6145a114a836
+obj localname: b8c876a1398736729e916145a114a836
 obj type: URI
 
 pred: type
@@ -24344,11 +24344,11 @@ obj localname: 73a18b34b5393dd690828381d9912332
 obj type: URI
 
 pred: r10_has_member
-obj: http://data.doremus.org/work/37499cd3-3a75-31d5-ab7e-845e7940b8f0
-obj localname: 37499cd33a7531d5ab7e845e7940b8f0
-obj type: URI
 obj: http://data.doremus.org/work/b25f58cc-05a9-359f-8ea8-d3d68a94eb8a
 obj localname: b25f58cc05a9359f8ea8d3d68a94eb8a
+obj type: URI
+obj: http://data.doremus.org/work/37499cd3-3a75-31d5-ab7e-845e7940b8f0
+obj localname: 37499cd33a7531d5ab7e845e7940b8f0
 obj type: URI
 
 pred: prov#wasattributedto
@@ -24428,14 +24428,6 @@ obj type: STRING
 pred: type
 value: http://data.doremus.org/ontology#m2_opus_statement
 
-sub: 16aeb473fceaa503136a24a9a1289a7c
-pred: p14_carried_out_by
-obj: leroséstreichquartett
-obj type: STRING
-
-pred: type
-value: http://data.doremus.org/ontology#m28_individual_performance
-
 sub: http://data.doremus.org/work/c337f8ba-d7db-35ff-bd0a-d6be74ce06c2
 pred: ontology#u38_has_descriptive_expression
 obj: http://data.doremus.org/expression/82f14170-b16e-3918-8b11-60f3384f53b1
@@ -24462,11 +24454,11 @@ obj localname: 211a633316a5362f8cb077861a597fd1
 obj type: URI
 
 pred: r10_has_member
-obj: http://data.doremus.org/work/fc08d6b7-bd09-3db3-9e3d-f82c73ac1c9b
-obj localname: fc08d6b7bd093db39e3df82c73ac1c9b
-obj type: URI
 obj: http://data.doremus.org/work/990966a8-e2f0-3c5c-be65-bec2af94b488
 obj localname: 990966a8e2f03c5cbe65bec2af94b488
+obj type: URI
+obj: http://data.doremus.org/work/fc08d6b7-bd09-3db3-9e3d-f82c73ac1c9b
+obj localname: fc08d6b7bd093db39e3df82c73ac1c9b
 obj type: URI
 
 pred: prov#wasattributedto
@@ -25025,9 +25017,9 @@ obj localname: a
 obj type: URI
 
 pred: ontology#u70_has_title
-obj: andantes
-obj type: STRING
 obj: klavierstücke
+obj type: STRING
+obj: andantes
 obj type: STRING
 
 pred: identifier
@@ -25055,9 +25047,9 @@ obj localname: 1
 obj type: URI
 
 pred: rdf-schema#label
-obj: klavierstücke
-obj type: STRING
 obj: andantes
+obj type: STRING
+obj: klavierstücke
 obj type: STRING
 
 pred: prov#wasattributedto
@@ -25159,12 +25151,12 @@ obj localname: cb14019473dintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t142448477z
@@ -25585,12 +25577,12 @@ obj localname: cb139112840intermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: repriseconversionnoticemarcbnf
-obj type: LANGSTRING
-obj language: fr
 obj: resumptionconversionmarcrecordbnf
 obj type: LANGSTRING
 obj language: en
+obj: repriseconversionnoticemarcbnf
+obj type: LANGSTRING
+obj language: fr
 
 pred: prov#attime
 obj: 20170529t211021203z
@@ -25825,12 +25817,12 @@ obj localname: cb13911042hintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211020974z
@@ -26502,12 +26494,12 @@ obj localname: cb13911288cintermarc
 obj type: URI
 
 pred: rdf-schema#comment
-obj: resumptionconversionmarcrecordbnf
-obj type: LANGSTRING
-obj language: en
 obj: repriseconversionnoticemarcbnf
 obj type: LANGSTRING
 obj language: fr
+obj: resumptionconversionmarcrecordbnf
+obj type: LANGSTRING
+obj language: en
 
 pred: prov#attime
 obj: 20170529t211021219z
@@ -26957,6 +26949,14 @@ obj type: URI
 
 pred: type
 value: http://erlangen-crm.org/efrbroo/f28_expression_creation
+
+sub: e7aaa50382509fe3b9ea957ad711eff4
+pred: p14_carried_out_by
+obj: leroséstreichquartett
+obj type: STRING
+
+pred: type
+value: http://data.doremus.org/ontology#m28_individual_performance
 
 sub: http://data.doremus.org/work/6da5d1f6-5733-3d05-b532-407459b1cb70
 pred: prov#wasgeneratedby
