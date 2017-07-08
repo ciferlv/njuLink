@@ -1,10 +1,10 @@
 package cn.nju.ws.utility.finder;
 
+import cn.nju.ws.unit.instance.Value;
 import cn.nju.ws.utility.threads.AlignmentFinderThread;
 import cn.nju.ws.unit.others.Pair;
 import cn.nju.ws.unit.alignment.CounterPart;
 import cn.nju.ws.unit.instance.Inst;
-import cn.nju.ws.unit.instance.Obj;
 import cn.nju.ws.unit.predicatePair.PredPair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,12 +74,12 @@ public class AlignmentFinder {
     }
 
 
-    private static void changeCounterPartParam(CounterPart cp, boolean isDisPredPair, Set<Obj> objSet1, Set<Obj> objSet2, PredPair pp) {
+    private static void changeCounterPartParam(CounterPart cp, boolean isDisPredPair, Set<Value> valueSet1, Set<Value> valueSet2, PredPair pp) {
 
         Pair matchRes;
-        if (objSet1.size() < objSet2.size()) {
-            matchRes = calObjSetSim(objSet1, objSet2);
-        } else matchRes = calObjSetSim(objSet2, objSet1);
+        if (valueSet1.size() < valueSet2.size()) {
+            matchRes = calObjSetSim(valueSet1, valueSet2);
+        } else matchRes = calObjSetSim(valueSet2, valueSet1);
 
         if (isDisPredPair) {
 
@@ -111,8 +111,8 @@ public class AlignmentFinder {
 
         CounterPart cp = new CounterPart(inst1.getSub(), inst2.getSub());
 
-        Map<String, Set<Obj>> predObj1 = inst1.getPredObj();
-        Map<String, Set<Obj>> predObj2 = inst2.getPredObj();
+        Map<String, Set<Value>> predObj1 = inst1.getPredObj();
+        Map<String, Set<Value>> predObj2 = inst2.getPredObj();
 
         Iterator iter = predObj1.entrySet().iterator();
 
@@ -120,8 +120,8 @@ public class AlignmentFinder {
 
             Map.Entry entry = (Map.Entry) iter.next();
             String pred1 = (String) entry.getKey();
-            Set<Obj> objSet1 = (Set<Obj>) entry.getValue();
-            if (objSet1 != null) {
+            Set<Value> valueSet1 = (Set<Value>) entry.getValue();
+            if (valueSet1 != null) {
 
                 if (ppl.containsPred1(pred1)) {
 
@@ -129,19 +129,19 @@ public class AlignmentFinder {
 
                     for (PredPair pp : ppResList) {
 
-                        Set<Obj> objSet2 = predObj2.get(pp.getProp2());
+                        Set<Value> valueSet2 = predObj2.get(pp.getProp2());
 
-                        if (objSet2 != null) {
+                        if (valueSet2 != null) {
 
-                            changeCounterPartParam(cp, true, objSet1, objSet2, pp);
+                            changeCounterPartParam(cp, true, valueSet1, valueSet2, pp);
                         }
                     }
                 } else {
 
-                    Set<Obj> objSet2 = predObj2.get(pred1);
-                    if (objSet2 != null) {
+                    Set<Value> valueSet2 = predObj2.get(pred1);
+                    if (valueSet2 != null) {
 
-                        changeCounterPartParam(cp, false, objSet1, objSet2, null);
+                        changeCounterPartParam(cp, false, valueSet1, valueSet2, null);
                     }
                 }
             }
@@ -158,17 +158,17 @@ public class AlignmentFinder {
 
         CounterPart cp = new CounterPart(inst1.getSub(), inst2.getSub());
 
-        Map<String, Set<Obj>> predObj1 = inst1.getPredObj();
-        Map<String, Set<Obj>> predObj2 = inst2.getPredObj();
+        Map<String, Set<Value>> predObj1 = inst1.getPredObj();
+        Map<String, Set<Value>> predObj2 = inst2.getPredObj();
 
         for (PredPair pp : ppl.getPredPairList()) {
 
-            Set<Obj> objSet1 = predObj1.get(pp.getProp1());
-            Set<Obj> objSet2 = predObj2.get(pp.getProp2());
+            Set<Value> valueSet1 = predObj1.get(pp.getProp1());
+            Set<Value> valueSet2 = predObj2.get(pp.getProp2());
 
-            if (objSet1 != null && objSet2 != null) {
+            if (valueSet1 != null && valueSet2 != null) {
 
-                changeCounterPartParam(cp, true, objSet1, objSet2, pp);
+                changeCounterPartParam(cp, true, valueSet1, valueSet2, pp);
             }
 
         }

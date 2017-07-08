@@ -18,11 +18,11 @@ public class testOWLAPI {
 
     public static void main(String[] args) throws OWLOntologyCreationException, FileNotFoundException {
 
-        PrintWriter pw = new PrintWriter(new FileOutputStream("./Test.txt"));
+        PrintWriter pw = new PrintWriter(new FileOutputStream("./result/TEST.txt"));
 
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
 
-        File file = new File("./example.ttl");
+        File file = new File("./testData/example.ttl");
 
         OWLOntology localAcademic = manager.loadOntologyFromOntologyDocument(file);
 
@@ -30,21 +30,22 @@ public class testOWLAPI {
             @Override
             public void visit(IRI iri) {
 
-                System.out.println("iri: " +iri.toString());
+                System.out.println("iri: " +iri.getFragment());
+
             }
 
             @Override
             public void visit(OWLAnonymousIndividual individual) {
 
-                System.out.println("individual: "+individual.toString());
+//                System.out.println("individual: "+individual.toString());
             }
 
             @Override
             public void visit(OWLLiteral node) {
-
-                System.out.println("Datatype: " + node.getDatatype());
-                System.out.println("Literal: " + node.getLiteral());
-                System.out.println("Lang: " + node.getLang());
+//
+//                System.out.println("Datatype: " + node.getDatatype());
+//                System.out.println("Literal: " + node.getLiteral());
+//                System.out.println("Lang: " + node.getLang());
             }
         };
 
@@ -62,6 +63,11 @@ public class testOWLAPI {
 
                 pw.append(axiom.toString() + "\n");
                 pw.flush();
+            }
+
+            @Override
+            public void visit(SWRLRule swrlRule) {
+
             }
 
             @Override
@@ -87,7 +93,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLSubAnnotationPropertyOfAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -98,7 +104,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLAnnotationPropertyDomainAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -109,7 +115,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLAnnotationPropertyRangeAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -120,7 +126,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLSubClassOfAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -131,7 +137,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLNegativeObjectPropertyAssertionAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -142,7 +148,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLAsymmetricObjectPropertyAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -153,7 +159,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLReflexiveObjectPropertyAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -164,7 +170,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLDisjointClassesAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -175,7 +181,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLDataPropertyDomainAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -186,7 +192,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLObjectPropertyDomainAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -197,7 +203,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLEquivalentObjectPropertiesAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -209,7 +215,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLNegativeDataPropertyAssertionAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -220,7 +226,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLDifferentIndividualsAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -231,7 +237,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLDisjointDataPropertiesAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -242,7 +248,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLDisjointObjectPropertiesAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -254,7 +260,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLObjectPropertyRangeAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -266,7 +272,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLObjectPropertyAssertionAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -277,7 +283,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLFunctionalObjectPropertyAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -288,7 +294,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLSubObjectPropertyOfAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -299,7 +305,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLDisjointUnionAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -311,7 +317,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLSymmetricObjectPropertyAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -322,7 +328,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLDataPropertyRangeAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -333,7 +339,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLFunctionalDataPropertyAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -344,7 +350,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLEquivalentDataPropertiesAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -369,7 +375,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLDataPropertyAssertionAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -381,7 +387,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLTransitiveObjectPropertyAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -392,7 +398,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLIrreflexiveObjectPropertyAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -403,7 +409,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLSubDataPropertyOfAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -414,7 +420,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLInverseFunctionalObjectPropertyAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -432,7 +438,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLSubPropertyChainOfAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -443,7 +449,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLInverseObjectPropertiesAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -454,7 +460,7 @@ public class testOWLAPI {
 
                 System.out.println("OWLHasKeyAxiom");
                 try {
-                    printToFile("./TEST.txt", axiom.toString());
+                    printToFile("./result/TEST.txt", axiom.toString());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -462,7 +468,7 @@ public class testOWLAPI {
         };
 
 
-        Stream<OWLAxiom> axiomStream = localAcademic.axioms();
+        Stream<OWLAxiom> axiomStream = localAcademic.getAxioms().stream();
 
         axiomStream.forEach(
                 a -> {

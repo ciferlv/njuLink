@@ -1,19 +1,18 @@
 package cn.nju.ws.utility.fileParser;
 
-import cn.nju.ws.unit.instance.Obj;
+import cn.nju.ws.unit.instance.Doc;
+import cn.nju.ws.unit.instance.Value;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URI;
 import java.util.stream.Stream;
 
-import static cn.nju.ws.utility.ParamDef.AnonymousIndividual_TYPE_INDEX;
-import static cn.nju.ws.utility.ParamDef.URI_TYPE_INDEX;
-import static cn.nju.ws.utility.assistanceTool.FileWriter.printToFile;
+import static cn.nju.ws.utility.ParamDef.recordDataType;
+import static cn.nju.ws.utility.ParamDef.recordAxiomType;
+import static cn.nju.ws.utility.ParamDef.souDoc;
 
 /**
  * Created by xinzelv on 17-7-6.
@@ -22,37 +21,67 @@ public class InstFileOWLAPIParser {
 
     private static Logger logger = LoggerFactory.getLogger(InstFileOWLAPIParser.class);
 
+    private static String subString, propString;
+
+    private static Doc currentDoc;
+
     private static OWLAnnotationValueVisitor annotationValueVisitor = new OWLAnnotationValueVisitor() {
 
-        Obj obj = new Obj();
+        Value value;
 
         @Override
         public void visit(IRI iri) {
 
-            String iriString = iri.getIRIString();
-            String shortForm = iri.getShortForm();
+            value = new Value();
+            value.setIsURI(true);
+            value.setIsAnonID(false);
 
-            obj.setValue(iriString);
-            obj.setLocalName(shortForm);
-            obj.setType(URI_TYPE_INDEX);
+            String iriString = iri.toString();
+            String localName = iri.getFragment();
+
+            if (localName == null) {
+
+                localName = iriString.split("/")[iriString.split("/").length - 1];
+            }
+            value.setLiteral(iriString);
+            value.setLocalName(localName);
+
+            currentDoc.addSubPropValToGraph(subString, propString, value);
         }
 
         @Override
         public void visit(OWLAnonymousIndividual individual) {
 
+            value = new Value();
+            value.setIsURI(false);
+            value.setIsAnonID(true);
+
             String anonyIndividualID = individual.toString();
-            obj.setValue(anonyIndividualID);
-            obj.setType(AnonymousIndividual_TYPE_INDEX);
+            value.setLiteral(anonyIndividualID);
+
+            currentDoc.addSubPropValToGraph(subString, propString, value);
         }
 
         @Override
         public void visit(OWLLiteral node) {
 
+            value = new Value();
+            value.setIsURI(false);
+            value.setIsAnonID(false);
+
             OWLDatatype dataType = node.getDatatype();
             String literal = node.getLiteral();
             String lang = node.getLang();
 
-            System.out.println(dataType.getIRI());
+            if (dataType == null) logger.info("There is value without DataType!!!");
+
+            value.setDataType(dataType);
+            value.setLiteral(literal);
+            value.setLang(lang);
+
+            if (!recordDataType.contains(dataType)) recordDataType.add(dataType);
+
+            currentDoc.addSubPropValToGraph(subString, propString, value);
         }
     };
 
@@ -61,17 +90,25 @@ public class InstFileOWLAPIParser {
         @Override
         public void visit(OWLDeclarationAxiom axiom) {
 
-            logger.info("OWLDeclarationAxiom");
+            if(!recordAxiomType.contains("OWLDeclarationAxiom")) recordAxiomType.add("OWLDeclarationAxiom");
         }
 
         @Override
         public void visit(OWLDatatypeDefinitionAxiom axiom) {
 
-            logger.info("OWLDatatypeDefinitionAxiom");
+            if(!recordAxiomType.contains("OWLDatatypeDefinitionAxiom")) recordAxiomType.add("OWLDatatypeDefinitionAxiom");
+        }
+
+        @Override
+        public void visit(SWRLRule swrlRule) {
+
+            if(!recordAxiomType.contains("SWRLRule")) recordAxiomType.add("SWRLRule");
         }
 
         @Override
         public void visit(OWLAnnotationAssertionAxiom axiom) {
+
+            if(!recordAxiomType.contains("OWLAnnotationAssertionAxiom")) recordAxiomType.add("OWLAnnotationAssertionAxiom");
 
             OWLAnnotation annotation = axiom.getAnnotation();
 
@@ -79,226 +116,236 @@ public class InstFileOWLAPIParser {
             OWLAnnotationValue value = annotation.getValue();
             OWLAnnotationProperty property = annotation.getProperty();
 
+            subString = subject.toString();
+            propString = property.getIRI().toString();
 
-//            System.out.println(property.getIRI().toString());
             value.accept(annotationValueVisitor);
+
         }
 
         @Override
         public void visit(OWLSubAnnotationPropertyOfAxiom axiom) {
 
-            logger.info("OWLSubAnnotationPropertyOfAxiom");
+            if(!recordAxiomType.contains("OWLSubAnnotationPropertyOfAxiom")) recordAxiomType.add("OWLSubAnnotationPropertyOfAxiom");
 
         }
 
         @Override
         public void visit(OWLAnnotationPropertyDomainAxiom axiom) {
 
-            logger.info("OWLAnnotationPropertyDomainAxiom");
+            if(!recordAxiomType.contains("OWLAnnotationPropertyDomainAxiom")) recordAxiomType.add("OWLAnnotationPropertyDomainAxiom");
         }
 
         @Override
         public void visit(OWLAnnotationPropertyRangeAxiom axiom) {
 
-            logger.info("OWLAnnotationPropertyRangeAxiom");
+            if(!recordAxiomType.contains("OWLAnnotationPropertyRangeAxiom")) recordAxiomType.add("OWLAnnotationPropertyRangeAxiom");
         }
 
         @Override
         public void visit(OWLSubClassOfAxiom axiom) {
 
-            logger.info("OWLSubClassOfAxiom");
+            if(!recordAxiomType.contains("OWLSubClassOfAxiom")) recordAxiomType.add("OWLSubClassOfAxiom");
         }
 
         @Override
         public void visit(OWLNegativeObjectPropertyAssertionAxiom axiom) {
 
-            logger.info("OWLNegativeObjectPropertyAssertionAxiom");
+            if(!recordAxiomType.contains("OWLNegativeObjectPropertyAssertionAxiom")) recordAxiomType.add("OWLNegativeObjectPropertyAssertionAxiom");
         }
 
         @Override
         public void visit(OWLAsymmetricObjectPropertyAxiom axiom) {
 
-            logger.info("OWLAsymmetricObjectPropertyAxiom");
+            if(!recordAxiomType.contains("OWLAsymmetricObjectPropertyAxiom")) recordAxiomType.add("OWLAsymmetricObjectPropertyAxiom");
         }
 
         @Override
         public void visit(OWLReflexiveObjectPropertyAxiom axiom) {
 
-            logger.info("OWLReflexiveObjectPropertyAxiom");
+            if(!recordAxiomType.contains("OWLReflexiveObjectPropertyAxiom")) recordAxiomType.add("OWLReflexiveObjectPropertyAxiom");
         }
 
         @Override
         public void visit(OWLDisjointClassesAxiom axiom) {
 
-            logger.info("OWLDisjointClassesAxiom");
+            if(!recordAxiomType.contains("OWLDisjointClassesAxiom")) recordAxiomType.add("OWLDisjointClassesAxiom");
         }
 
         @Override
         public void visit(OWLDataPropertyDomainAxiom axiom) {
 
-            logger.info("OWLDataPropertyDomainAxiom");
+            if(!recordAxiomType.contains("OWLDataPropertyDomainAxiom")) recordAxiomType.add("OWLDataPropertyDomainAxiom");
         }
 
         @Override
         public void visit(OWLObjectPropertyDomainAxiom axiom) {
 
-            logger.info("OWLObjectPropertyDomainAxiom");
+            if(!recordAxiomType.contains("OWLObjectPropertyDomainAxiom")) recordAxiomType.add("OWLObjectPropertyDomainAxiom");
         }
 
         @Override
         public void visit(OWLEquivalentObjectPropertiesAxiom axiom) {
 
-            logger.info("OWLEquivalentObjectPropertiesAxiom");
+            if(!recordAxiomType.contains("OWLEquivalentObjectPropertiesAxiom")) recordAxiomType.add("OWLEquivalentObjectPropertiesAxiom");
         }
 
         @Override
         public void visit(OWLNegativeDataPropertyAssertionAxiom axiom) {
 
-
-            logger.info("OWLNegativeDataPropertyAssertionAxiom");
+            if(!recordAxiomType.contains("OWLNegativeDataPropertyAssertionAxiom")) recordAxiomType.add("OWLNegativeDataPropertyAssertionAxiom");
         }
 
         @Override
         public void visit(OWLDifferentIndividualsAxiom axiom) {
 
-            logger.info("OWLDifferentIndividualsAxiom");
+            if(!recordAxiomType.contains("OWLDifferentIndividualsAxiom")) recordAxiomType.add("OWLDifferentIndividualsAxiom");
         }
 
         @Override
         public void visit(OWLDisjointDataPropertiesAxiom axiom) {
 
-            logger.info("OWLDisjointDataPropertiesAxiom");
+            if(!recordAxiomType.contains("OWLDisjointDataPropertiesAxiom")) recordAxiomType.add("OWLDisjointDataPropertiesAxiom");
         }
 
         @Override
         public void visit(OWLDisjointObjectPropertiesAxiom axiom) {
 
-            logger.info("OWLDisjointObjectPropertiesAxiom");
+            if(!recordAxiomType.contains("OWLDisjointObjectPropertiesAxiom")) recordAxiomType.add("OWLDisjointObjectPropertiesAxiom");
         }
 
         @Override
         public void visit(OWLObjectPropertyRangeAxiom axiom) {
 
-
-            logger.info("OWLObjectPropertyRangeAxiom");
+            if(!recordAxiomType.contains("OWLObjectPropertyRangeAxiom")) recordAxiomType.add("OWLObjectPropertyRangeAxiom");
         }
 
         @Override
         public void visit(OWLObjectPropertyAssertionAxiom axiom) {
 
-
-            logger.info("OWLObjectPropertyAssertionAxiom");
+            if(!recordAxiomType.contains("OWLObjectPropertyAssertionAxiom")) recordAxiomType.add("OWLObjectPropertyAssertionAxiom");
         }
 
         @Override
         public void visit(OWLFunctionalObjectPropertyAxiom axiom) {
 
-            logger.info("OWLFunctionalObjectPropertyAxiom");
+            if(!recordAxiomType.contains("OWLFunctionalObjectPropertyAxiom")) recordAxiomType.add("OWLFunctionalObjectPropertyAxiom");
         }
 
         @Override
         public void visit(OWLSubObjectPropertyOfAxiom axiom) {
 
-            logger.info("OWLSubObjectPropertyOfAxiom");
+            if(!recordAxiomType.contains("OWLSubObjectPropertyOfAxiom")) recordAxiomType.add("OWLSubObjectPropertyOfAxiom");
         }
 
         @Override
         public void visit(OWLDisjointUnionAxiom axiom) {
 
-            logger.info("OWLDisjointUnionAxiom");
+            if(!recordAxiomType.contains("OWLDisjointUnionAxiom")) recordAxiomType.add("OWLDisjointUnionAxiom");
         }
 
         @Override
         public void visit(OWLSymmetricObjectPropertyAxiom axiom) {
 
-
-            logger.info("OWLSymmetricObjectPropertyAxiom");
+            if(!recordAxiomType.contains("OWLSymmetricObjectPropertyAxiom")) recordAxiomType.add("OWLSymmetricObjectPropertyAxiom");
         }
 
         @Override
         public void visit(OWLDataPropertyRangeAxiom axiom) {
 
-            logger.info("OWLDataPropertyRangeAxiom");
+            if(!recordAxiomType.contains("OWLDataPropertyRangeAxiom")) recordAxiomType.add("OWLDataPropertyRangeAxiom");
         }
 
         @Override
         public void visit(OWLFunctionalDataPropertyAxiom axiom) {
 
-            logger.info("OWLFunctionalDataPropertyAxiom");
+            if(!recordAxiomType.contains("OWLFunctionalDataPropertyAxiom")) recordAxiomType.add("OWLFunctionalDataPropertyAxiom");
         }
 
         @Override
         public void visit(OWLEquivalentDataPropertiesAxiom axiom) {
 
-            logger.info("OWLEquivalentDataPropertiesAxiom");
+            if(!recordAxiomType.contains("OWLEquivalentDataPropertiesAxiom")) recordAxiomType.add("OWLEquivalentDataPropertiesAxiom");
         }
 
         @Override
         public void visit(OWLClassAssertionAxiom axiom) {
 
+            if(!recordAxiomType.contains("OWLClassAssertionAxiom")) recordAxiomType.add("OWLClassAssertionAxiom");
+
+            String myClass = axiom.getClassExpression().toString();
+
+            if (myClass.startsWith("<")) myClass = myClass.substring(1, myClass.length() - 1);
+
+            String subject = axiom.getIndividual().toStringID();
+
+            currentDoc.addTypeToInst(subject, myClass);
         }
 
         @Override
         public void visit(OWLEquivalentClassesAxiom axiom) {
 
+            if(!recordAxiomType.contains("OWLEquivalentClassesAxiom")) recordAxiomType.add("OWLEquivalentClassesAxiom");
         }
 
         @Override
         public void visit(OWLDataPropertyAssertionAxiom axiom) {
 
-            logger.info("OWLDataPropertyAssertionAxiom");
+            if(!recordAxiomType.contains("OWLDataPropertyAssertionAxiom")) recordAxiomType.add("OWLDataPropertyAssertionAxiom");
         }
 
         @Override
         public void visit(OWLTransitiveObjectPropertyAxiom axiom) {
 
-            logger.info("OWLTransitiveObjectPropertyAxiom");
+            if(!recordAxiomType.contains("OWLTransitiveObjectPropertyAxiom")) recordAxiomType.add("OWLTransitiveObjectPropertyAxiom");
         }
 
         @Override
         public void visit(OWLIrreflexiveObjectPropertyAxiom axiom) {
 
-            logger.info("OWLIrreflexiveObjectPropertyAxiom");
+            if(!recordAxiomType.contains("OWLIrreflexiveObjectPropertyAxiom")) recordAxiomType.add("OWLIrreflexiveObjectPropertyAxiom");
         }
 
         @Override
         public void visit(OWLSubDataPropertyOfAxiom axiom) {
 
-            logger.info("OWLSubDataPropertyOfAxiom");
+            if(!recordAxiomType.contains("OWLSubDataPropertyOfAxiom")) recordAxiomType.add("OWLSubDataPropertyOfAxiom");
         }
 
         @Override
         public void visit(OWLInverseFunctionalObjectPropertyAxiom axiom) {
 
-            logger.info("OWLInverseFunctionalObjectPropertyAxiom");
+            if(!recordAxiomType.contains("OWLInverseFunctionalObjectPropertyAxiom")) recordAxiomType.add("OWLInverseFunctionalObjectPropertyAxiom");
         }
 
         @Override
         public void visit(OWLSameIndividualAxiom axiom) {
 
+            if(!recordAxiomType.contains("OWLSameIndividualAxiom")) recordAxiomType.add("OWLSameIndividualAxiom");
         }
 
         @Override
         public void visit(OWLSubPropertyChainOfAxiom axiom) {
 
-            logger.info("OWLSubPropertyChainOfAxiom");
+            if(!recordAxiomType.contains("OWLSubPropertyChainOfAxiom")) recordAxiomType.add("OWLSubPropertyChainOfAxiom");
         }
 
         @Override
         public void visit(OWLInverseObjectPropertiesAxiom axiom) {
 
-            logger.info("OWLInverseObjectPropertiesAxiom");
+            if(!recordAxiomType.contains("OWLInverseObjectPropertiesAxiom")) recordAxiomType.add("OWLInverseObjectPropertiesAxiom");
         }
 
         @Override
         public void visit(OWLHasKeyAxiom axiom) {
 
-            logger.info("OWLHasKeyAxiom");
+            if(!recordAxiomType.contains("OWLHasKeyAxiom")) recordAxiomType.add("OWLHasKeyAxiom");
         }
     };
 
-    public static void parseInstFileByOWLAPI(String filePath) {
+    public static void parseInstFileByOWLAPI(String filePath, Doc doc) {
 
+        currentDoc = doc;
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
 
         File file = new File(filePath);
@@ -310,7 +357,7 @@ public class InstFileOWLAPIParser {
             e.printStackTrace();
         }
 
-        Stream<OWLAxiom> axiomStream = localAcademic.axioms();
+        Stream<OWLAxiom> axiomStream = localAcademic.getAxioms().stream();
 
         axiomStream.forEach(axiom -> axiom.accept(axiomVisitor));
 
@@ -319,7 +366,8 @@ public class InstFileOWLAPIParser {
     public static void main(String[] args) {
 
         String testFilePath = "./example.ttl";
-        parseInstFileByOWLAPI(testFilePath);
+        parseInstFileByOWLAPI(testFilePath, souDoc);
 
+        System.out.println(souDoc.graphToString());
     }
 }

@@ -16,62 +16,59 @@ public class Inst {
 
     private String sub;
 
-    private Map<String, Set<Obj>> predObj = Collections.synchronizedMap(new HashMap<String, Set<Obj>>());
+    private Map<String, Set<Value>> predObj = Collections.synchronizedMap(new HashMap<String, Set<Value>>());
 
     private Set<String> typeSet = new HashSet<String>();
 
     //store the objects whose type are URI type
-    private Map<String, Set<Obj>> predUri = Collections.synchronizedMap(new HashMap<String, Set<Obj>>());
+    private Map<String, Set<Value>> predUri = Collections.synchronizedMap(new HashMap<String, Set<Value>>());
 
-
-    public Inst(String sub, String pred, String obj, String localName, int objType, String language) {
+    public Inst(String sub, String prop, Value value) {
 
         this.sub = sub;
 
-        addObjToPred(obj, pred, localName, objType, language);
+        addPropValToInst(prop, value);
     }
 
+    public Inst(String sub,String type) {
 
-    public Set<Obj> getObjSetByPred(String pred) {
+        this.sub = sub;
+        addTypeToInst(type);
+    }
 
-        Set<Obj> tempObjSet = predObj.get(pred);
-        if (tempObjSet == null) {
+    public Set<Value> getValSetByProp(String pred) {
+
+        Set<Value> tempValueSet = predObj.get(pred);
+        if (tempValueSet == null) {
             return predUri.get(pred);
-        } else return tempObjSet;
+        } else return tempValueSet;
     }
 
-    public synchronized void addObjToPred(String myObj, String myPred, String localName, int objType, String language) {
+    public void addPropValToInst(String prop, Value value) {
 
-        if (myObj.equals("") || myPred.equals("")) return;
+        Map<String, Set<Value>> ptr;
 
-        if (myPred.equals(TYPE_FULL_NAME)) {
+        if (useReinforce) {
+            if (value.isURI()) ptr = predUri;
+            else ptr = predObj;
+        } else ptr = predObj;
 
-            typeSet.add(myObj);
+        if (ptr.containsKey(prop)) {
+
+            Set<Value> myValueSet = ptr.get(prop);
+            myValueSet.add(value);
         } else {
 
-            Map<String, Set<Obj>> ptr;
-
-            if (useReinforce) {
-                if (objType == URI_TYPE_INDEX) {
-                    ptr = predUri;
-                } else {
-                    ptr = predObj;
-                }
-            } else {
-                ptr = predObj;
-            }
-
-            if (ptr.containsKey(myPred)) {
-
-                Set<Obj> myValueSet = ptr.get(myPred);
-                myValueSet.add(new Obj(myObj, localName, objType, language));
-            } else {
-
-                Set<Obj> mySet = new HashSet<>();
-                mySet.add(new Obj(myObj, localName, objType, language));
-                ptr.put(myPred, mySet);
-            }
+            Set<Value> myValueSet = new HashSet<>();
+            myValueSet.add((value));
+            ptr.put(prop, myValueSet);
         }
+
+    }
+
+    public void addTypeToInst(String type) {
+
+        typeSet.add(type);
     }
 
     @Override
@@ -86,20 +83,11 @@ public class Inst {
 
             out.append("pred: " + key.split("/")[key.split("/").length - 1] + "\n");
 
-            Set<Obj> myValueSet = predObj.get(key);
+            Set<Value> myValueSet = predObj.get(key);
 
-            for (Obj myValue : myValueSet) {
+            for (Value myValue : myValueSet) {
 
-                out.append("obj: " + myValue.getValue() + "\n");
-
-                if (myValue.getType() == URI_TYPE_INDEX) {
-                    out.append("obj localname: " + myValue.getLocalName() + "\n");
-                }
-                out.append("obj type: " + myValue.getTypeName() + "\n");
-
-                if (!myValue.getLang().equals("")) {
-                    out.append("obj language: " + myValue.getLang() + "\n");
-                }
+                out.append(myValue.toString());
             }
             out.append("\n");
         }
@@ -108,18 +96,11 @@ public class Inst {
 
             out.append("pred: " + key + "\n");
 
-            Set<Obj> myValueSet = predUri.get(key);
+            Set<Value> myValueSet = predUri.get(key);
 
-            for (Obj myObj : myValueSet) {
+            for (Value myValue : myValueSet) {
 
-                out.append("obj: " + myObj.getValue() + "\n");
-                if (myObj.getType() == URI_TYPE_INDEX) {
-                    out.append("obj localname: " + myObj.getLocalName() + "\n");
-                }
-
-                if (!myObj.getLang().equals("")) {
-                    out.append("obj language: " + myObj.getLang() + "\n");
-                }
+                out.append(myValue.toString());
             }
             out.append("\n");
         }
@@ -137,7 +118,7 @@ public class Inst {
         return sub;
     }
 
-    public Map<String, Set<Obj>> getPredObj() {
+    public Map<String, Set<Value>> getPredObj() {
         return predObj;
     }
 
@@ -145,7 +126,7 @@ public class Inst {
         return typeSet;
     }
 
-    public Map<String, Set<Obj>> getPredUri() {
+    public Map<String, Set<Value>> getPredUri() {
         return predUri;
     }
 }

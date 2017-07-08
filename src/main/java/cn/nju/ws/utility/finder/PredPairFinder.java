@@ -1,9 +1,9 @@
 package cn.nju.ws.utility.finder;
 
+import cn.nju.ws.unit.instance.Value;
 import cn.nju.ws.utility.threads.PredPairFinderThread;
 import cn.nju.ws.unit.alignment.CounterPart;
 import cn.nju.ws.unit.instance.Inst;
-import cn.nju.ws.unit.instance.Obj;
 import cn.nju.ws.unit.predicatePair.PredPair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,8 +84,8 @@ public class PredPairFinder {
             return;
         }
 
-        Map<String, Set<Obj>> predObj1 = inst1.getPredObj();
-        Map<String, Set<Obj>> predObj2 = inst2.getPredObj();
+        Map<String, Set<Value>> predObj1 = inst1.getPredObj();
+        Map<String, Set<Value>> predObj2 = inst2.getPredObj();
 
         if (predObj1 == null) {
 
@@ -106,7 +106,7 @@ public class PredPairFinder {
             Map.Entry entry1 = (Map.Entry) iter1.next();
             String pred1 = (String) entry1.getKey();
 
-            Set<Obj> objSet1 = (Set<Obj>) entry1.getValue();
+            Set<Value> valueSet1 = (Set<Value>) entry1.getValue();
 
             Iterator iter2 = predObj2.entrySet().iterator();
 
@@ -114,9 +114,9 @@ public class PredPairFinder {
 
                 Map.Entry entry2 = (Map.Entry) iter2.next();
                 String pred2 = (String) entry2.getKey();
-                Set<Obj> objSet2 = (Set<Obj>) entry2.getValue();
+                Set<Value> valueSet2 = (Set<Value>) entry2.getValue();
 
-                double value = calObjSetSim(objSet1, objSet2).getMaxSimi();
+                double value = calObjSetSim(valueSet1, valueSet2).getMaxSimi();
 
                 if (value > predPairSimiThreshold) {
 

@@ -1,11 +1,11 @@
 package cn.nju.ws.utility.nlp;
 
+import cn.nju.ws.unit.instance.Value;
 import cn.nju.ws.unit.others.Pair;
-import cn.nju.ws.unit.instance.Obj;
+import org.semanticweb.owlapi.model.OWLDatatype;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import static cn.nju.ws.utility.nlp.EditDistance.editDistance;
@@ -49,98 +49,81 @@ public class CalSimilarity {
         }
     }
 
-
-    public static int compType(int obj1Type, int obj2Type) {
+    public static int getTheWayToCompByDataType(Value val1, Value val2) {
 
         int res = -1;
-        if (obj1Type == obj2Type) {
 
-            if (obj1Type == INTEGER_TYPE_INDEX
-                    || obj1Type == FLOAT_TYPE_INDEX
-                    || obj1Type == DATETIME_TYPE_INDEX
-                    || obj1Type == DATE_TYPE_INDEX
-                    || obj1Type == BOOLEAN_TYPE_INDEX
-                    || obj1Type == GYEAR_TYPE_INDEX
-                    || obj1Type == GYEARMONTH_TYPE_INDEX) {
-                res = 0;
-            } else if (obj1Type == THING_TYPE_INDEX
-                    || obj1Type == STRING_TYPE_INDEX
-                    || obj1Type == LANGSTRING_TYPE_INDEX
-                    || obj1Type == URI_TYPE_INDEX) {
-                res = 1;
-            }
-        } else {
-            if (obj1Type == THING_TYPE_INDEX
-                    || obj2Type == THING_TYPE_INDEX
-                    || (obj1Type == STRING_TYPE_INDEX && obj2Type == LANGSTRING_TYPE_INDEX)
-                    || (obj2Type == STRING_TYPE_INDEX && obj1Type == LANGSTRING_TYPE_INDEX)) {
-                res = 1;
+        if (val1.isURI() && val2.isURI()) {
+
+            res = 0;
+        } else if (!val1.isURI() && !val2.isURI() && !val1.isAnonyId() && !val2.isAnonyId()) {
+
+            OWLDatatype datatype1 = val1.getDataType();
+            OWLDatatype datatype2 = val2.getDataType();
+
+            String type1IRIStr = datatype1.getIRI().toString();
+            String type2IRIStr = datatype2.getIRI().toString();
+
+            if (type1IRIStr.equals(type2IRIStr)) {
+
+                if(type1IRIStr.equals(PLAINLITERAL_TYPE)) res = 2;
+                else res = 1;
             }
         }
         return res;
     }
 
-    public static Pair calObjSetSim(Set<Obj> obj1Set, Set<Obj> obj2Set) {
+    public static Pair calObjSetSim(Set<Value> value1Set, Set<Value> value2Set) {
 
         int matchedNumObj1Set = 0, unmatchedNumObj1Set = 0;
         double maxSimi = -1.0, simiSum = 0;//相似度之合
 
-        Set<String> unMatchedInObj2Set = new HashSet<String>();
+        for (Value val1 : value1Set) {
 
-        for (Obj obj1 : obj1Set) {
+            double eachVal1TempSimi = 0;
+            double eachVal1MaxSimi = 0;
+            for (Value val2 : value2Set) {
 
-            double eachObj1TempSimi = 0;
-            double eachObj1MaxSimi = 0;
-            for (Obj obj2 : obj2Set) {
+                String literal1 = new String(val1.getLiteral());
+                String literal2 = new String(val2.getLiteral());
 
-                int obj1Type = obj1.getType();
-                int obj2Type = obj2.getType();
-                String value1 = new String(obj1.getValue());
-                String value2 = new String(obj2.getValue());
+                String lang1 = val1.getLang();
+                String lang2 = val2.getLang();
 
-                String lang1 = obj1.getLang();
-                String lang2 = obj2.getLang();
-
-                if (value1 == ""
-                        || value1 == null
-                        || value2 == ""
-                        || value2 == null) {
+                if (literal1 == ""
+                        || literal1 == null
+                        || literal2 == ""
+                        || literal2 == null) {
                     logger.info("value1 or value2 is empty.");
                     continue;
                 }
 
                 if (!lang1.equals("") && !lang2.equals("") && !lang1.equals(lang2)) {
 
-                    eachObj1TempSimi = 0;
+                    eachVal1TempSimi = 0;
                 } else {
 
-                    int ct = compType(obj1Type, obj2Type);
+                    int ct = getTheWayToCompByDataType(val1, val2);
 
                     if (ct == 0) {
-                        eachObj1TempSimi = indiFunc(obj1.getValue(), obj2.getValue());
+                        eachVal1TempSimi = strFunc(val1.getLocalName(), val2.getLocalName());
 
                     } else if (ct == 1) {
 
-                        if (obj1Type == URI_TYPE_INDEX && obj2Type == URI_TYPE_INDEX) {
-                            eachObj1TempSimi = strFunc(obj1.getLocalName(), obj2.getLocalName());
-                        } else if (obj1Type == URI_TYPE_INDEX && obj2Type == THING_TYPE_INDEX) {
-                            eachObj1TempSimi = strFunc(obj1.getLocalName(), obj2.getValue());
-                        } else if (obj1Type == THING_TYPE_INDEX && obj2Type == URI_TYPE_INDEX) {
-                            eachObj1TempSimi = strFunc(obj1.getValue(), obj2.getLocalName());
-                        } else {
-                            eachObj1TempSimi = strFunc(obj1.getValue(), obj2.getValue());
-                        }
+                        eachVal1TempSimi = indiFunc(val1.getLiteral(), val2.getLiteral());
+                    } else if (ct == 2) {
+                        eachVal1TempSimi = strFunc(val1.getLiteral(), val2.getLiteral());
                     }
                 }
 
-                maxSimi = Math.max(maxSimi, eachObj1TempSimi);
-                eachObj1MaxSimi = Math.max(eachObj1MaxSimi, eachObj1TempSimi);
+                maxSimi = Math.max(maxSimi, eachVal1TempSimi);
+                eachVal1MaxSimi = Math.max(eachVal1MaxSimi, eachVal1TempSimi);
 
             }
 
-            if (eachObj1MaxSimi > predPairSimiThreshold) {
+            if (eachVal1MaxSimi > predPairSimiThreshold) {
                 matchedNumObj1Set++;
-                simiSum += eachObj1MaxSimi;
+                simiSum += eachVal1MaxSimi;
             } else unmatchedNumObj1Set++;
         }
 

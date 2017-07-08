@@ -38,6 +38,9 @@ PredPair.txt
 unfound.txt
 wrong.txt
 
+#Un-useful folder
+result/
+testData/
 #Release
 out/
 META-INF/

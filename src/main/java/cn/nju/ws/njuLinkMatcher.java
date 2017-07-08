@@ -1,7 +1,9 @@
 package cn.nju.ws;
 
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
+//import org.apache.jena.rdf.model.Model;
+//import org.apache.jena.rdf.model.ModelFactory;
+
+import org.semanticweb.owlapi.model.OWLDatatype;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,8 +17,10 @@ import java.util.Properties;
 import static cn.nju.ws.utility.ParamDef.*;
 import static cn.nju.ws.utility.eval.Metrics.calMetrics;
 //import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
-import static cn.nju.ws.utility.fileParser.InstFileApacheJenaParser.parseInstFileByApacheJena;
+//import static cn.nju.ws.utility.fileParser.InstFileApacheJenaParser.parseInstFileByApacheJena;
 import static cn.nju.ws.utility.assistanceTool.FileWriter.printToFile;
+import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
+import static cn.nju.ws.utility.fileParser.InstFileOWLAPIParser.parseInstFileByOWLAPI;
 import static cn.nju.ws.utility.finder.AlignmentFinder.findResultAlignWithoutThread;
 import static cn.nju.ws.utility.finder.InfoGainCalculator.calInfoGainWithoutThread;
 import static cn.nju.ws.utility.finder.PredPairFinder.findPredPairWithoutThread;
@@ -25,12 +29,6 @@ import static cn.nju.ws.utility.nlp.FormatData.getStopWords;
 /**
  * Created by ciferlv on 17-6-21.
  */
-class Object{
-
-    String value;
-    String type;
-    String languate = null;
-}
 public class njuLinkMatcher {
 
     private static Logger logger = LoggerFactory.getLogger(njuLinkMatcher.class);
@@ -70,7 +68,8 @@ public class njuLinkMatcher {
 
     public String align(URI sourceURI, URI targetURI) throws IOException {
 
-        logger.info("njuLink version 3");
+        logger.info("njuLink version 6");
+
         init();
 
         alignBuffer.append(alignHead);
@@ -81,27 +80,13 @@ public class njuLinkMatcher {
         souDoc.setTarType(souClassFilterSet);
         tarDoc.setTarType(tarClassFilterSet);
 
-        Model souModel = null, tarModel = null;
-        try {
-            souModel = ModelFactory.createDefaultModel();
-            tarModel = ModelFactory.createDefaultModel();
-        } catch (Exception e) {
-
-            logger.info(e.getMessage());
-        }
-
-        if (souModel == null) {
-
-            logger.info("souModel is null");
-        }
-
-        parseInstFileByApacheJena(souPath, souDoc, souModel);
-        parseInstFileByApacheJena(tarPath, tarDoc, tarModel);
+        parseInstFileByOWLAPI(souPath, souDoc);
+        parseInstFileByOWLAPI(tarPath, tarDoc);
 
         souDoc.processGraph();
         tarDoc.processGraph();
 
-//        parseAlignFile(refPath, refAlign);
+        parseAlignFile(refPath, refAlign);
         refAlign.generatePositives();
         refAlign.generateNegetives();
 
@@ -118,8 +103,8 @@ public class njuLinkMatcher {
 
         njuLinkMatcher nlm = new njuLinkMatcher();
 
-        URI sourceURI = URI.create("./DOREMUS/FPT/source.ttl");
-        URI targetURI = URI.create("./DOREMUS/FPT/target.ttl");
+        URI sourceURI = URI.create("./DOREMUS/HT/source.ttl");
+        URI targetURI = URI.create("./DOREMUS/HT/target.ttl");
 
         String res = "";
 
@@ -132,6 +117,11 @@ public class njuLinkMatcher {
 
         calMetrics();
 
+        logger.info("DataType:");
+        for (OWLDatatype datatype : recordDataType) logger.info(datatype.toString());
+
+        logger.info("AxiomType:");
+        for (String str : recordAxiomType) logger.info(str);
 
         try {
 
