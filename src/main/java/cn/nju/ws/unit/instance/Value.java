@@ -2,7 +2,6 @@ package cn.nju.ws.unit.instance;
 
 import org.semanticweb.owlapi.model.OWLDatatype;
 
-import static cn.nju.ws.utility.ParamDef.*;
 import static cn.nju.ws.utility.nlp.FormatData.formatWords;
 
 /**
@@ -10,17 +9,14 @@ import static cn.nju.ws.utility.nlp.FormatData.formatWords;
  */
 public class Value {
 
-    private String literal;
-
-    private String localName;
-
-    private String lang = "";
+    private String literal, localName, lang = null;
 
     private OWLDatatype dataType;
 
     private boolean isURI, isAnonyId;
 
     public Value() {
+        lang = null;
     }
 
     public void setLiteral(String literal) {

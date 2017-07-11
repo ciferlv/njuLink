@@ -213,6 +213,9 @@ public class Doc {
 
     public void addSubPropValToGraph(String sub, String prop, Value value) {
 
+        String literal = value.getLiteral();
+        if (literal == null || literal.equals("")) return;
+
         if (graph.containsKey(sub)) {
 
             Inst myInst = graph.get(sub);
@@ -233,7 +236,21 @@ public class Doc {
 
         } else {
 
-            graph.put(sub,new Inst(sub,type.toLowerCase()));
+            graph.put(sub, new Inst(sub, type.toLowerCase()));
+        }
+    }
+
+    public void addSameAsToInst(String sub1, String sub2) {
+
+        if (graph.containsKey(sub1)) {
+
+            Inst myInst = graph.get(sub1);
+            myInst.addSameAsToInst(sub2);
+        } else {
+
+            Inst myInst = new Inst(sub1);
+            myInst.addSameAsToInst(sub2);
+            graph.put(sub1, myInst);
         }
     }
 

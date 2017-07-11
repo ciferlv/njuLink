@@ -1,4 +1,3 @@
-import org.apache.jena.reasoner.rulesys.builtins.Print;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 
@@ -6,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import java.util.Iterator;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import static cn.nju.ws.utility.assistanceTool.FileWriter.printToFile;
@@ -27,10 +26,11 @@ public class testOWLAPI {
         OWLOntology localAcademic = manager.loadOntologyFromOntologyDocument(file);
 
         OWLAnnotationValueVisitor annotationValueVisitor = new OWLAnnotationValueVisitor() {
+
             @Override
             public void visit(IRI iri) {
 
-                System.out.println("iri: " +iri.getFragment());
+//                System.out.println("iri: " +iri.getFragment());
 
             }
 
@@ -429,8 +429,15 @@ public class testOWLAPI {
             @Override
             public void visit(OWLSameIndividualAxiom axiom) {
 
-                pw.append(axiom.toString() + "\n");
-                pw.flush();
+//                pw.append(axiom.toString() + "\n");
+//                pw.flush();
+
+                System.out.println("****************************************");
+                for (OWLIndividual anno : axiom.getIndividuals()) {
+
+                    System.out.println(anno.toStringID());
+                }
+                System.out.println("****************************************");
             }
 
             @Override

@@ -66,7 +66,7 @@ public class CalSimilarity {
 
             if (type1IRIStr.equals(type2IRIStr)) {
 
-                if(type1IRIStr.equals(PLAINLITERAL_TYPE)) res = 2;
+                if (type1IRIStr.equals(PLAINLITERAL_TYPE)) res = 2;
                 else res = 1;
             }
         }
@@ -80,38 +80,26 @@ public class CalSimilarity {
 
         for (Value val1 : value1Set) {
 
-            double eachVal1TempSimi = 0;
-            double eachVal1MaxSimi = 0;
+            double eachVal1TempSimi = 0, eachVal1MaxSimi = 0;
             for (Value val2 : value2Set) {
-
-                String literal1 = new String(val1.getLiteral());
-                String literal2 = new String(val2.getLiteral());
 
                 String lang1 = val1.getLang();
                 String lang2 = val2.getLang();
 
-                if (literal1 == ""
-                        || literal1 == null
-                        || literal2 == ""
-                        || literal2 == null) {
-                    logger.info("value1 or value2 is empty.");
-                    continue;
-                }
-
-                if (!lang1.equals("") && !lang2.equals("") && !lang1.equals(lang2)) {
+                if (lang1 != null && lang2 != null && !lang1.equals(lang2)) {
 
                     eachVal1TempSimi = 0;
                 } else {
 
-                    int ct = getTheWayToCompByDataType(val1, val2);
+                    int comWay = getTheWayToCompByDataType(val1, val2);
 
-                    if (ct == 0) {
+                    if (comWay == 0) {
+
                         eachVal1TempSimi = strFunc(val1.getLocalName(), val2.getLocalName());
-
-                    } else if (ct == 1) {
+                    } else if (comWay == 1) {
 
                         eachVal1TempSimi = indiFunc(val1.getLiteral(), val2.getLiteral());
-                    } else if (ct == 2) {
+                    } else if (comWay == 2) {
                         eachVal1TempSimi = strFunc(val1.getLiteral(), val2.getLiteral());
                     }
                 }

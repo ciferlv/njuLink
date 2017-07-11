@@ -130,9 +130,10 @@ public class AlignmentSet {
 
             alignBuffer.append("\n\t<map>");
             alignBuffer.append("\n\t\t<Cell>");
-            alignBuffer.append("\n\t\t\t<entity1 rdf:resource=\">" + cp.getSub1() + "\"/>");
-            alignBuffer.append("\n\t\t\t<entity2 rdf:resource=\">" + cp.getSub2() + "\"/>");
+            alignBuffer.append("\n\t\t\t<entity1 rdf:resource=\"" + cp.getSub1() + "\"/>");
+            alignBuffer.append("\n\t\t\t<entity2 rdf:resource=\"" + cp.getSub2() + "\"/>");
             alignBuffer.append("\n\t\t\t<measure rdf:datatype=\"xsd:float\">1.0</measure>");
+            alignBuffer.append("\n\t\t\t<relation>=</relation>");
             alignBuffer.append("\n\t\t</Cell>");
             alignBuffer.append("\n\t</map>");
         }

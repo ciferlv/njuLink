@@ -18,10 +18,17 @@ public class Inst {
 
     private Map<String, Set<Value>> predObj = Collections.synchronizedMap(new HashMap<String, Set<Value>>());
 
-    private Set<String> typeSet = new HashSet<String>();
+    private Set<String> typeSet = new HashSet<>();
+
+    private Set<String> sameAsSet = new HashSet<>();
 
     //store the objects whose type are URI type
     private Map<String, Set<Value>> predUri = Collections.synchronizedMap(new HashMap<String, Set<Value>>());
+
+    public Inst(String sub) {
+
+        this.sub = sub;
+    }
 
     public Inst(String sub, String prop, Value value) {
 
@@ -30,7 +37,7 @@ public class Inst {
         addPropValToInst(prop, value);
     }
 
-    public Inst(String sub,String type) {
+    public Inst(String sub, String type) {
 
         this.sub = sub;
         addTypeToInst(type);
@@ -71,6 +78,11 @@ public class Inst {
         typeSet.add(type);
     }
 
+    public void addSameAsToInst(String sameAsIndividual) {
+
+        sameAsSet.add(sameAsIndividual);
+    }
+
     @Override
     public String toString() {
 
@@ -105,6 +117,12 @@ public class Inst {
             out.append("\n");
         }
 
+        if (sameAsSet.size() > 0) out.append("sameAs:\n");
+        for (String sameAsIndividual : sameAsSet) {
+
+            out.append(sameAsIndividual + "\n");
+        }
+
         out.append("pred: type\n");
         for (String myType : typeSet) {
 
@@ -128,5 +146,9 @@ public class Inst {
 
     public Map<String, Set<Value>> getPredUri() {
         return predUri;
+    }
+
+    public void setSub(String sub) {
+        this.sub = sub;
     }
 }

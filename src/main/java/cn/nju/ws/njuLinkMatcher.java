@@ -92,6 +92,12 @@ public class njuLinkMatcher {
 
         findPredPairWithoutThread();
         calInfoGainWithoutThread();
+
+//        PredPair tmpPP = new PredPair("http://data.doremus.org/ontology#U16_has_catalogue_statement"
+//                , "http://data.doremus.org/ontology#U16_has_catalogue_statement");
+//        tmpPP.setInfoGain(1);
+//        ppl.add(tmpPP);
+
         findResultAlignWithoutThread();
 
         alignBuffer.append(alignTail);
@@ -103,8 +109,8 @@ public class njuLinkMatcher {
 
         njuLinkMatcher nlm = new njuLinkMatcher();
 
-        URI sourceURI = URI.create("./DOREMUS/HT/source.ttl");
-        URI targetURI = URI.create("./DOREMUS/HT/target.ttl");
+        URI sourceURI = URI.create("./DOREMUS/FPT/source.ttl");
+        URI targetURI = URI.create("./DOREMUS/FPT/target.ttl");
 
         String res = "";
 
@@ -133,6 +139,9 @@ public class njuLinkMatcher {
             printToFile("./result/Source.txt", souDoc.graphToString());
             printToFile("./result/Target.txt", tarDoc.graphToString());
             printToFile("./result/RefAlign.txt", refAlign.toString());
+            printToFile("./result/Result.rdf", res);
+            printToFile("./result/Positives.txt",positives.toString());
+            printToFile("./result/Negetives.txt",negetives.toString());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
