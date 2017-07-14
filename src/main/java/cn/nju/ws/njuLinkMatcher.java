@@ -109,8 +109,8 @@ public class njuLinkMatcher {
 
         njuLinkMatcher nlm = new njuLinkMatcher();
 
-        URI sourceURI = URI.create("./DOREMUS/FPT/source.ttl");
-        URI targetURI = URI.create("./DOREMUS/FPT/target.ttl");
+        URI sourceURI = URI.create("./DOREMUS/HT/source.ttl");
+        URI targetURI = URI.create("./DOREMUS/HT/target.ttl");
 
         String res = "";
 

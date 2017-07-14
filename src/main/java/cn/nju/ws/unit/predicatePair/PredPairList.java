@@ -56,7 +56,7 @@ public class PredPairList {
         return predPairList.size();
     }
 
-    public boolean containsPred1(String pred1) {
+    public boolean containsProp1(String pred1) {
 
         for (PredPair pp : predPairList) {
 

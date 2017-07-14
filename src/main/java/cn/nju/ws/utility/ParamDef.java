@@ -64,6 +64,7 @@ public class ParamDef {
     public static AlignmentSet tempAlign = new AlignmentSet();
     public static AlignmentSet resultAlign = new AlignmentSet();
     public static AlignmentSet testAlign = new AlignmentSet();
+    public static AlignmentSet test2Align = new AlignmentSet();
 
     public static Set<String> refSet = new HashSet<>();
 

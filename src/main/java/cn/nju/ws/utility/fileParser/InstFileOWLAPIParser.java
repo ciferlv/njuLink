@@ -413,7 +413,6 @@ public class InstFileOWLAPIParser {
         Stream<OWLAxiom> axiomStream = localAcademic.getAxioms().stream();
 
         axiomStream.forEach(axiom -> axiom.accept(axiomVisitor));
-
     }
 
     public static void main(String[] args) {

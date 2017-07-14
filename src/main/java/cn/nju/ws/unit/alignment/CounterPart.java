@@ -1,15 +1,17 @@
 package cn.nju.ws.unit.alignment;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Created by ciferlv on 17-6-8.
  */
 public class CounterPart implements Comparable<CounterPart> {
 
+    private static Logger logger = LoggerFactory.getLogger(CounterPart.class);
     private String sub1, sub2, token;
 
-    private int matchedNumDisOfSmall, unmatchedNumDisOfSmall, matchedNumUndisOfSmall;
-
-    private int matchedNumDisOfBig, unmatchedNumDisOfBig, matchedNumUndisOfBig;
+    private int matchedNumDis, unmatchedNumDis, matchedNumUndis, sameProp, diffProp;
 
     private double infoGainSumDis, detailInfoGainSumDis, maxSimiSumDis, maxSimiSumUndis;
 
@@ -21,30 +23,32 @@ public class CounterPart implements Comparable<CounterPart> {
 
         this.sub1 = sub1;
         this.sub2 = sub2;
-        matchedNumUndisOfSmall = 0;
+        matchedNumUndis = 0;
         infoGainSumDis = detailInfoGainSumDis = maxSimiSumDis = maxSimiSumUndis = 0;
-        matchedNumDisOfSmall = unmatchedNumDisOfSmall = 0;
-        if (sub1.compareTo(sub2) < 0) token = sub1 + sub2;
-        else token = sub2 + sub1;
+        matchedNumDis = unmatchedNumDis = 0;
+        token = sub1 + sub2;
+//        if (sub1.compareTo(sub2) < 0) token = sub1 + sub2;
+//        else token = sub2 + sub1;
     }
 
 
     public CounterPart(String sub1, String sub2,
-                       int matchedNumDisOfSmall, int unmatchedNumDisOfSmall,
+                       int matchedNumDis, int unmatchedNumDis,
                        double infoGainSumDis, double detailInfoGainSumDis,
                        double maxSimiSumDis) {
 
         this.sub1 = sub1;
         this.sub2 = sub2;
-        this.matchedNumDisOfSmall = matchedNumDisOfSmall;
-        this.unmatchedNumDisOfSmall = unmatchedNumDisOfSmall;
+        this.matchedNumDis = matchedNumDis;
+        this.unmatchedNumDis = unmatchedNumDis;
         this.infoGainSumDis = infoGainSumDis;
         this.detailInfoGainSumDis = detailInfoGainSumDis;
         this.maxSimiSumDis = maxSimiSumDis;
-        matchedNumUndisOfSmall = 0;
+        matchedNumUndis = 0;
         maxSimiSumUndis = 0;
-        if (sub1.compareTo(sub2) < 0) token = sub1 + sub2;
-        else token = sub2 + sub1;
+        token = sub1 + sub2;
+//        if (sub1.compareTo(sub2) < 0) token = sub1 + sub2;
+//        else token = sub2 + sub1;
     }
 
 
@@ -74,6 +78,20 @@ public class CounterPart implements Comparable<CounterPart> {
         return 0;
     }
 
+    public int compareWithAnotherCounterPart(CounterPart o2) {
+
+        if (!sub1.equals(o2.getSub1())) {
+
+            logger.info("Two CounterPart has different sub1!!!");
+            return -10;
+        }
+
+        CounterPartComparator cpc = new CounterPartComparator();
+        int res = cpc.compare(this, o2);
+
+        return res;
+    }
+
     @Override
     public String toString() {
 
@@ -81,14 +99,14 @@ public class CounterPart implements Comparable<CounterPart> {
         buffer.append("sub1: " + sub1 + "\n");
         buffer.append("sub2: " + sub2 + "\n");
 
-        if (matchedNumDisOfSmall != -1) buffer.append("matchedNumDisOfSmall: " + matchedNumDisOfSmall + "\n");
+        if (matchedNumDis != -1) buffer.append("matchedNumDis: " + matchedNumDis + "\n");
 
-        if (unmatchedNumDisOfSmall != -1) buffer.append("unmatchedNumDisOfSmall: " + unmatchedNumDisOfSmall + "\n");
+        if (unmatchedNumDis != -1) buffer.append("unmatchedNumDis: " + unmatchedNumDis + "\n");
 
         buffer.append("infoGainSumDis: " + infoGainSumDis + "\n");
         buffer.append("detailInfoGainSumDis: " + detailInfoGainSumDis + "\n");
         buffer.append("maxSimiSumDis: " + maxSimiSumDis + "\n");
-        buffer.append("matchedNumUndisOfSmall: " + matchedNumUndisOfSmall + "\n");
+        buffer.append("matchedNumUndis: " + matchedNumUndis + "\n");
         buffer.append("maxSimiSumUndis: " + maxSimiSumUndis + "\n");
         return String.valueOf(buffer);
     }
@@ -117,21 +135,21 @@ public class CounterPart implements Comparable<CounterPart> {
         return token;
     }
 
-    public int getMatchedNumDisOfSmall() {
-        return matchedNumDisOfSmall;
+    public int getMatchedNumDis() {
+        return matchedNumDis;
     }
 
-    public int getUnmatchedNumDisOfSmall() {
-        return unmatchedNumDisOfSmall;
+    public int getUnmatchedNumDis() {
+        return unmatchedNumDis;
     }
 
 
-    public int getMatchedNumUndisOfSmall() {
-        return matchedNumUndisOfSmall;
+    public int getMatchedNumUndis() {
+        return matchedNumUndis;
     }
 
-    public void setMatchedNumUndisOfSmall(int matchedNumUndisOfSmall) {
-        this.matchedNumUndisOfSmall = matchedNumUndisOfSmall;
+    public void setMatchedNumUndis(int matchedNumUndis) {
+        this.matchedNumUndis = matchedNumUndis;
     }
 
     public double getMaxSimiSumUndis() {
@@ -142,12 +160,12 @@ public class CounterPart implements Comparable<CounterPart> {
         this.maxSimiSumUndis = maxSimiSumUndis;
     }
 
-    public void setMatchedNumDisOfSmall(int matchedNumDisOfSmall) {
-        this.matchedNumDisOfSmall = matchedNumDisOfSmall;
+    public void setMatchedNumDis(int matchedNumDis) {
+        this.matchedNumDis = matchedNumDis;
     }
 
-    public void setUnmatchedNumDisOfSmall(int unmatchedNumDisOfSmall) {
-        this.unmatchedNumDisOfSmall = unmatchedNumDisOfSmall;
+    public void setUnmatchedNumDis(int unmatchedNumDis) {
+        this.unmatchedNumDis = unmatchedNumDis;
     }
 
     public void setInfoGainSumDis(double infoGainSumDis) {
@@ -162,19 +180,35 @@ public class CounterPart implements Comparable<CounterPart> {
         this.maxSimiSumDis = maxSimiSumDis;
     }
 
+    public void setSameProp(int sameProp) {
+        this.sameProp = sameProp;
+    }
+
+    public void setDiffProp(int diffProp) {
+        this.diffProp = diffProp;
+    }
+
+    public int getSameProp() {
+        return sameProp;
+    }
+
+    public int getDiffProp() {
+        return diffProp;
+    }
+
     public void addMatchedNumDis(int add) {
 
-        matchedNumDisOfSmall += add;
+        matchedNumDis += add;
     }
 
     public void addUnmatchedNumDis(int add) {
 
-        unmatchedNumDisOfSmall += add;
+        unmatchedNumDis += add;
     }
 
     public void addMatchedNumUndis(int add) {
 
-        matchedNumUndisOfSmall += add;
+        matchedNumUndis += add;
     }
 
     public void addInfoGainSumDis(double add) {

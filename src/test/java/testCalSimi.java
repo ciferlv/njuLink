@@ -12,12 +12,20 @@ public class testCalSimi {
 
     public static void main(String[] args) {
 
-        String str1 = "k384";
-        String str2 = "kv384";
+//        String str1 = "k384";
+//        String str2 = "kv384";
+//
+//        double res = strFunc(str1, str2);
+//
+//        logger.info(String.valueOf(res));
 
-        double res = strFunc(str1, str2);
+        boolean a = false;
+        boolean b = false;
 
-        logger.info(String.valueOf(res));
+        if(a&b){
+
+            System.out.println(a&b);
+        }
 
     }
 }

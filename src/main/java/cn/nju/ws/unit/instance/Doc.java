@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-import static cn.nju.ws.utility.ParamDef.*;
-
 /**
  * Created by ciferlv on 17-6-5.
  */
@@ -63,7 +61,7 @@ public class Doc {
 
         if (tarInst == null) return;
 
-        Map<String, Set<Value>> propUri = tarInst.getPredUri();
+        Map<String, Set<Value>> propUri = tarInst.getPropUri();
 
         Iterator iterPropUri = propUri.entrySet().iterator();
 
@@ -83,7 +81,7 @@ public class Doc {
 
         if (inst == null) return;
 
-        Map<String, Set<Value>> propValue = tarInst.getPredObj();
+        Map<String, Set<Value>> propValue = tarInst.getPropVal();
         Iterator iter = propValue.entrySet().iterator();
         while (iter.hasNext()) {
 

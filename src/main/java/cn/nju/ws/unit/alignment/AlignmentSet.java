@@ -3,10 +3,7 @@ package cn.nju.ws.unit.alignment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static cn.nju.ws.utility.ParamDef.*;
 
@@ -18,6 +15,99 @@ public class AlignmentSet {
     private Logger logger = LoggerFactory.getLogger(AlignmentSet.class);
 
     private List<CounterPart> counterPartList = Collections.synchronizedList(new ArrayList<CounterPart>());
+
+    private Map<String, Map<String, CounterPart>> cpGraph = new HashMap<>();
+
+    public void addCpToCpGraph(String sub1, String sub2, CounterPart cp) {
+
+        if (cpGraph.containsKey(sub1)) {
+
+            Map<String, CounterPart> tmpCp = cpGraph.get(sub1);
+            tmpCp.put(sub2, cp);
+        } else {
+
+            Map<String, CounterPart> tmpCp = new HashMap<>();
+            tmpCp.put(sub2, cp);
+            cpGraph.put(sub1, tmpCp);
+        }
+    }
+
+    public void stableMarriage() {
+
+        Map<String, String> tarConnToSou = new HashMap<>();
+        Set<String> hasTried = new HashSet<>();
+
+        Queue<String> souSubQueue = new LinkedList<>();
+
+        for (String sub : souDoc.getTarSubList()) souSubQueue.add(sub);
+        for (String sub : tarDoc.getTarSubList()) tarConnToSou.put(sub, null);
+
+        while (!souSubQueue.isEmpty()) {
+
+            String souSub = souSubQueue.poll();
+            Map<String, CounterPart> tmpMap = cpGraph.get(souSub);
+
+            if (tmpMap == null) {
+                continue;
+            }
+
+            CounterPart tmpCp = null;
+            String aim = null;
+            for (String tarSub : tarDoc.getTarSubList()) {
+
+                if (tmpMap.containsKey(tarSub) && !hasTried.contains(souSub + tarSub)) {
+
+                    if (aim == null || tmpCp.compareTo(tmpMap.get(tarSub)) > 0) {
+
+                        if (tarConnToSou.get(tarSub) == null) {
+
+                            aim = tarSub;
+                            tmpCp = tmpMap.get(tarSub);
+                        } else {
+
+                            String presentSouSub = tarConnToSou.get(tarSub);
+                            CounterPart presentInst = cpGraph.get(tarSub).get(presentSouSub);
+                            CounterPart compInst = cpGraph.get(tarSub).get(souSub);
+
+                            if (presentInst.compareWithAnotherCounterPart(compInst) > 0) {
+
+                                aim = tarSub;
+                                tmpCp = tmpMap.get(tarSub);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (aim == null) continue;
+
+            if (tarConnToSou.get(aim) == null) {
+
+                tarConnToSou.put(aim, souSub);
+                hasTried.add(souSub+aim);
+            } else {
+
+                souSubQueue.add(tarConnToSou.get(aim));
+                hasTried.add(souSub+aim);
+
+                tarConnToSou.put(aim,souSub);
+            }
+        }
+
+        Iterator iter = tarConnToSou.entrySet().iterator();
+        while (iter.hasNext()) {
+
+            Map.Entry entry = (Map.Entry) iter.next();
+            String tarSub = (String) entry.getKey();
+            String souSub = (String) entry.getValue();
+
+            if (souSub != null) {
+
+                test2Align.addCounterPart(new CounterPart(souSub, tarSub));
+            }
+        }
+        test2Align.generateResultAlign();
+    }
 
     public synchronized void addCounterPart(CounterPart counterPart) {
 

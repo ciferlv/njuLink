@@ -5,10 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
-
-import static cn.nju.ws.utility.assistanceTool.FileWriter.printToFile;
 
 /**
  * Created by xinzelv on 17-7-4.
@@ -19,9 +18,12 @@ public class testOWLAPI {
 
         PrintWriter pw = new PrintWriter(new FileOutputStream("./result/TEST.txt"));
 
+        Set<String> axiomTypeSet = new HashSet<>();
+        Set<String> annotationTypeSet = new HashSet<>();
+
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
 
-        File file = new File("./testData/example.ttl");
+        File file = new File("./FORTH/Spatial/WITHIN/Abox1.nt");
 
         OWLOntology localAcademic = manager.loadOntologyFromOntologyDocument(file);
 
@@ -30,22 +32,22 @@ public class testOWLAPI {
             @Override
             public void visit(IRI iri) {
 
-//                System.out.println("iri: " +iri.getFragment());
-
+                annotationTypeSet.add("IRI");
             }
 
             @Override
             public void visit(OWLAnonymousIndividual individual) {
 
-//                System.out.println("individual: "+individual.toString());
+                annotationTypeSet.add("OWLAnonymousIndividual");
             }
 
             @Override
             public void visit(OWLLiteral node) {
-//
-//                System.out.println("Datatype: " + node.getDatatype());
-//                System.out.println("Literal: " + node.getLiteral());
-//                System.out.println("Lang: " + node.getLang());
+
+                annotationTypeSet.add("OWLLiteral");
+                System.out.println("DataType: " + node.getDatatype());
+                System.out.println("Literal: " + node.getLiteral());
+
             }
         };
 
@@ -54,24 +56,25 @@ public class testOWLAPI {
             @Override
             public void visit(OWLDeclarationAxiom axiom) {
 
-                pw.append(axiom.toString() + "\n");
-                pw.flush();
+                axiomTypeSet.add("OWLDeclarationAxiom");
             }
 
             @Override
             public void visit(OWLDatatypeDefinitionAxiom axiom) {
 
-                pw.append(axiom.toString() + "\n");
-                pw.flush();
+                axiomTypeSet.add("OWLDatatypeDefinitionAxiom");
             }
 
             @Override
             public void visit(SWRLRule swrlRule) {
 
+                axiomTypeSet.add("SWRLRule");
             }
 
             @Override
             public void visit(OWLAnnotationAssertionAxiom axiom) {
+
+                axiomTypeSet.add("OWLAnnotationAssertionAxiom");
 
                 OWLAnnotation annotation = axiom.getAnnotation();
 
@@ -79,398 +82,221 @@ public class testOWLAPI {
                 OWLAnnotationValue value = annotation.getValue();
                 OWLAnnotationProperty property = annotation.getProperty();
 
-//                System.out.println("subject: " + subject.toString());
-//                System.out.println("property: " + property.toString());
+                System.out.println("subject: " + subject.toString());
+                System.out.println("property: " + property.toString());
 //                System.out.println("value: " + value.toString());
 
                 value.accept(annotationValueVisitor);
-                pw.append(axiom.toString() + "\n");
-                pw.flush();
             }
 
             @Override
             public void visit(OWLSubAnnotationPropertyOfAxiom axiom) {
 
-                System.out.println("OWLSubAnnotationPropertyOfAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLSubAnnotationPropertyOfAxiom");
             }
 
             @Override
             public void visit(OWLAnnotationPropertyDomainAxiom axiom) {
 
-                System.out.println("OWLAnnotationPropertyDomainAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLAnnotationPropertyDomainAxiom");
             }
 
             @Override
             public void visit(OWLAnnotationPropertyRangeAxiom axiom) {
 
-                System.out.println("OWLAnnotationPropertyRangeAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLAnnotationPropertyRangeAxiom");
             }
 
             @Override
             public void visit(OWLSubClassOfAxiom axiom) {
 
-                System.out.println("OWLSubClassOfAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLSubClassOfAxiom");
             }
 
             @Override
             public void visit(OWLNegativeObjectPropertyAssertionAxiom axiom) {
 
-                System.out.println("OWLNegativeObjectPropertyAssertionAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLNegativeObjectPropertyAssertionAxiom");
             }
 
             @Override
             public void visit(OWLAsymmetricObjectPropertyAxiom axiom) {
 
-                System.out.println("OWLAsymmetricObjectPropertyAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLAsymmetricObjectPropertyAxiom");
             }
 
             @Override
             public void visit(OWLReflexiveObjectPropertyAxiom axiom) {
 
-                System.out.println("OWLReflexiveObjectPropertyAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLReflexiveObjectPropertyAxiom");
             }
 
             @Override
             public void visit(OWLDisjointClassesAxiom axiom) {
 
-                System.out.println("OWLDisjointClassesAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLDisjointClassesAxiom");
             }
 
             @Override
             public void visit(OWLDataPropertyDomainAxiom axiom) {
 
-                System.out.println("OWLDataPropertyDomainAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLDataPropertyDomainAxiom");
             }
 
             @Override
             public void visit(OWLObjectPropertyDomainAxiom axiom) {
 
-                System.out.println("OWLObjectPropertyDomainAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLObjectPropertyDomainAxiom");
             }
 
             @Override
             public void visit(OWLEquivalentObjectPropertiesAxiom axiom) {
 
-                System.out.println("OWLEquivalentObjectPropertiesAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLEquivalentObjectPropertiesAxiom");
             }
 
             @Override
             public void visit(OWLNegativeDataPropertyAssertionAxiom axiom) {
 
-
-                System.out.println("OWLNegativeDataPropertyAssertionAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLNegativeDataPropertyAssertionAxiom");
             }
 
             @Override
             public void visit(OWLDifferentIndividualsAxiom axiom) {
 
-                System.out.println("OWLDifferentIndividualsAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLDifferentIndividualsAxiom");
             }
 
             @Override
             public void visit(OWLDisjointDataPropertiesAxiom axiom) {
 
-                System.out.println("OWLDisjointDataPropertiesAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLDisjointDataPropertiesAxiom");
             }
 
             @Override
             public void visit(OWLDisjointObjectPropertiesAxiom axiom) {
 
-                System.out.println("OWLDisjointObjectPropertiesAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLDisjointObjectPropertiesAxiom");
             }
 
             @Override
             public void visit(OWLObjectPropertyRangeAxiom axiom) {
 
-
-                System.out.println("OWLObjectPropertyRangeAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLObjectPropertyRangeAxiom");
             }
 
             @Override
             public void visit(OWLObjectPropertyAssertionAxiom axiom) {
 
-
-                System.out.println("OWLObjectPropertyAssertionAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLObjectPropertyAssertionAxiom");
             }
 
             @Override
             public void visit(OWLFunctionalObjectPropertyAxiom axiom) {
 
-                System.out.println("OWLFunctionalObjectPropertyAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLFunctionalObjectPropertyAxiom");
             }
 
             @Override
             public void visit(OWLSubObjectPropertyOfAxiom axiom) {
 
-                System.out.println("OWLSubObjectPropertyOfAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLSubObjectPropertyOfAxiom");
             }
 
             @Override
             public void visit(OWLDisjointUnionAxiom axiom) {
 
-                System.out.println("OWLDisjointUnionAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLDisjointUnionAxiom");
             }
 
             @Override
             public void visit(OWLSymmetricObjectPropertyAxiom axiom) {
 
-
-                System.out.println("OWLSymmetricObjectPropertyAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLSymmetricObjectPropertyAxiom");
             }
 
             @Override
             public void visit(OWLDataPropertyRangeAxiom axiom) {
 
-                System.out.println("OWLDataPropertyRangeAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLDataPropertyRangeAxiom");
             }
 
             @Override
             public void visit(OWLFunctionalDataPropertyAxiom axiom) {
 
-                System.out.println("OWLFunctionalDataPropertyAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLFunctionalDataPropertyAxiom");
             }
 
             @Override
             public void visit(OWLEquivalentDataPropertiesAxiom axiom) {
 
-                System.out.println("OWLEquivalentDataPropertiesAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLEquivalentDataPropertiesAxiom");
             }
 
             @Override
             public void visit(OWLClassAssertionAxiom axiom) {
 
-                pw.append(axiom.toString() + "\n");
-                pw.flush();
+                axiomTypeSet.add("OWLClassAssertionAxiom");
             }
 
             @Override
             public void visit(OWLEquivalentClassesAxiom axiom) {
 
-                pw.append(axiom.toString() + "\n");
-                pw.flush();
+                axiomTypeSet.add("OWLEquivalentClassesAxiom");
             }
 
             @Override
             public void visit(OWLDataPropertyAssertionAxiom axiom) {
 
-                System.out.println("OWLDataPropertyAssertionAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-
+                axiomTypeSet.add("OWLDataPropertyAssertionAxiom");
             }
 
             @Override
             public void visit(OWLTransitiveObjectPropertyAxiom axiom) {
 
-                System.out.println("OWLTransitiveObjectPropertyAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLTransitiveObjectPropertyAxiom");
             }
 
             @Override
             public void visit(OWLIrreflexiveObjectPropertyAxiom axiom) {
 
-                System.out.println("OWLIrreflexiveObjectPropertyAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLIrreflexiveObjectPropertyAxiom");
             }
 
             @Override
             public void visit(OWLSubDataPropertyOfAxiom axiom) {
 
-                System.out.println("OWLSubDataPropertyOfAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLSubDataPropertyOfAxiom");
             }
 
             @Override
             public void visit(OWLInverseFunctionalObjectPropertyAxiom axiom) {
 
-                System.out.println("OWLInverseFunctionalObjectPropertyAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLInverseFunctionalObjectPropertyAxiom");
             }
 
             @Override
             public void visit(OWLSameIndividualAxiom axiom) {
 
-//                pw.append(axiom.toString() + "\n");
-//                pw.flush();
-
-                System.out.println("****************************************");
-                for (OWLIndividual anno : axiom.getIndividuals()) {
-
-                    System.out.println(anno.toStringID());
-                }
-                System.out.println("****************************************");
+                axiomTypeSet.add("OWLSameIndividualAxiom");
             }
 
             @Override
             public void visit(OWLSubPropertyChainOfAxiom axiom) {
 
-                System.out.println("OWLSubPropertyChainOfAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLSubPropertyChainOfAxiom");
             }
 
             @Override
             public void visit(OWLInverseObjectPropertiesAxiom axiom) {
 
-                System.out.println("OWLInverseObjectPropertiesAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLInverseObjectPropertiesAxiom");
             }
 
             @Override
             public void visit(OWLHasKeyAxiom axiom) {
 
-                System.out.println("OWLHasKeyAxiom");
-                try {
-                    printToFile("./result/TEST.txt", axiom.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                axiomTypeSet.add("OWLHasKeyAxiom");
             }
         };
 
@@ -482,6 +308,18 @@ public class testOWLAPI {
                     a.accept(axiomVisitor);
                 }
         );
+
+
+        for (String axiomType : axiomTypeSet) {
+
+            System.out.println(axiomType);
+        }
+
+        for (String annotationType : annotationTypeSet) {
+
+            System.out.println(annotationType);
+        }
+
         pw.close();
     }
 }

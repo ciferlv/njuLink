@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static cn.nju.ws.utility.nlp.CalSimilarity.calObjSetSim;
+import static cn.nju.ws.utility.nlp.CalSimilarity.calValSetSim;
 import static cn.nju.ws.utility.ParamDef.*;
 import static cn.nju.ws.utility.threads.ThreadEndJudge.terminateThread;
 
@@ -99,8 +99,8 @@ public class InfoGainCalculator {
             Inst inst1 = graph1.get(sub1);
             Inst inst2 = graph2.get(sub2);
 
-            Set<Value> valueSet1 = inst1.getPredObj().get(pred1);
-            Set<Value> valueSet2 = inst2.getPredObj().get(pred2);
+            Set<Value> valueSet1 = inst1.getPropVal().get(pred1);
+            Set<Value> valueSet2 = inst2.getPropVal().get(pred2);
 
             if (valueSet1 == null || valueSet2 == null) {
 
@@ -108,7 +108,7 @@ public class InfoGainCalculator {
                 continue;
             } else {
 
-                double value = calObjSetSim(valueSet1, valueSet2).getMaxSimi();
+                double value = calValSetSim(valueSet1, valueSet2).getMaxSimi();
                 if (value > predPairSimiThreshold) {
                     truePos++;
                 } else falsePos++;
@@ -123,14 +123,14 @@ public class InfoGainCalculator {
             Inst inst1 = graph1.get(sub1);
             Inst inst2 = graph2.get(sub2);
 
-            Set<Value> valueSet1 = inst1.getPredObj().get(pred1);
-            Set<Value> valueSet2 = inst2.getPredObj().get(pred2);
+            Set<Value> valueSet1 = inst1.getPropVal().get(pred1);
+            Set<Value> valueSet2 = inst2.getPropVal().get(pred2);
 
             if (valueSet1 == null || valueSet2 == null) {
                 trueNeg++;
             } else {
 
-                double value = calObjSetSim(valueSet1, valueSet2).getMaxSimi();
+                double value = calValSetSim(valueSet1, valueSet2).getMaxSimi();
                 if (value > predPairSimiThreshold) {
                     falseNeg++;
                 } else trueNeg++;

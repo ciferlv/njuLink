@@ -15,10 +15,10 @@ public class CounterPartComparator implements Comparator<CounterPart> {
     @Override
     public int compare(CounterPart o1, CounterPart o2) {
 
-        if (o1.getMatchedNumDisOfSmall() > o2.getMatchedNumDisOfSmall()) {
+        if (o1.getMatchedNumDis() > o2.getMatchedNumDis()) {
 
             return -1;
-        } else if (o1.getMatchedNumDisOfSmall() == o2.getMatchedNumDisOfSmall()) {
+        } else if (o1.getMatchedNumDis() == o2.getMatchedNumDis()) {
 
             if (o1.getInfoGainSumDis() > o2.getInfoGainSumDis()) {
 
@@ -35,10 +35,10 @@ public class CounterPartComparator implements Comparator<CounterPart> {
                         return -1;
                     } else if (o1.getMaxSimiSumDis() == o2.getMaxSimiSumDis()) {
 
-                        if (o1.getMatchedNumUndisOfSmall() > o2.getMatchedNumUndisOfSmall()) {
+                        if (o1.getMatchedNumUndis() > o2.getMatchedNumUndis()) {
 
                             return -1;
-                        } else if (o1.getMatchedNumUndisOfSmall() == o2.getMatchedNumUndisOfSmall()) {
+                        } else if (o1.getMatchedNumUndis() == o2.getMatchedNumUndis()) {
 
                             if (o1.getMaxSimiSumUndis() > o2.getMaxSimiSumUndis()) {
 
@@ -50,7 +50,18 @@ public class CounterPartComparator implements Comparator<CounterPart> {
                                     return -1;
                                 } else if (o1.getMaxSimiSumUndis() == o2.getMaxSimiSumUndis()) {
 
-                                    return 0;
+                                    if (o1.getSameProp() > o2.getSameProp()) {
+                                        return -1;
+                                    } else if (o1.getSameProp() == o2.getSameProp()) {
+
+                                        if (o1.getDiffProp() < o2.getDiffProp()) {
+
+                                            return -1;
+                                        } else if (o1.getDiffProp() == o2.getDiffProp()) {
+
+                                            return 0;
+                                        }
+                                    }
                                 }
                             }
                         }

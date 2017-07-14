@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static cn.nju.ws.utility.nlp.CalSimilarity.calObjSetSim;
+import static cn.nju.ws.utility.nlp.CalSimilarity.calValSetSim;
 import static cn.nju.ws.utility.ParamDef.*;
 import static cn.nju.ws.utility.threads.ThreadEndJudge.terminateThread;
 
@@ -84,8 +84,8 @@ public class PredPairFinder {
             return;
         }
 
-        Map<String, Set<Value>> predObj1 = inst1.getPredObj();
-        Map<String, Set<Value>> predObj2 = inst2.getPredObj();
+        Map<String, Set<Value>> predObj1 = inst1.getPropVal();
+        Map<String, Set<Value>> predObj2 = inst2.getPropVal();
 
         if (predObj1 == null) {
 
@@ -116,7 +116,7 @@ public class PredPairFinder {
                 String pred2 = (String) entry2.getKey();
                 Set<Value> valueSet2 = (Set<Value>) entry2.getValue();
 
-                double value = calObjSetSim(valueSet1, valueSet2).getMaxSimi();
+                double value = calValSetSim(valueSet1, valueSet2).getMaxSimi();
 
                 if (value > predPairSimiThreshold) {
 

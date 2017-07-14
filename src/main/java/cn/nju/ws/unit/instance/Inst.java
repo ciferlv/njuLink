@@ -16,14 +16,14 @@ public class Inst {
 
     private String sub;
 
-    private Map<String, Set<Value>> predObj = Collections.synchronizedMap(new HashMap<String, Set<Value>>());
+    private Map<String, Set<Value>> propVal = Collections.synchronizedMap(new HashMap<String, Set<Value>>());
 
     private Set<String> typeSet = new HashSet<>();
 
     private Set<String> sameAsSet = new HashSet<>();
 
     //store the objects whose type are URI type
-    private Map<String, Set<Value>> predUri = Collections.synchronizedMap(new HashMap<String, Set<Value>>());
+    private Map<String, Set<Value>> propUri = Collections.synchronizedMap(new HashMap<String, Set<Value>>());
 
     public Inst(String sub) {
 
@@ -45,9 +45,9 @@ public class Inst {
 
     public Set<Value> getValSetByProp(String pred) {
 
-        Set<Value> tempValueSet = predObj.get(pred);
+        Set<Value> tempValueSet = propVal.get(pred);
         if (tempValueSet == null) {
-            return predUri.get(pred);
+            return propUri.get(pred);
         } else return tempValueSet;
     }
 
@@ -56,9 +56,9 @@ public class Inst {
         Map<String, Set<Value>> ptr;
 
         if (useReinforce) {
-            if (value.isURI()) ptr = predUri;
-            else ptr = predObj;
-        } else ptr = predObj;
+            if (value.isURI()) ptr = propUri;
+            else ptr = propVal;
+        } else ptr = propVal;
 
         if (ptr.containsKey(prop)) {
 
@@ -91,11 +91,11 @@ public class Inst {
         out.append(sub);
         out.append("\n");
 
-        for (String key : predObj.keySet()) {
+        for (String key : propVal.keySet()) {
 
             out.append("pred: " + key.split("/")[key.split("/").length - 1] + "\n");
 
-            Set<Value> myValueSet = predObj.get(key);
+            Set<Value> myValueSet = propVal.get(key);
 
             for (Value myValue : myValueSet) {
 
@@ -104,11 +104,11 @@ public class Inst {
             out.append("\n");
         }
 
-        for (String key : predUri.keySet()) {
+        for (String key : propUri.keySet()) {
 
             out.append("pred: " + key + "\n");
 
-            Set<Value> myValueSet = predUri.get(key);
+            Set<Value> myValueSet = propUri.get(key);
 
             for (Value myValue : myValueSet) {
 
@@ -136,19 +136,31 @@ public class Inst {
         return sub;
     }
 
-    public Map<String, Set<Value>> getPredObj() {
-        return predObj;
+    public Map<String, Set<Value>> getPropVal() {
+        return propVal;
     }
 
     public Set<String> getTypeSet() {
         return typeSet;
     }
 
-    public Map<String, Set<Value>> getPredUri() {
-        return predUri;
+    public Map<String, Set<Value>> getPropUri() {
+        return propUri;
     }
 
     public void setSub(String sub) {
         this.sub = sub;
+    }
+
+    public boolean hasSameAs(){
+
+        if(sameAsSet.size() > 0) return true;
+        else return false;
+    }
+
+    public boolean hasType(){
+
+        if(typeSet.size()> 0) return true;
+        else return false;
     }
 }

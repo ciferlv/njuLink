@@ -6,11 +6,14 @@ import org.semanticweb.owlapi.model.OWLDatatype;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
+import static cn.nju.ws.utility.ParamDef.PLAINLITERAL_TYPE;
+import static cn.nju.ws.utility.ParamDef.predPairSimiThreshold;
 import static cn.nju.ws.utility.nlp.EditDistance.editDistance;
 import static cn.nju.ws.utility.nlp.I_SUB.I_SUBScore;
-import static cn.nju.ws.utility.ParamDef.*;
 
 /**
  * Created by ciferlv on 17-6-6.
@@ -73,15 +76,17 @@ public class CalSimilarity {
         return res;
     }
 
-    public static Pair calObjSetSim(Set<Value> value1Set, Set<Value> value2Set) {
+    public static Pair calValSetSim(Set<Value> valSet1, Set<Value> valSet2) {
 
-        int matchedNumObj1Set = 0, unmatchedNumObj1Set = 0;
-        double maxSimi = -1.0, simiSum = 0;//相似度之合
+        int matchedNumValSet1 = 0, unmatchedNumValSet1, matchedNumValSet2, unmatchedNumValSet2;
+        double maxSimi = -1.0, simiSumOfValSet1 = 0, simiSumOfValSet2 = 0;//相似度之合
 
-        for (Value val1 : value1Set) {
+        Map<String, Double> matchedInVal2Set = new HashMap<>();
+
+        for (Value val1 : valSet1) {
 
             double eachVal1TempSimi = 0, eachVal1MaxSimi = 0;
-            for (Value val2 : value2Set) {
+            for (Value val2 : valSet2) {
 
                 String lang1 = val1.getLang();
                 String lang2 = val2.getLang();
@@ -107,14 +112,35 @@ public class CalSimilarity {
                 maxSimi = Math.max(maxSimi, eachVal1TempSimi);
                 eachVal1MaxSimi = Math.max(eachVal1MaxSimi, eachVal1TempSimi);
 
+                if (eachVal1TempSimi > predPairSimiThreshold) {
+
+                    if (!matchedInVal2Set.containsKey(val2.getLiteral())) {
+
+                        matchedInVal2Set.put(val2.getLiteral(), eachVal1TempSimi);
+                        simiSumOfValSet2 += eachVal1TempSimi;
+                    } else {
+
+                        Double simiTmp = matchedInVal2Set.get(val2.getLiteral());
+                        if (simiTmp < eachVal1MaxSimi) {
+
+                            simiSumOfValSet2 -= simiTmp;
+                            simiSumOfValSet2 += eachVal1MaxSimi;
+                            matchedInVal2Set.put(val2.getLiteral(), eachVal1MaxSimi);
+                        }
+                    }
+                }
             }
 
             if (eachVal1MaxSimi > predPairSimiThreshold) {
-                matchedNumObj1Set++;
-                simiSum += eachVal1MaxSimi;
-            } else unmatchedNumObj1Set++;
+                matchedNumValSet1++;
+                simiSumOfValSet1 += eachVal1MaxSimi;
+            }
         }
 
-        return new Pair(matchedNumObj1Set, unmatchedNumObj1Set, maxSimi, simiSum);
+        unmatchedNumValSet1 = valSet1.size() - matchedNumValSet1;
+        matchedNumValSet2 = matchedInVal2Set.size();
+        unmatchedNumValSet2 = valSet2.size() - matchedNumValSet2;
+
+        return new Pair(matchedNumValSet1, unmatchedNumValSet1, matchedNumValSet2, unmatchedNumValSet2, maxSimi, simiSumOfValSet1,simiSumOfValSet2);
     }
 }

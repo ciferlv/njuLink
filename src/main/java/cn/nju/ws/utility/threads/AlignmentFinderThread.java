@@ -4,7 +4,7 @@ import cn.nju.ws.unit.instance.Inst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static cn.nju.ws.utility.finder.AlignmentFinder.judgeInstsMatch;
+//import static cn.nju.ws.utility.finder.AlignmentFinder.judgeInstsMatch;
 
 /**
  * Created by ciferlv on 17-6-8.
@@ -24,6 +24,6 @@ public class AlignmentFinderThread implements Runnable {
 
     public void run() {
 
-        judgeInstsMatch(inst1, inst2);
+//        judgeInstsMatch(inst1, inst2);
     }
 }
