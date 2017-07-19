@@ -11,20 +11,23 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.util.Properties;
 
 import static cn.nju.ws.utility.ParamDef.*;
-import static cn.nju.ws.utility.eval.Metrics.calMetrics;
-//import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
-//import static cn.nju.ws.utility.fileParser.InstFileApacheJenaParser.parseInstFileByApacheJena;
 import static cn.nju.ws.utility.assistanceTool.FileWriter.printToFile;
+import static cn.nju.ws.utility.eval.Metrics.calMetrics;
 import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
 import static cn.nju.ws.utility.fileParser.InstFileOWLAPIParser.parseInstFileByOWLAPI;
 import static cn.nju.ws.utility.finder.AlignmentFinder.findResultAlignWithoutThread;
 import static cn.nju.ws.utility.finder.InfoGainCalculator.calInfoGainWithoutThread;
 import static cn.nju.ws.utility.finder.PredPairFinder.findPredPairWithoutThread;
 import static cn.nju.ws.utility.nlp.FormatData.getStopWords;
+
+//import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
+//import static cn.nju.ws.utility.fileParser.InstFileApacheJenaParser.parseInstFileByApacheJena;
 
 /**
  * Created by ciferlv on 17-6-21.
@@ -68,35 +71,25 @@ public class njuLinkMatcher {
 
     public String align(URI sourceURI, URI targetURI) throws IOException {
 
-        logger.info("njuLink version 6");
-
         init();
 
         alignBuffer.append(alignHead);
 
-        tarPath = targetURI.getPath();
-        souPath = sourceURI.getPath();
-
         souDoc.setTarType(souClassFilterSet);
         tarDoc.setTarType(tarClassFilterSet);
 
-        parseInstFileByOWLAPI(souPath, souDoc);
-        parseInstFileByOWLAPI(tarPath, tarDoc);
+        parseInstFileByOWLAPI(sourceURI, souDoc);
+        parseInstFileByOWLAPI(targetURI, tarDoc);
 
         souDoc.processGraph();
         tarDoc.processGraph();
 
-        parseAlignFile(refPath, refAlign);
+//        parseAlignFile(refPath, refAlign);
         refAlign.generatePositives();
         refAlign.generateNegetives();
 
         findPredPairWithoutThread();
         calInfoGainWithoutThread();
-
-//        PredPair tmpPP = new PredPair("http://data.doremus.org/ontology#U16_has_catalogue_statement"
-//                , "http://data.doremus.org/ontology#U16_has_catalogue_statement");
-//        tmpPP.setInfoGain(1);
-//        ppl.add(tmpPP);
 
         findResultAlignWithoutThread();
 
@@ -105,18 +98,50 @@ public class njuLinkMatcher {
         return String.valueOf(alignBuffer);
     }
 
-    public static void main(String[] args) {
+    public String align(URI sourceURI, URI targetURI, URL inputAlignment) throws IOException {
+
+        init();
+
+//        refPath = inputAlignment.getPath();
+
+        alignBuffer.append(alignHead);
+
+        souDoc.setTarType(souClassFilterSet);
+        tarDoc.setTarType(tarClassFilterSet);
+
+        parseInstFileByOWLAPI(sourceURI, souDoc);
+        parseInstFileByOWLAPI(targetURI, tarDoc);
+
+        souDoc.processGraph();
+        tarDoc.processGraph();
+
+        parseAlignFile(inputAlignment, refAlign);
+        refAlign.generatePositives();
+        refAlign.generateNegetives();
+
+        findPredPairWithoutThread();
+        calInfoGainWithoutThread();
+
+        findResultAlignWithoutThread();
+
+        alignBuffer.append(alignTail);
+
+        return String.valueOf(alignBuffer);
+    }
+
+    public static void main(String[] args) throws MalformedURLException {
 
         njuLinkMatcher nlm = new njuLinkMatcher();
 
-        URI sourceURI = URI.create("./DOREMUS/HT/source.ttl");
-        URI targetURI = URI.create("./DOREMUS/HT/target.ttl");
+        URI sourceURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/source.ttl");
+        URI targetURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/target.ttl");
+        URL inputAlign = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/refalign.rdf");
 
         String res = "";
 
         try {
 
-            res = nlm.align(sourceURI, targetURI);
+            res = nlm.align(sourceURI, targetURI, inputAlign);
         } catch (IOException e) {
             e.printStackTrace();
         }

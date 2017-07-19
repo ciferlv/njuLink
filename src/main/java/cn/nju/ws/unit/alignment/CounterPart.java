@@ -26,9 +26,9 @@ public class CounterPart implements Comparable<CounterPart> {
         matchedNumUndis = 0;
         infoGainSumDis = detailInfoGainSumDis = maxSimiSumDis = maxSimiSumUndis = 0;
         matchedNumDis = unmatchedNumDis = 0;
-        token = sub1 + sub2;
-//        if (sub1.compareTo(sub2) < 0) token = sub1 + sub2;
-//        else token = sub2 + sub1;
+//        token = sub1 + sub2;
+        if (sub1.compareTo(sub2) < 0) token = sub1 + sub2;
+        else token = sub2 + sub1;
     }
 
 
@@ -46,9 +46,9 @@ public class CounterPart implements Comparable<CounterPart> {
         this.maxSimiSumDis = maxSimiSumDis;
         matchedNumUndis = 0;
         maxSimiSumUndis = 0;
-        token = sub1 + sub2;
-//        if (sub1.compareTo(sub2) < 0) token = sub1 + sub2;
-//        else token = sub2 + sub1;
+//        token = sub1 + sub2;
+        if (sub1.compareTo(sub2) < 0) token = sub1 + sub2;
+        else token = sub2 + sub1;
     }
 
 

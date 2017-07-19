@@ -1,6 +1,6 @@
 package cn.nju.ws.utility;
 
-import cn.nju.ws.unit.alignment.AlignmentSet;
+import cn.nju.ws.unit.alignment.AlignmentList;
 import cn.nju.ws.unit.instance.Doc;
 import cn.nju.ws.unit.predicatePair.PredPairList;
 import org.semanticweb.owlapi.model.OWLDatatype;
@@ -13,7 +13,7 @@ import java.util.Set;
  */
 public class ParamDef {
 
-    public static final boolean isForFormalContest = false;
+    public static final boolean isForFormalContest = true;
 
     //    The name of predicate
     public static final String TYPE_FULL_NAME = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
@@ -58,13 +58,12 @@ public class ParamDef {
 
     public static Set<String> stopWordSet = new HashSet<String>();
 
-    public static AlignmentSet refAlign = new AlignmentSet();
-    public static AlignmentSet positives = new AlignmentSet();
-    public static AlignmentSet negetives = new AlignmentSet();
-    public static AlignmentSet tempAlign = new AlignmentSet();
-    public static AlignmentSet resultAlign = new AlignmentSet();
-    public static AlignmentSet testAlign = new AlignmentSet();
-    public static AlignmentSet test2Align = new AlignmentSet();
+    public static AlignmentList refAlign = new AlignmentList();
+    public static AlignmentList positives = new AlignmentList();
+    public static AlignmentList negetives = new AlignmentList();
+    public static AlignmentList tempAlign = new AlignmentList();
+    public static AlignmentList resultAlign = new AlignmentList();
+    public static AlignmentList testAlign = new AlignmentList();
 
     public static Set<String> refSet = new HashSet<>();
 

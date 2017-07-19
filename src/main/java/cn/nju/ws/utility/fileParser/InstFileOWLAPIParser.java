@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.net.URI;
 import java.util.stream.Stream;
 
 import static cn.nju.ws.utility.ParamDef.recordDataType;
@@ -396,16 +397,16 @@ public class InstFileOWLAPIParser {
         }
     };
 
-    public static void parseInstFileByOWLAPI(String filePath, Doc doc) {
+    public static void parseInstFileByOWLAPI(URI filePath, Doc doc) {
+
+        logger.info(filePath.toString());
 
         currentDoc = doc;
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
 
-        File file = new File(filePath);
-
         OWLOntology localAcademic = null;
         try {
-            localAcademic = manager.loadOntologyFromOntologyDocument(file);
+            localAcademic = manager.loadOntologyFromOntologyDocument(IRI.create(filePath));
         } catch (OWLOntologyCreationException e) {
             e.printStackTrace();
         }
@@ -417,8 +418,8 @@ public class InstFileOWLAPIParser {
 
     public static void main(String[] args) {
 
-        String testFilePath = "./example.ttl";
-        parseInstFileByOWLAPI(testFilePath, souDoc);
+        URI testFile = URI.create("./example.ttl");
+        parseInstFileByOWLAPI(testFile, souDoc);
 
         System.out.println(souDoc.graphToString());
     }

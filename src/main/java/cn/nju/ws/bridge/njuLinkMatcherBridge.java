@@ -57,7 +57,32 @@ public class njuLinkMatcherBridge extends AbstractPlugin implements IOntologyMat
      * it is invoced a ToolException is thrown.https://files.slack.com/files-pri/T5SCUJBMZ-F60DWA4BD/image_uploaded_from_ios.jpg
      */
     public URL align(URL source, URL target, URL inputAlignment) throws ToolBridgeException, ToolException {
-        throw new ToolException("functionality of called method is not supported");
+//        throw new ToolException("functionality of called method is not supported");
+
+        njuLinkMatcher demoMatcher;
+        try {
+            demoMatcher = new njuLinkMatcher();
+            try {
+                String alignmentString = demoMatcher.align(source.toURI(), target.toURI(), inputAlignment);
+                try {
+                    File alignmentFile = File.createTempFile("alignment", ".rdf");
+                    FileWriter fw = new FileWriter(alignmentFile);
+                    fw.write(alignmentString);
+                    fw.flush();
+                    fw.close();
+                    System.out.println(alignmentFile.getAbsolutePath());
+                    return alignmentFile.toURI().toURL();
+                } catch (IOException e) {
+                    throw new ToolBridgeException("cannot create file for resulting alignment", e);
+                }
+            } catch (URISyntaxException e1) {
+                throw new ToolBridgeException("cannot convert the input param to URI as required");
+            }
+        } catch (NumberFormatException numberFormatE) {
+            throw new ToolBridgeException("cannot correctly read from configuration file", numberFormatE);
+        } catch (IOException configE) {
+            throw new ToolBridgeException("cannot access configuration file", configE);
+        }
     }
 
     /**

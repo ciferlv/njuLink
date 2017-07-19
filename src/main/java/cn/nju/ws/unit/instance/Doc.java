@@ -18,13 +18,6 @@ public class Doc {
 
     private Set<String> tarType;
 
-    private long tripleNum;
-
-    public Doc(Set<String> tarType) {
-
-        this.tarType = tarType;
-    }
-
     public Doc() {
     }
 
@@ -261,7 +254,6 @@ public class Doc {
         StringBuffer buffer = new StringBuffer();
 
         buffer.append("Instance number: " + graph.size() + "\n");
-        buffer.append("Triple number: " + tripleNum + "\n");
         buffer.append("tarSubList number: " + tarSubList.size() + "\n\n");
 
         Iterator graphIter = graph.entrySet().iterator();

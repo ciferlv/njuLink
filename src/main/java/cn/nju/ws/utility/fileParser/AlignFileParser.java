@@ -1,6 +1,6 @@
 package cn.nju.ws.utility.fileParser;
 
-import cn.nju.ws.unit.alignment.AlignmentSet;
+import cn.nju.ws.unit.alignment.AlignmentList;
 import cn.nju.ws.unit.alignment.CounterPart;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -9,6 +9,8 @@ import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Iterator;
 
 import static cn.nju.ws.utility.ParamDef.refSet;
@@ -20,7 +22,7 @@ public class AlignFileParser {
 
     private static Logger logger = LoggerFactory.getLogger(AlignFileParser.class);
 
-    public static void parseAlignFile(String filePath, AlignmentSet aligns) {
+    public static void parseAlignFile(URL filePath, AlignmentList aligns) {
 
         SAXReader reader = new SAXReader();
         Document document = null;
@@ -60,11 +62,11 @@ public class AlignFileParser {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
 
-        AlignmentSet aligns = new AlignmentSet();
+        AlignmentList aligns = new AlignmentList();
 
-        String filePath = "./DOREMUS/FPT/refalign.rdf";
-        parseAlignFile(filePath,aligns);
+        URL inputAlign = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/refalign.rdf");
+        parseAlignFile(inputAlign,aligns);
     }
 }

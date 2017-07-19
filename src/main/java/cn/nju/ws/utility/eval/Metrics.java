@@ -1,6 +1,6 @@
 package cn.nju.ws.utility.eval;
 
-import cn.nju.ws.unit.alignment.AlignmentSet;
+import cn.nju.ws.unit.alignment.AlignmentList;
 import cn.nju.ws.unit.alignment.CounterPart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +24,9 @@ public class Metrics {
 
         double precision, recall, f1_score;
 
-        AlignmentSet correctAlign = new AlignmentSet();
-        AlignmentSet wrongAlign = new AlignmentSet();
-        AlignmentSet unfoundAlign = new AlignmentSet();
+        AlignmentList correctAlign = new AlignmentList();
+        AlignmentList wrongAlign = new AlignmentList();
+        AlignmentList unfoundAlign = new AlignmentList();
 
         int correctNum = 0, wrongNum = 0;
         int refSize, resultSize;

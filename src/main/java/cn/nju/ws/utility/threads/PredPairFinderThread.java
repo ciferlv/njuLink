@@ -11,7 +11,6 @@ import static cn.nju.ws.utility.finder.PredPairFinder.compareCounterPart;
  */
 public class PredPairFinderThread implements Runnable {
 
-
     Logger logger = LoggerFactory.getLogger(PredPairFinderThread.class);
 
     Inst inst1, inst2;

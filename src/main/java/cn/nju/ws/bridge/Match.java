@@ -18,8 +18,10 @@ public class Match {
 //            URL target = new URL("http://repositories.seals-project.eu/tdrs./TESTdata/persistent/conference/conference-v1/suite/cmt-ekaw/component/target/");
             URL target = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/target.ttl");
 
+            URL inputAlign = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/refalign.rdf");
+
             njuLinkMatcherBridge njuM = new njuLinkMatcherBridge();
-            njuM.align(source, target);
+            njuM.align(source, target,inputAlign);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
