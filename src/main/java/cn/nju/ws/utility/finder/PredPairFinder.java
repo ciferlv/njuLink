@@ -1,10 +1,10 @@
 package cn.nju.ws.utility.finder;
 
-import cn.nju.ws.unit.instance.Value;
-import cn.nju.ws.utility.threads.PredPairFinderThread;
 import cn.nju.ws.unit.alignment.CounterPart;
 import cn.nju.ws.unit.instance.Inst;
+import cn.nju.ws.unit.instance.Value;
 import cn.nju.ws.unit.predicatePair.PredPair;
+import cn.nju.ws.utility.threads.PredPairFinderThread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,8 +15,8 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static cn.nju.ws.utility.nlp.CalSimilarity.calValSetSim;
 import static cn.nju.ws.utility.ParamDef.*;
+import static cn.nju.ws.utility.nlp.CalSimilarity.calValSetSim;
 import static cn.nju.ws.utility.threads.ThreadEndJudge.terminateThread;
 
 /**
@@ -73,16 +73,24 @@ public class PredPairFinder {
 
         if (inst1 == null) {
 
-            logger.info("inst1 is null: ");
-            logger.info("sub1: " + sub1);
+            if (!isForFormalContest) {
+
+                logger.info("inst1 is null: ");
+                logger.info("sub1: " + sub1);
+            }
+
+            if (inst2 == null) {
+
+                if (!isForFormalContest) {
+
+                    logger.info("inst2 is null: ");
+                    logger.info("sub2: " + sub2);
+                }
+                return;
+            }
             return;
         }
 
-        if (inst2 == null) {
-            logger.info("inst2 is null: ");
-            logger.info("sub2: " + sub2);
-            return;
-        }
 
         Map<String, Set<Value>> predObj1 = inst1.getPropVal();
         Map<String, Set<Value>> predObj2 = inst2.getPropVal();

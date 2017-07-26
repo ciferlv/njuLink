@@ -174,7 +174,10 @@ public class AlignmentList {
 
         if (subList.size() == 0) {
 
-            logger.info("SubList in TarDoc is empty!");
+            if (!isForFormalContest) {
+
+                logger.info("SubList in TarDoc is empty!");
+            }
             return;
         }
 

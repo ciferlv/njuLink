@@ -115,6 +115,13 @@ public class njuLinkMatcher {
         souDoc.processGraph();
         tarDoc.processGraph();
 
+        if (souDoc.getTarSubList().size() == 0 || tarDoc.getTarSubList().size() == 0) {
+
+            logger.info("Can not find subject that meet the preset class!");
+            alignBuffer.append(alignTail);
+            return String.valueOf(alignBuffer);
+        }
+
         parseAlignFile(inputAlignment, refAlign);
         refAlign.generatePositives();
         refAlign.generateNegetives();
@@ -133,9 +140,13 @@ public class njuLinkMatcher {
 
         njuLinkMatcher nlm = new njuLinkMatcher();
 
-        URI sourceURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/source.ttl");
-        URI targetURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/target.ttl");
-        URL inputAlign = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/refalign.rdf");
+//        URI sourceURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/source.ttl");
+//        URI targetURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/target.ttl");
+//        URL inputAlign = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/refalign.rdf");
+
+        URI sourceURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/source.ttl");
+        URI targetURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/target.ttl");
+        URL inputAlign = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/refalign.rdf");
 
         String res = "";
 

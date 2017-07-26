@@ -91,40 +91,40 @@ public class AlignmentFinder {
             if (matchRes.getMaxSimi() > predPairSimiThreshold) {
 
                 cp1.addMatchedNumDis(1);
-                cp2.addMatchedNumDis(1);
+//                cp2.addMatchedNumDis(1);
 
                 cp1.addInfoGainSumDis(pp.getInfoGain());
-                cp2.addInfoGainSumDis(pp.getInfoGain());
+//                cp2.addInfoGainSumDis(pp.getInfoGain());
 
                 cp1.addDetailInfoGainSumDis(
                         (matchRes.getMatchedNumOfValSet1() - matchRes.getUnmatchedNumOfValSet1())
                                 * pp.getInfoGain());
-                cp2.addDetailInfoGainSumDis(
-                        (matchRes.getMatchedNumOfValSet2() - matchRes.getMatchedNumOfValSet2())
-                                * pp.getInfoGain());
+//                cp2.addDetailInfoGainSumDis(
+//                        (matchRes.getMatchedNumOfValSet2() - matchRes.getMatchedNumOfValSet2())
+//                                * pp.getInfoGain());
 
                 cp1.addMaxSimiSumDis(matchRes.getSimiSumOfValSet1() * pp.getInfoGain());
-                cp2.addMaxSimiSumDis(matchRes.getSimiSumOfValSet2() * pp.getInfoGain());
+//                cp2.addMaxSimiSumDis(matchRes.getSimiSumOfValSet2() * pp.getInfoGain());
             } else {
 
                 cp1.addInfoGainSumDis(pp.getInfoGain() * -1);
-                cp2.addInfoGainSumDis(pp.getInfoGain() * -1);
+//                cp2.addInfoGainSumDis(pp.getInfoGain() * -1);
 
                 cp1.addDetailInfoGainSumDis(pp.getInfoGain() * -1);
-                cp2.addDetailInfoGainSumDis(pp.getInfoGain() * -1);
+//                cp2.addDetailInfoGainSumDis(pp.getInfoGain() * -1);
 
                 cp1.addUnmatchedNumDis(1);
-                cp2.addUnmatchedNumDis(1);
+//                cp2.addUnmatchedNumDis(1);
             }
         } else {
 
             if (matchRes.getMaxSimi() > predPairSimiThreshold) {
 
                 cp1.addMatchedNumUndis(1);
-                cp2.addMatchedNumUndis(1);
+//                cp2.addMatchedNumUndis(1);
 
                 cp1.addMaxSimiSumUndis(matchRes.getSimiSumOfValSet1());
-                cp2.addMaxSimiSumUndis(matchRes.getSimiSumOfValSet2());
+//                cp2.addMaxSimiSumUndis(matchRes.getSimiSumOfValSet2());
             }
         }
     }
@@ -170,7 +170,6 @@ public class AlignmentFinder {
 
             tempAlign.addCounterPart(cp1);
 //            tempAlign.addCounterPart(cp2);
-
 //            tempAlign.addCpToCpGraph(inst1.getSub(), inst2.getSub(), cp1);
 //            tempAlign.addCpToCpGraph(inst2.getSub(), inst1.getSub(), cp2);
         }

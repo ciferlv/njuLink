@@ -399,8 +399,7 @@ public class InstFileOWLAPIParser {
 
     public static void parseInstFileByOWLAPI(URI filePath, Doc doc) {
 
-        logger.info(filePath.toString());
-
+//        logger.info(filePath.toString());
         currentDoc = doc;
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
 
