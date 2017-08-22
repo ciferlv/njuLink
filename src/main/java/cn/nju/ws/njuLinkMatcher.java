@@ -1,8 +1,5 @@
 package cn.nju.ws;
 
-//import org.apache.jena.rdf.model.Model;
-//import org.apache.jena.rdf.model.ModelFactory;
-
 import org.semanticweb.owlapi.model.OWLDatatype;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +23,6 @@ import static cn.nju.ws.utility.finder.InfoGainCalculator.calInfoGainWithoutThre
 import static cn.nju.ws.utility.finder.PredPairFinder.findPredPairWithoutThread;
 import static cn.nju.ws.utility.nlp.FormatData.getStopWords;
 
-//import static cn.nju.ws.utility.fileParser.AlignFileParser.parseAlignFile;
-//import static cn.nju.ws.utility.fileParser.InstFileApacheJenaParser.parseInstFileByApacheJena;
-
 /**
  * Created by ciferlv on 17-6-21.
  */
@@ -43,23 +37,22 @@ public class njuLinkMatcher {
         pro.load(in);
         in.close();
 
-        refPath = pro.getProperty("refPath");
         alignHead = pro.getProperty("alignHead");
         alignTail = pro.getProperty("alignTail");
         infoGainThreshold = Double.parseDouble(pro.getProperty("infoGainThreshold"));
         predPairSimiThreshold = Double.parseDouble(pro.getProperty("predPairSimiThreshold"));
-        predPairNumNeededThreshold = Integer.parseInt(pro.getProperty("predPairNumNeededThreshold"));
+//        predPairNumNeededThreshold = Integer.parseInt(pro.getProperty("predPairNumNeededThreshold"));
 
         String[] souClassFilter = pro.getProperty("souClassFilter").split(";");
         for (int i = 0; i < souClassFilter.length; i++) {
 
-            souClassFilterSet.add(souClassFilter[i]);
+            souClassFilterSet.add(souClassFilter[i].toLowerCase());
         }
 
         String[] tarClassFilter = pro.getProperty("tarClassFilter").split(";");
         for (int i = 0; i < tarClassFilter.length; i++) {
 
-            tarClassFilterSet.add(tarClassFilter[i]);
+            tarClassFilterSet.add(tarClassFilter[i].toLowerCase());
         }
 
         useReinforce = Boolean.parseBoolean(pro.getProperty("useReinforce"));
@@ -81,39 +74,26 @@ public class njuLinkMatcher {
         parseInstFileByOWLAPI(sourceURI, souDoc);
         parseInstFileByOWLAPI(targetURI, tarDoc);
 
-        souDoc.processGraph();
-        tarDoc.processGraph();
-
-//        parseAlignFile(refPath, refAlign);
-        refAlign.generatePositives();
-        refAlign.generateNegetives();
-
-        findPredPairWithoutThread();
-        calInfoGainWithoutThread();
-
-        findResultAlignWithoutThread();
-
-        alignBuffer.append(alignTail);
-
-        return String.valueOf(alignBuffer);
-    }
-
-    public String align(URI sourceURI, URI targetURI, URL inputAlignment) throws IOException {
-
-        init();
-
-//        refPath = inputAlignment.getPath();
-
-        alignBuffer.append(alignHead);
-
-        souDoc.setTarType(souClassFilterSet);
-        tarDoc.setTarType(tarClassFilterSet);
-
-        parseInstFileByOWLAPI(sourceURI, souDoc);
-        parseInstFileByOWLAPI(targetURI, tarDoc);
+//        logger.info(souDoc.graphToString());
+//        logger.info(tarDoc.graphToString());
+//        printToFile("Source.txt", souDoc.graphToString());
+//        printToFile("Target.txt", tarDoc.graphToString());
 
         souDoc.processGraph();
         tarDoc.processGraph();
+
+//        String souStr = "";
+//        for(String str: souDoc.getTarSubList()){
+//            souStr += str;
+//        }
+//
+//        String tarStr = "";
+//        for(String str: tarDoc.getTarSubList()){
+//            tarStr += str;
+//        }
+
+//        printToFile("souTarSubList.txt",souStr);
+//        printToFile("tarTarSubList.txt",tarStr);
 
         if (souDoc.getTarSubList().size() == 0 || tarDoc.getTarSubList().size() == 0) {
 
@@ -122,11 +102,20 @@ public class njuLinkMatcher {
             return String.valueOf(alignBuffer);
         }
 
-        parseAlignFile(inputAlignment, refAlign);
-        refAlign.generatePositives();
-        refAlign.generateNegetives();
+//        parseAlignFile(inputAlignment, refAlign);
+//        refAlign.generatePositives();
+//        refAlign.generateNegetives();
+
+        positives.generateAlignment();
+        negetives.generateNegetives();
+
+//        printToFile("Positives.txt",positives.toString());
+//        printToFile("Negetives.txt",negetives.toString());
 
         findPredPairWithoutThread();
+
+//        logger.info(ppl.toString());
+
         calInfoGainWithoutThread();
 
         findResultAlignWithoutThread();
@@ -140,19 +129,24 @@ public class njuLinkMatcher {
 
         njuLinkMatcher nlm = new njuLinkMatcher();
 
-//        URI sourceURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/source.ttl");
-//        URI targetURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/target.ttl");
-//        URL inputAlign = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/refalign.rdf");
+        URI sourceURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/source.ttl");
+        URI targetURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/target.ttl");
+        URL inputAlign = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/HT/refalign.rdf");
 
-        URI sourceURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/source.ttl");
-        URI targetURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/target.ttl");
-        URL inputAlign = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/refalign.rdf");
+//        URI sourceURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/source.ttl");
+//        URI targetURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/target.ttl");
+//        URL inputAlign = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/DOREMUS/FPT/refalign.rdf");
+
+//        URI sourceURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/SPIMBENCH_small/Abox1.nt");
+//        URI targetURI = URI.create("file:///media/xinzelv/Disk1/OAEI2017/DataSet/SPIMBENCH_small/Abox2.nt");
+//        URL inputAlign = new URL("file:///media/xinzelv/Disk1/OAEI2017/DataSet/SPIMBENCH_small/refalign.rdf");
 
         String res = "";
 
         try {
 
-            res = nlm.align(sourceURI, targetURI, inputAlign);
+            parseAlignFile(inputAlign, refAlign);
+            res = nlm.align(sourceURI, targetURI);
         } catch (IOException e) {
             e.printStackTrace();
         }

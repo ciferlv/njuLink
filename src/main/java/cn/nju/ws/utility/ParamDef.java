@@ -46,7 +46,7 @@ public class ParamDef {
 
     public static double predPairSimiThreshold = 0.65;
 
-    public static int predPairNumNeededThreshold = 4;
+//    public static int predPairNumNeededThreshold = 4;
 
     public static String souPath;
     public static String tarPath;

@@ -166,7 +166,7 @@ public class AlignmentFinder {
             }
         }
 
-        if (cp1.getMatchedNumDis() >= predPairNumNeededThreshold) {
+        if (cp1.getMatchedNumDis() >= ppl.size() * 0.618) {
 
             tempAlign.addCounterPart(cp1);
 //            tempAlign.addCounterPart(cp2);
@@ -226,7 +226,7 @@ public class AlignmentFinder {
 
         }
 
-        if (cp1.getMatchedNumDis() >= predPairNumNeededThreshold) {
+        if (cp1.getMatchedNumDis() >= ppl.size() * 0.618) {
 
             tempAlign.addCounterPart(cp1);
         }

@@ -1,11 +1,15 @@
 package cn.nju.ws.unit.alignment;
 
+import cn.nju.ws.unit.instance.Inst;
+import cn.nju.ws.unit.instance.Value;
+import cn.nju.ws.unit.others.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 import static cn.nju.ws.utility.ParamDef.*;
+import static cn.nju.ws.utility.nlp.CalSimilarity.calValSetSim;
 
 /**
  * Created by ciferlv on 17-6-8.
@@ -142,6 +146,79 @@ public class AlignmentList {
 
     }
 
+    public void generateAlignment() {
+
+        List<String> souList = souDoc.getTarSubList();
+        List<String> tarList = tarDoc.getTarSubList();
+
+
+        for(String souStr : souList){
+
+            for(String tarStr: tarList){
+
+                Inst souInst = souDoc.getInst(souStr);
+                Inst tarInst = tarDoc.getInst(tarStr);
+
+                Map<String,Set<Value>> souPropVal = souInst.getPropVal();
+                Map<String,Set<Value>> tarPropVal = tarInst.getPropVal();
+
+                int cnt = 0;
+                Iterator souIter = souPropVal.entrySet().iterator();
+                while(souIter.hasNext()){
+
+                    Map.Entry souEntry = (Map.Entry) souIter.next();
+                    Set<Value> souValSet = (Set<Value>) souEntry.getValue();
+
+                    boolean canComp = false;
+                    for(Value val: souValSet){
+
+                        if(val.isURI()||val.isAnonyId()) {
+
+                            canComp = true;
+                            break;
+                        }
+                    }
+
+                    if(canComp) continue;
+
+                    Iterator tarIter = tarPropVal.entrySet().iterator();
+                    while(tarIter.hasNext()){
+
+                        Map.Entry tarEntry = (Map.Entry) tarIter.next();
+                        Set<Value> tarValSet = (Set<Value>) tarEntry.getValue();
+
+                        for(Value val: tarValSet){
+
+                            if(val.isURI()||val.isAnonyId()) {
+
+                                canComp = true;
+                                break;
+                            }
+                        }
+
+                        if(canComp) continue;
+
+                        Pair tmpPair = null;
+                        if(souValSet.size() > tarValSet.size()) tmpPair = calValSetSim(tarValSet,souValSet);
+                        else tmpPair = calValSetSim(souValSet,tarValSet);
+
+                        if(tmpPair.getMaxSimi() == 1 ){
+
+                             cnt ++;
+                             break;
+                        }
+                    }
+                }
+
+                if(cnt > 0){
+
+                    counterPartList.add(new CounterPart(souStr,tarStr));
+                    break;
+                }
+            }
+            if(counterPartList.size() >= 20 ) break;
+        }
+    }
     public void generatePositives() {
 
         if (isForFormalContest) {
@@ -221,6 +298,7 @@ public class AlignmentList {
             }
         }
 
+//        logger.info(String.valueOf(resultAlign.size()));
 //        List<CounterPart> testCpl = testAlign.getCounterPartList();
 //
 //        for (CounterPart cp : testCpl) {
@@ -232,6 +310,7 @@ public class AlignmentList {
 //            }
 //        }
 
+//        System.out.println(resultAlign.size());
         for (CounterPart cp : resultAlign.getCounterPartList()) {
 
             alignBuffer.append("\n\t<map>");

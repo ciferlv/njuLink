@@ -37,9 +37,10 @@ public class Doc {
             String sub = (String) entry1.getKey();
             Inst inst = (Inst) entry1.getValue();
 
-            Set<String> typeSet = inst.getTypeSet();
+            Set<String> myTypeSet = inst.getTypeSet();
 
-            for (String type : typeSet) {
+            for (String type : myTypeSet) {
+
                 if (tarType.contains(type)) {
                     tarSubList.add(sub);
                     break;
