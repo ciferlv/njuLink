@@ -19,4 +19,4 @@ project.
 the project.
 + If you have any difficulty or question
 in running code and reproducing expriment results,
-please email to [xzlv.nju@gmail.com]() and [whu@nju.edu.cn]().
+please email to [leven.xzlyu@gmail.com]() and [whu@nju.edu.cn]().
